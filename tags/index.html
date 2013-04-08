@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="row">
+  <div class="span3 visible-desktop">
+    {% include tagnav.html %}
+  </div>
+  <div class="span9">
+    <div class="content tags">
+      {% for tagged_posts in site.tags %}
+        <div class="page-header">
+          <h1 id={{ tagged_posts[0] | replace: '.', '_' | replace: ' ', '_' | cgi_escape | replace: '%', '_' | downcase }} >{{ tagged_posts[0] }}</h1>
+        </div>
+
+        {% for post in tagged_posts[1] %}
+          <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

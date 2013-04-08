@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="row">
+  <div class="span3 visible-desktop">
+    {% include yearnav.html %}
+  </div>
+  <div class="span9">
+    <div class="content archives">
+      {% assign year = "" %}
+      {% for post in site.posts %}
+        {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+        {% unless year == this_year %}
+          {% assign year = this_year %}
+          <div class="page-header">
+            <h1 id={{ year }}>{{ year }}</h1>
+          </div>
+        {% endunless %}
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {% endfor %}
+    </div>
+  </div>
+</div>

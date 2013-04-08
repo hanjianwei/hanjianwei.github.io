@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="row">
+  <div class="span3 visible-desktop">
+    {% include tagnav.html %}
+    {% include yearnav.html %}
+  </div>
+  <div class="span9">
+    <div class="content">
+      {% for post in paginator.posts %}
+        {% include post.html %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% if paginator.total_pages > 1 %}
+  {% include paginator.html %}
+{% endif %}

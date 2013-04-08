@@ -1,0 +1,310 @@
+// My custom variables
+$bodyBackground: #46483E !default;
+
+$linkColor: #690 !default;
+$linkColorHover: $linkColor !default;
+
+$navbarInverseBackground: #33342D !default;
+$navbarInverseBackgroundHighlight: $navbarInverseBackground !default;
+
+$navbarInverseLinkColor: #878B78;
+$navbarInverseLinkColorHover: #690;
+
+$paginationBackground: $navbarInverseBackground !default;
+$paginationBorder: $bodyBackground !default;
+$paginationActiveBackground: $linkColor !default;
+
+$sansFontFamily: "Helvetica Neue Light", Arial, "Verdana", "Lucida Grande", "Ubuntu", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !default;
+$serifFontFamily: Georgia, "Times New Roman", "Hiragino Mincho", serif !default;
+$monoFontFamily: Menlo, Monaco, "Lucida Console", "Consolas", "Andale Mono", "Courier New", monospace !default;
+
+// Bootstrap
+// Core variables and mixins
+@import "bootstrap/variables"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/mixins";
+
+// CSS Reset
+@import "bootstrap/reset";
+
+// Grid system and page structure
+@import "bootstrap/scaffolding";
+@import "bootstrap/grid";
+@import "bootstrap/layouts";
+
+// Base CSS
+@import "bootstrap/type";
+@import "bootstrap/code";
+//@import "bootstrap/forms";
+@import "bootstrap/tables";
+
+// Components: common
+//@import "bootstrap/sprites";
+//@import "bootstrap/dropdowns";
+//@import "bootstrap/wells";
+//@import "bootstrap/component-animations";
+//@import "bootstrap/close";
+
+// Components: Buttons & Alerts
+//@import "bootstrap/buttons";
+//@import "bootstrap/button-groups";
+//@import "bootstrap/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
+
+// Components: Nav
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
+//@import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
+@import "bootstrap/pager";
+
+// Components: Popovers
+//@import "bootstrap/modals";
+//@import "bootstrap/tooltip";
+//@import "bootstrap/popovers";
+
+// Components: Misc
+//@import "bootstrap/thumbnails";
+//@import "bootstrap/media";
+//@import "bootstrap/labels-badges";
+//@import "bootstrap/progress-bars";
+//@import "bootstrap/accordion";
+//@import "bootstrap/carousel";
+//@import "bootstrap/hero-unit";
+
+// Utility classes
+@import "bootstrap/utilities"; // Has to be last to override when necessary
+
+// RESPONSIVE CLASSES
+// ------------------
+
+// IE10 Metro responsive
+// Required for Windows 8 Metro split-screen snapping with IE10
+// Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+
+@-ms-viewport{
+  width: device-width;
+}
+
+@import "bootstrap/responsive-utilities";
+
+
+// MEDIA QUERIES
+// ------------------
+
+// Large desktops
+//@import "bootstrap/responsive-1200px-min";
+
+// Tablets to regular desktops
+@import "bootstrap/responsive-768px-979px";
+
+// Phones to portrait tablets and narrow desktops
+@import "bootstrap/responsive-767px-max";
+
+
+// RESPONSIVE NAVBAR
+// ------------------
+
+// From 979px and below, show a button to toggle navbar contents
+@import "bootstrap/responsive-navbar";
+
+@import "compass/css3";
+@import "compass/typography";
+@import "compass/utilities";
+
+// FontAwesome
+
+$fontAwesomePath:   "../font" !default;
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('#{$fontAwesomePath}/fontawesome-webfont.eot');
+  src: url('#{$fontAwesomePath}/fontawesome-webfont.eot?#iefix') format("embedded-opentype"),
+  url('#{$fontAwesomePath}/fontawesome-webfont.woff') format("woff"),
+  url('#{$fontAwesomePath}/fontawesome-webfont.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+%icon:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  padding-right: 10px;
+  display: inline;
+  text-decoration: inherit;
+}
+
+// Code
+
+// Inline code
+code {
+  font-weight: bold;
+  color: $grayDark;
+  background: none;
+  border: none;
+}
+
+@import "pygment";
+
+// UI
+%button {
+  $button-color: #9A9F8B !default;
+  $button-color-hover: #AAB293 !default;
+  $button-text-color: #46483E !default;
+
+  @include border-radius(2px);
+  @include link-colors($button-text-color, $button-text-color);
+  background-color: $button-color;
+  text-align: center;
+  display: inline-block;
+  width: 120px;
+  line-height: 24px;
+  text-transform: uppercase;
+  @include transition-duration(0.2s);
+  @include transition-timing-function(ease-in-out);
+  &:hover { background-color: $button-color-hover; }
+}
+
+kbd {
+  @include background-clip(border-box);
+  @include background-origin(padding-box);
+  background:#EEEEEE none repeat scroll 0 0;
+  border-color:#CCCCCC #AAAAAA #888888 #BBBBBB;
+  border-style:solid;
+  border-width:1px 1px 2px 2px;
+  color:#000000;
+  padding:2px 1px;
+  white-space:nowrap;
+  text-transform: uppercase;
+}
+
+// Global
+p { line-height: 23px; }
+
+h1 { font-size: $baseFontSize * 1.5; }
+h2 { font-size: $baseFontSize * 1.25; }
+h3 { font-size: $baseFontSize * 1.15; }
+h4 { font-size: $baseFontSize; }
+
+// Top navbar
+.nav a { @extend %icon; }
+#home     { &:before { content: "\f015"; } }
+#tags     { &:before { content: "\f02c"; } }
+#archives { &:before { content: "\f073"; } }
+#docs     { &:before { content: "\f02d"; } }
+#rss      { &:before { content: "\f09e"; } }
+
+// Main
+.row {
+  @include border-radius(5px);
+  @include single-box-shadow(rgba(#000, 0.15), 0, 5px, 10px);
+
+  margin-top: 25px;
+  margin-bottom: 50px;
+
+  background: white;
+}
+
+.content {
+  padding: 30px;
+
+  #{headings()} {
+    font-weight: 500;
+    line-height: 100%;
+    margin: 15px 0 20px 0;
+    a {
+      @include link-colors($textColor, $textColor);
+      text-decoration: none;
+    }
+  }
+
+  .more a{
+    text-decoration: none;
+    @extend %button;
+    @extend %icon;
+    &:before { content: "\f05a"; }
+  }
+}
+
+.archives, .tags {
+  h2 a {
+    @extend %icon;
+    &:before { content: "\f097";}
+  }
+
+  h2 + .page-header {
+    margin-top: 48px;
+  }
+}
+
+// Meta info
+.meta {
+  color: #999;
+  a {
+    @include link-colors(#999, #666);
+    text-decoration: none;
+  }
+
+  time, .tags, .dir {
+    display: inline-block;
+    @extend %icon;
+  }
+
+  .tags, .dir {
+    a { text-transform: lowercase; }
+  }
+
+  time {
+    &:before { content: "\f017"; }
+    margin-right: 25px;
+  }
+
+  .dir {
+    &:before { content: "\f07c"; }
+
+    a + a {
+      &:before { content: " / "; }
+    }
+  }
+
+  .tags {
+    &:before { content: "\f02b"; }
+
+    a + a {
+      &:before { content: ", "; }
+    }
+  }
+}
+
+// Tags sidebar navigation
+.sidenav {
+  $radius: 6px;
+  top: 60px;
+  width: 200px;
+  margin: 30px 0 20px;
+  padding: 0;
+  @include border-radius($radius);
+  @include single-box-shadow(rgba(#000, 0.15), 0, 1px, 4px);
+
+  a {
+    @extend %icon;
+    &:before { content: "\f006"; }
+    text-transform: capitalize;
+    outline: 0;
+    border: 1px solid #E5E5E5;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+  }
+
+  li:first-child > a { @include border-top-radius($radius);    }
+  li:last-child  > a { @include border-bottom-radius($radius); }
+}
+
+.pagination{
+  a { @include link-colors(white, white); }
+  ul > .active > a, ul > .active > span,  ul > .disabled > span, ul > .disabled > a, ul > .disabled > a:hover { color: white; }
+}
+
+// Main content
+footer { color: #666; }
+
+.mod_lost_child { background-color: white; }

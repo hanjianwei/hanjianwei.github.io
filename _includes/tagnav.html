@@ -1,0 +1,8 @@
+<div class="sidenav">
+  <ul class="nav nav-list">
+    {% for tagged_posts in site.tags %}
+      {% assign tag = tagged_posts[0] %}
+      <li>{% include taglink.html %}
+    {% endfor %}
+  </ul>
+</div>

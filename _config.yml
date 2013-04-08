@@ -1,0 +1,14 @@
+url: http://ooii.co
+title: Sixpense
+author: Jianwei Han
+email: hanjianwei@gmail.com
+
+pygments: true
+markdown: redcarpet
+permalink: pretty
+paginate: 10
+
+redcarpet:
+  extensions: [no_intra_emphasis, tables, fenced_code_blocks, autolink, strikethrough, space_after_headers, superscript]
+
+exclude: [config.rb, Gemfile, Gemfile.lock, Rakefile, hanjianwei.github.io.iml]
