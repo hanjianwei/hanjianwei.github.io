@@ -30,6 +30,9 @@ class Ansi < Redcarpet::Render::Base
 
   # Other elements goes here
 end
+
+md = Redcarpet::Markdown.new(Ansi, :fenced_code_blocks => true)
+md.render('Hello **markdown**\n')
 ```
 
 写了一个简单的Gem, 欢迎[fork](https://github.com/hanjianwei/md2ansi)或使用:
