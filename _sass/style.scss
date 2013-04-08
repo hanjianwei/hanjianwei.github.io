@@ -186,12 +186,19 @@ h3 { font-size: $baseFontSize * 1.15; }
 h4 { font-size: $baseFontSize; }
 
 // Top navbar
-.nav a { @extend %icon; }
-#home     { &:before { content: "\f015"; } }
-#tags     { &:before { content: "\f02c"; } }
-#archives { &:before { content: "\f073"; } }
-#docs     { &:before { content: "\f02d"; } }
-#rss      { &:before { content: "\f09e"; } }
+.nav {
+  a { @extend %icon; }
+  .home     { &:before { content: "\f015"; } }
+  .tags     { &:before { content: "\f02c"; } }
+  .archives { &:before { content: "\f073"; } }
+  .docs     { &:before { content: "\f02d"; } }
+  .rss      { &:before { content: "\f09e"; } }
+  .github   { &:before { content: "\f113"; } }
+}
+
+
+
+
 
 // Main
 .row {
