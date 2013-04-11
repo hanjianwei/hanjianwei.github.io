@@ -24,5 +24,5 @@ layout: page
 
     # or
     import os
-    path = os.path.dirname(amodule.__file__)
+    path = os.path.dirname(a_module.__file__)
     ```

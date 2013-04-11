@@ -5,4 +5,8 @@ layout: page
 
 ## Tips
 
-- Generate the docs: `rvm docs generate`
+- Generate the docs (RVM)
+
+    ``` bash
+    rvm docs generate
+    ```
