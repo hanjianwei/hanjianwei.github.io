@@ -145,25 +145,6 @@ code {
 
 @import "pygment";
 
-// UI
-%button {
-  $button-color: #9A9F8B !default;
-  $button-color-hover: #AAB293 !default;
-  $button-text-color: #46483E !default;
-
-  @include border-radius(2px);
-  @include link-colors($button-text-color, $button-text-color);
-  background-color: $button-color;
-  text-align: center;
-  display: inline-block;
-  width: 120px;
-  line-height: 24px;
-  text-transform: uppercase;
-  @include transition-duration(0.2s);
-  @include transition-timing-function(ease-in-out);
-  &:hover { background-color: $button-color-hover; }
-}
-
 kbd {
   @include background-clip(border-box);
   @include background-origin(padding-box);
@@ -222,13 +203,6 @@ h4 { font-size: $baseFontSize; }
       @include link-colors($textColor, $textColor);
       text-decoration: none;
     }
-  }
-
-  .more a{
-    text-decoration: none;
-    @extend %button;
-    @extend %icon;
-    &:before { content: "\f05a"; }
   }
 }
 
