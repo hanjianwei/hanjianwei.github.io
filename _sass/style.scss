@@ -133,6 +133,19 @@ $fontAwesomePath:   "../font" !default;
   text-decoration: inherit;
 }
 
+%icon-star-empty:before { content: "\f021"; }
+%icon-home:before		{ content: "\f022"; }
+%icon-time:before		{ content: "\f023"; }
+%icon-tag:before		{ content: "\f024"; }
+%icon-tags:before		{ content: "\f025"; }
+%icon-book:before		{ content: "\f026"; }
+%icon-calendar:before		{ content: "\f027"; }
+%icon-bookmark-empty:before		{ content: "\f028"; }
+%icon-rss:before		{ content: "\f029"; }
+%icon-double-angle-left:before		{ content: "\f02a"; }
+%icon-double-angle-right:before		{ content: "\f02b"; }
+%icon-github-alt:before		{ content: "\f02c"; }
+
 // Code
 
 // Inline code
@@ -169,17 +182,13 @@ h4 { font-size: $baseFontSize; }
 // Top navbar
 .nav {
   a { @extend %icon; }
-  .home     { &:before { content: "\f015"; } }
-  .tags     { &:before { content: "\f02c"; } }
-  .archives { &:before { content: "\f073"; } }
-  .docs     { &:before { content: "\f02d"; } }
-  .rss      { &:before { content: "\f09e"; } }
-  .github   { &:before { content: "\f113"; } }
+  .home     { @extend %icon-home; }
+  .tags     { @extend %icon-tags; }
+  .archives { @extend %icon-calendar; }
+  .docs     { @extend %icon-book; }
+  .rss      { @extend %icon-rss; }
+  .github   { @extend %icon-github-alt; }
 }
-
-
-
-
 
 // Main
 .row {
@@ -209,7 +218,7 @@ h4 { font-size: $baseFontSize; }
 .archives, .tags {
   h2 a {
     @extend %icon;
-    &:before { content: "\f097";}
+    @extend %icon-bookmark-empty;
   }
 
   h2 + .page-header {
@@ -235,20 +244,12 @@ h4 { font-size: $baseFontSize; }
   }
 
   time {
-    &:before { content: "\f017"; }
+    @extend %icon-time;
     margin-right: 25px;
   }
 
-  .dir {
-    &:before { content: "\f07c"; }
-
-    a + a {
-      &:before { content: " / "; }
-    }
-  }
-
   .tags {
-    &:before { content: "\f02b"; }
+    @extend %icon-tag;
 
     a + a {
       &:before { content: ", "; }
@@ -268,7 +269,7 @@ h4 { font-size: $baseFontSize; }
 
   a {
     @extend %icon;
-    &:before { content: "\f006"; }
+    @extend %icon-star-empty;
     text-transform: capitalize;
     outline: 0;
     border: 1px solid #E5E5E5;
@@ -283,6 +284,13 @@ h4 { font-size: $baseFontSize; }
 .pagination{
   a { @include link-colors(white, white); }
   ul > .active > a, ul > .active > span,  ul > .disabled > span, ul > .disabled > a, ul > .disabled > a:hover { color: white; }
+
+  .previous, .next {
+    @extend %icon;
+    padding-right: 0;
+  }
+  .previous { @extend %icon-double-angle-left; }
+  .next { @extend %icon-double-angle-right; }
 }
 
 // Main content
