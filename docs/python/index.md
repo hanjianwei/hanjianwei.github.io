@@ -26,3 +26,9 @@ layout: page
     import os
     path = os.path.dirname(a_module.__file__)
     ```
+
+- Merge two dicts
+
+    ``` python
+    z = dict(x.items() + y.items())
+    ```

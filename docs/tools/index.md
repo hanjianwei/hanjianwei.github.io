@@ -26,3 +26,5 @@ layout: page
     ``` bash
     :%!python -m json.tool
     ```
+
+- Input control sequence <kbd>CTRL</kbd>-<kbd>V</kbd>, <kbd>CTRL</kbd>-<kbd>M</kbd>
