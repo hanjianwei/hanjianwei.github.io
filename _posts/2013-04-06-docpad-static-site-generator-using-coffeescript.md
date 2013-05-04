@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DocPad: static site generator using CoffeeScript"
+title: "DocPad: 基于CoffeeScript的静态网站生成器"
 date: 2013-01-06 21:40
 tags:
 - Web

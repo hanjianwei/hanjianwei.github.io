@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ABI compatibility between C++11 and C++98"
+title: "C++11和C++98的ABI兼容性"
 date: 2013-01-27 21:38
 tags:
 - "C++"
