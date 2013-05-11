@@ -4,7 +4,7 @@ require 'yaml'
 require 'stringex'
 
 # Read config from YAML
-config = Jekyll::DEFAULTS.deep_merge(YAML.load_file('_config.yml'))
+config = Jekyll::Configuration::DEFAULTS.deep_merge(YAML.load_file('_config.yml'))
 
 source_dir = config['source']
 posts_dir  = "_posts"
@@ -39,7 +39,7 @@ end
 desc "preview the site in a web browser"
 task :preview do
   puts "Starting to watch source with Jekyll and Compass."
-  jekyllPid = Process.spawn("jekyll --auto --server")
+  jekyllPid = Process.spawn("jekyll serve --watch")
   compassPid = Process.spawn("compass watch")
 
   trap("INT") {
