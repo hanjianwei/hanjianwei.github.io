@@ -1,0 +1,5 @@
+{% if post.notebook %}
+  {% capture post_link %}{{ site.ipynb_site }}/url/{{ site.url | remove: 'http://' }}/notebook/{{ post.notebook }}.ipynb{% endcapture %}
+{% else %}
+  {% assign post_link = post.url %}
+{% endif %}
