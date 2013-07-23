@@ -1,0 +1,1 @@
+{% capture tagid %}tag-{{ tag | replace: '.', '_' | replace: ' ', '_' | cgi_escape | replace: '%', '_' | downcase }}{% endcapture %}

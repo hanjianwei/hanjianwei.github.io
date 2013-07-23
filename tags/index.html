@@ -3,22 +3,15 @@ layout: default
 title: Tags
 ---
 
-<div class="row">
-  <div class="span3 visible-desktop">
-    {% include tagnav.html %}
-  </div>
-  <div class="span9">
-    <div class="content tags">
-      {% for tagged_posts in site.tags %}
-        <div class="page-header">
-          <h1 id={{ tagged_posts[0] | replace: '.', '_' | replace: ' ', '_' | cgi_escape | replace: '%', '_' | downcase }} >{{ tagged_posts[0] }}</h1>
-        </div>
+{% for tagged_posts in site.tags %}
+  {% assign tag = tagged_posts[0] %}
+  {% include tagid.html %}
+  <h2 id={{ tagid }} class="pure-button {{ tagid }}">{{ tagged_posts[0] }}</h2>
 
-        {% for post in tagged_posts[1] %}
-          {% include postlink.html %}
-          <h2><a href="{{ post_link }}">{{ post.title }}</a></h2>
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-</div>
+  <ul>
+    {% for post in tagged_posts[1] %}
+      {% include postlink.html %}
+      <li><h3><a href="{{ post_link }}">{{ post.title }}</a></h3>
+    {% endfor %}
+  </ul>
+{% endfor %}

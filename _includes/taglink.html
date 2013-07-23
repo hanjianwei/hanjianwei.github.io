@@ -1,2 +1,0 @@
-{% assign tagid = tag | replace: '.', '_' | replace: ' ', '_' | cgi_escape | replace: '%', '_' | downcase  %}
-<a href="/tags/#{{ tagid }}">{{ tag }}</a>

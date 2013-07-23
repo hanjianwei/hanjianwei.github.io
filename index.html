@@ -2,19 +2,11 @@
 layout: default
 ---
 
-<div class="row">
-  <div class="span3 visible-desktop">
-    {% include tagnav.html %}
-    {% include yearnav.html %}
-  </div>
-  <div class="span9">
-    <div class="content">
-      {% for post in paginator.posts %}
-        {% include postlink.html %}
-        {% include post.html %}
-      {% endfor %}
-    </div>
-  </div>
+<div class="posts">
+  <h1 class="content-subhead">Recent Posts</h1>
+  {% for post in paginator.posts %}
+    {% include post.html %}
+  {% endfor %}
 </div>
 
 {% if paginator.total_pages > 1 %}

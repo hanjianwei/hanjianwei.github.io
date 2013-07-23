@@ -1,21 +1,9 @@
 ---
 layout: default
 ---
+{% assign post = page %}
+{% include post.html %}
 
-<div class="row">
-  <div class="span12">
-    <div class="content">
-      {% assign post = page %}
-      {% include postlink.html %}
-      {% include post.html %}
-
-      <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
-      </a>
-      {% unless page.mute %}
-        <hr>
-        {% include disqus.html %}
-      {% endunless %}
-    </div>
-  </div>
-</div>
+{% unless page.mute %}
+  {% include disqus.html %}
+{% endunless %}
