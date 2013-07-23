@@ -3,8 +3,8 @@ layout: post
 title: "Markdown的Ansi显示"
 date: 2013-04-06 21:40
 tags:
-- Web
-- Ruby
+    - Web
+    - Ruby
 ---
 
 随着Jekyll, Octopres, Docpad等一批静态博客生成器的兴起, Markdown已经成为写博客的利器. 不过有时候想把博客上的文章直接贴到BBS上就需要去做一些转换, 原因主要有二:

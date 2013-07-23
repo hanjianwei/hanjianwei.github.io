@@ -32,3 +32,12 @@ layout: page
     ``` python
     z = dict(x.items() + y.items())
     ```
+
+- Change dict key
+
+    ``` python
+    dict[new_key] = dict[old_key]
+    del dict[old_key]
+
+    dict[new_key] = dict.pop(old_key) # if old_key is defined
+    ```

@@ -1,7 +1,7 @@
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
-    bootstrap-sass (2.2.2.0)
+    bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     chunky_png (1.2.8)
     compass (0.12.2)
@@ -9,13 +9,13 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.10)
-    rake (10.0.4)
-    sass (3.2.7)
+    rake (10.1.0)
+    sass (3.2.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 2.2.2.0)
-  compass (~> 0.12.2)
-  rake (~> 10.0.3)
+  bootstrap-sass
+  compass
+  rake
