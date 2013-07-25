@@ -1,3 +1,5 @@
+---
+---
 body {
   font-family: "Helvetica Neue Light",Arial,"Verdana","Lucida Grande","Ubuntu","STHeiti", "Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
@@ -136,28 +138,6 @@ a:focus {
   font-size: 80%;
 }
 
-.tag-ruby {
-  background: #5aba59;
-}
-.tag-python{
-  background: #41ccb4;
-}
-.tag-c_2b_2b {
-  background: #8156a7;
-}
-.tag-web {
-  background: #df2d4f;
-}
-.tag-year{
-  background: #FFC94C;
-}
-.tag-work{
-  background: #4d85d1;
-}
-.tag-travel {
-  background: #40c365;
-}
-
 .footer {
   text-align: center;
   padding: 1em 0;
@@ -256,3 +236,16 @@ code {
 .highlight .vg { color: #bb60d5 }
 .highlight .vi { color: #bb60d5 }
 .highlight .il { color: #40a070 }
+
+{% for tagged_posts in site.tags %}
+  {% assign tag = tagged_posts[0] %}
+  {% include tagid.html %}
+
+  .{{ tagid }} {
+    background: {% cycle "#5aba59", "#8156a7", "#df2d4f", "#F38630", "#CFF09E", "#4d85d1", "#41ccb4" %};
+  }
+{% endfor %}
+
+.tag-year{
+  background: #FFC94C;
+}
