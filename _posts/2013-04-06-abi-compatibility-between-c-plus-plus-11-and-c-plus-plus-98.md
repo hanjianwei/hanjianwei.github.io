@@ -1,27 +1,25 @@
 ---
 layout: post
-title: "C++11和C++98的ABI兼容性"
+title: "C++11 和 C++98 的 ABI 兼容性"
 date: 2013-01-27 21:38
 tags:
     - "C++"
 ---
 
-[C++11][]出来已经好几年了, 对其中有些特性还是很感兴趣的, 比如Rvalue reference, lambda, alias templates, range-based for等, 正好最近在写C++的代码, 就准备尝试一下.
+[C++11][] 出来已经好几年了，对其中有些特性还是很感兴趣的，比如 rvalue reference、lambda、alias templates、range-based for 等，正好最近在写 C++ 的代码，就准备尝试一下。
 
-Mac OS X下面主要的编译器是Clang, 对于[C++11的支持][Clang-c++11]还是很不错的. 不过Clang默认是用的还是C++98的标准, 要支持C++11必须使用两个选项:
+Mac OS X 下面主要的编译器是 Clang，对于 [C++11 的支持][Clang-c++11]还是很不错的。 不过 Clang 默认是用的还是 C++98 的标准，要支持 C++11 必须使用两个选项：
 
-- `-std=c++11`: 使用C++11的标准进行编译.
-- `-stdlib=libc++`: 使用libc++. libc++是重新实现的C++标准库, 对C++11有较好的支持. 如果不加该选项, Clang就会是用老的libstdc++, 如果你使用了C++11标准库中的内容就会出错.
+- `-std=c++11`: 使用 C++11 的标准进行编译。
+- `-stdlib=libc++`: 使用 libc++。libc++ 是重新实现的 C++ 标准库，对 C++11 有较好的支持。 如果不加该选项，Clang 就会是用老的 libstdc++，如果你使用了 C++11 标准库中的内容就会出错。
 
-<!-- more -->
+看起来修改还是挺简单的，然后就把这两项加到我的 `CXXFLAGS` 里面，不幸的是跳出来一大堆 link error ……
 
-看起来修改还是挺简单的, 然后就把这两项加到我的`CXXFLAGS`里面, 不幸的是跳出来一大堆link error...
+原来我用了一些 OpenCV 之类的库，而我的库都是通过 Homebrew 安装的。Homebrew 在编译这些库的时候是用的是默认的 libstdc++，而 libc++ 和 libstdc++ 是[不兼容][compatibility]的，所以出现了 link error。
 
-原来我用了一些OpenCV之类的库, 而我的库都是通过Homebrew安装的. Homebrew在编译这些库的时候是用的是默认的libstdc++, 而libc++和libstdc++是[不兼容][compatibility]的, 所以出现了link error.
+解决方法只能是重新编译 OpenCV 等库，使用 libc++。 但是这样同时也要保证 OpenCV 等依赖的那些库也是用 libc++，而依赖 OpenCV 等库的程序最好也是用 libc++，这工作量就有点太大了！——当然，如果只用 C++11 的语法而不使用库还是可以的，即只用 `-std=c++11`。
 
-解决方法只能是重新编译OpenCV等库, 使用libc++. 但是这样同时也要保证OpenCV等依赖的那些库也是用libc++, 而依赖OpenCV等库的程序最好也是用libc++, 这工作量就有点太大了! (当然, 如果只用C++11的语法而不使用库还是可以的, 即只用`-std=c++11`.)
-
-好吧, 还是暂时放弃吧, 等什么时候`-std=c++11 -stdlib=libc++`成为默认参数的时候再搞吧. GCC似乎也有这种[C++11和C++98库不兼容][gcc-compatibility]问题, 看来也不好搞:(
+好吧，还是暂时放弃吧，等什么时候 `-std=c++11 -stdlib=libc++` 成为默认参数的时候再搞吧。 GCC似乎也有这种 [C++11 和 C++98 库不兼容][gcc-compatibility]问题，看来也不好搞:(
 
 
 [C++11]: http://en.wikipedia.org/wiki/C%2B%2B11
