@@ -4,14 +4,6 @@ body {
   font-family: "Helvetica Neue", Arial, Verdana, "Lucida Grande", Ubuntu, "Hiragino Sans GB", STHeiti, SimSun, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-code, pre {
-    border-radius: 3px 3px 3px 3px;
-    color: #333333;
-    font-family: Menlo,Monaco,"Lucida Console", Consolas, "Andale Mono", "Courier New", monospace;
-    font-size: 12px;
-    padding: 0 3px 2px;
-}
-
 a {
   text-decoration: none;
   color: rgb(142, 142, 214);
@@ -201,9 +193,14 @@ blockquote {
   }
 }
 
+pre {
+  padding: 0 10px;
+}
+
 code {
+  font-family: Menlo,Monaco,"Lucida Console", Consolas, "Andale Mono", "Courier New", monospace;
+  font-size: 12px;
   font-weight: bold;
-  color: $grayDark;
   background: none;
   border: none;
 }
