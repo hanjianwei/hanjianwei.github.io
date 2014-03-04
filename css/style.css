@@ -40,16 +40,17 @@ a:focus {
   text-align: left;
 }
 
+.brand-title {
+  font-family: Georgia, "Times New Roman", "Hiragino Mincho", Kai, serif;
+}
+
 .brand-title,
 .brand-tagline {
   margin: 1em 0;
+  font-weight: 200;
 }
 
-.brand-title {
-  text-transform: uppercase;
-}
 .brand-tagline {
-  font-weight: 300;
   color: rgb(142, 142, 214);
 }
 
@@ -61,7 +62,7 @@ a:focus {
 
 
 #sidebar .pure-menu {
-  Background: rgb(24, 33, 61);
+  background: rgb(24, 33, 61);
   border: medium none;
 }
 
@@ -77,6 +78,10 @@ a:focus {
   padding: 0;
   color: #4B7197;
   font-size: 110%;
+}
+
+.nav-tag, .nav-archive {
+  font-weight: 100;
 }
 
 .tag-badge {
@@ -130,6 +135,7 @@ a:focus {
 }
 
 .post-tag {
+  font-family: Futura, "Gill Sans", Helvetica, Arial, sans-serif;
   margin: 0 0.1em;
   padding: 0.3em 1em;
   color: #fff;
@@ -151,14 +157,14 @@ a:focus {
 }
 
 table {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
   width: 100%;
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
 td,
 th {
-  padding: .25rem .5rem;
+  padding: .25em .5rem;
   border: 1px solid #e5e5e5;
 }
 tbody tr:nth-child(odd) td,
