@@ -1,7 +1,9 @@
 ---
 ---
-body {
-  font-family: "Helvetica Neue", Arial, Verdana, "Lucida Grande", Ubuntu, "Hiragino Sans GB", STHeiti, SimSun, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+html {
+  font-family: "Helvetica Neue Light", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 a {
