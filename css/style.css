@@ -144,29 +144,19 @@ a:focus {
 }
 
 table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
   border-collapse: collapse;
-  border-spacing: 0;
 }
-tr {
-    background: none repeat scroll 0 0 #FFFFFF;
-}
-tr.altrow {
-    background: none repeat scroll 0 0 #F9F9F9;
-}
-th, td {
-    border-style: solid;
-    border-width: 1px;
-    text-align: left;
-}
+td,
 th {
-    background: none repeat scroll 0 0 #EFFAE6;
-    border-color: #DFF4D5 #D3EFC3 #A7DF8A;
-    color: #7BA857;
-    padding: 0.8em 1em;
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
 }
-td {
-    border-color: #EFEFEF;
-    padding: 0.7em 1em;
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
 }
 
 blockquote {

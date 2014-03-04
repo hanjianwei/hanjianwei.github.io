@@ -1,22 +1,16 @@
 ---
 layout: post
-title: "标点符号的用法"
+title: "混乱的标点符号"
 date: 2013-07-26 10:33
 tags:
     - Writing
 ---
 
-虽然每天都要用到标点符号，但从来没有去注意过其中的细节。今天翻看自己写过的东西，发现很多不严谨的用法。为了能纠正自己的不良习惯，索性在这里总结一下容易出错的一些地方，希望以后能够逐步改进。
-
-这里主要不是说明各种标点符号的用法，而是在电脑输入、排版时的一些问题。
-
-# 英文
-
-英文标点符号的用法可以参看 [Wikipedia][wiki_punctuation_en] 和《[The Elements of Style][style]》。
+打开你经常上的几个网站，翻开你正在看的书，拿起你身边商品的包装，仔细观察一下其中的标点，有没有被用法各异的标点所困扰？中、英文之间的差异，输入法之间的差异，排版软件处理细节的不同，让标点符号变得异常混乱。
 
 ## 引号、撇号、上标符
 
-首先容易浑淆的是「引号」及其面目相似的兄弟们：
+首先是「引号」及其面目相似的兄弟们：
 
 符号 |Unicode |名称    |HTML
 ----|--------|--------|-----
@@ -117,11 +111,7 @@ tags:
 
 Dash 的用法比较复杂，各种类似的符号及其用法可以参见 [Wikipedia][wiki_dash]。
 
-# 中文
-
-中文标点符号的使用参见 [Wikipedia][wiki_punctuation_zh]。
-
-## 引号
+## 中文引号
 
 中文的引号和英文的引号一样，都是用的弯引号，它们的 UNICODE 值也是一样的。这样导致一个问题：在文中出现引号时，是当成中文的全角呢还是英文的半角呢？因此使用[直角引号][zh_quote]「『』」的逐渐多了起来。
 
@@ -144,7 +134,7 @@ Dash 的用法比较复杂，各种类似的符号及其用法可以参见 [Wiki
 
 具体采用什么样的方案要看使用场景，如果能从技术上做到中英文的隔离那是最好的了。
 
-# 输入
+## 输入
 
 规范使用标点符号最大的障碍在于输入。大部分标点符号都是 UNICODE 的，键盘很难直接输入。根据应用场景的不同大致有以下一些方法：
 
@@ -156,10 +146,7 @@ Dash 的用法比较复杂，各种类似的符号及其用法可以参见 [Wiki
 * 其它的输入方法参见 [Wikipedia][unicode_input]。
 
 
-[style]: http://book.douban.com/subject/3296585/
 [unicode_punctuation]: http://unicode.org/charts/PDF/U2000.pdf
-[wiki_punctuation_en]: http://en.wikipedia.org/wiki/Punctuation_in_English
-[wiki_punctuation_zh]: http://zh.wikipedia.org/wiki/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7
 [wiki_grave]: http://en.wikipedia.org/wiki/Grave_accent
 [wiki_dash]: http://en.wikipedia.org/wiki/Dash
 [zh_quote]: http://www.zhihu.com/topic/19691803
