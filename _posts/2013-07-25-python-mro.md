@@ -201,10 +201,10 @@ L[A] = [A] + merge(L[B], L[C], [B], [C])
 (<class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.D'>, <class '__main__.E'>, <class '__main__.F'>, <type 'object'>)
 ```
 
-[diamond]: class_diamond.svg "菱形继承"
-[new_diamond]: newclass_diamond.svg "新式类菱形继承"
-[class_conflict]: class_conflict.svg "类型冲突"
-[c3_example]: c3_example.svg "C3例子"
+[diamond]: /public/images/class_diamond.svg "菱形继承"
+[new_diamond]: /public/images/newclass_diamond.svg "新式类菱形继承"
+[class_conflict]: /public/images/class_conflict.svg "类型冲突"
+[c3_example]: /public/images/c3_example.svg "C3例子"
 [c3]: http://haahr.tempdomainname.com/dylan/linearization-oopsla96.html
 [guido]: http://python-history.blogspot.com/2010/06/method-resolution-order.html
 [new_class]: http://wiki.python.org/moin/NewClassVsClassicClass

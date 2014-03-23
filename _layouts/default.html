@@ -1,27 +1,30 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
-<meta charset="utf-8">
-<meta name="author" content="{{ site.author }}">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include head.html %}
 
-<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <body>
 
-<link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/pure-min.css">
-<link rel="stylesheet" href="/css/style.css">
+    {% include sidebar.html %}
 
-<div id="layout" class="pure-g-r">
-  <div id="sidebar" class="pure-u">
-    {% include nav.html %}
-  </div>
-  <div class="pure-u-1">
-    <div class="content">
-      {{ content }}
-      {% include footer.html %}
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">{{ site.title }}</a>
+            <small>{{ site.tagline }}</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        {{ content }}
+      </div>
     </div>
-  </div>
 
-  {% if page.math %}
-    {% include math.html %}
-  {% endif %}
-</div>
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  </body>
+</html>
