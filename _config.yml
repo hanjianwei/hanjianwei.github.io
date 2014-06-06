@@ -27,3 +27,7 @@ author:
 paginate: 5
 
 exclude: [Rakefile]
+
+links:
+  - name: GitHub
+    url: https://github.com/hanjianwei
