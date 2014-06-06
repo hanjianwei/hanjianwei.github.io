@@ -4,7 +4,6 @@
     <span class="firstname">On</span><span class="lastname">Coding</span>
   </a>
   <nav>
-    <a id="ind-github" href="{{ site.github.owner_url }}">GitHub</a>
     {% for link in site.links %}
       <a id="ind-{{ link.name | downcase }}" href="{{ link.url }}">{{ link.name }}</a>
     {% endfor %}
