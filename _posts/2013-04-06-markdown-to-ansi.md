@@ -23,7 +23,9 @@ class Ansi < Redcarpet::Render::Base
   end
 
   def block_code(code, language)
-    Pygments.highlight(code, :lexer => language, :formatter => 'terminal') + "\n\n"
+    Pygments.highlight(code,
+                       :lexer => language,
+                       :formatter => 'terminal') + "\n\n"
   end
 
   def double_emphasis(text)
