@@ -22,3 +22,7 @@ url: http://hjw.xxx
 paginate: 5
 
 exclude: [Rakefile]
+
+sass:
+  sass_dir: _sass
+  style: :compressed

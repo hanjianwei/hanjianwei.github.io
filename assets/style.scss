@@ -1,5 +1,11 @@
+---
+---
 @import "bourbon/bourbon";
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+
+@import "global";
+@import "syntax";
+@import "responsive";
 
 body {
   background-color: #f4f4f4;
