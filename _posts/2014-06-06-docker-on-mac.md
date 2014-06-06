@@ -32,7 +32,7 @@ end
 这个配置文件表示，启动Docker的时候使用`ubuntu:14.04`这个image。然后，执行操作：
 
 ~~~ bash
-vagrant up
+vagrant up --provider=docker
 ~~~
 
 在非Linux系统上，Docker是需要运行在虚拟机中的。如果没有配置虚拟机（比如上述例子），Vagrant会自动使用[boot2docker][vagrant-boot2docker]作为虚拟机。当然，你可以指定一个已有的Vagrantfile作为Docker的运行主机：
