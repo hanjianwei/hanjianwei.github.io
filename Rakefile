@@ -1,6 +1,7 @@
 require 'rake'
 require 'jekyll'
 require 'yaml'
+require 'stringex'
 
 # Read config from YAML
 config = Jekyll::Configuration::DEFAULTS.deep_merge(YAML.load_file('_config.yml'))
