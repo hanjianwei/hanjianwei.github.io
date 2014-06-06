@@ -16,13 +16,8 @@ permalink: pretty
 
 # Setup
 title: 跬步
-tagline: 'On Coding'
 description: 'My notes and thoughts.'
 url: http://hjw.xxx
-
-author:
-    name: Jianwei Han
-    email: hanjianwei@gmail.com
 
 paginate: 5
 
