@@ -14,7 +14,7 @@ tags:
 
 - [marked][] 和 [highlight.js][]：Markdown 支持。highlight.js 是基于 Javascript 的代码高亮工具，同 Pygments 相比，它功能相对简单，但好在能和 marked 配合的比较好。DocPad 自己也有代码高亮插件，支持 Pygments，但是问题很多。下面是 highlight.js 的配置，写到 docpad.coffee 中即可：
 
-    ``` coffeescript
+    ~~~ coffeescript
     docpadConfig = {
       # Other configuration comes here
       plugins:
@@ -32,7 +32,7 @@ tags:
               hljs = require('highlight.js')
               hljs.highlight(lang, code).value
     }
-    ```
+    ~~~
 
 - [jade][]：Jade 模板支持。
 - [paged][]：分页插件，和 [partials 插件][]有[冲突][partials-conflict]，用的时候要小心点。
