@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ~~~
 
-注意中间的[Provisioner部分][vagrant-provisioners]，Vagrant的Provisioner的主要作用是自动安装一些软件、执行一些任务。上面的`apt.sh`是一个脚本，用来修改Ubuntu的apt源；`docker.sh`用来修改Docker的配置参数。值得注意的是，Vagrant还提供了[Docker的Provisoner][docker-provisioner]，用来安装、配置Docker。当你运行的虚拟机中没有安装Docker史，它会自动帮你安装最新的Docker。
+注意中间的[Provisioner部分][vagrant-provisioners]，Vagrant的Provisioner的主要作用是自动安装一些软件、执行一些任务。上面的`apt.sh`是一个脚本，用来修改Ubuntu的apt源；`docker.sh`用来修改Docker的配置参数。值得注意的是，Vagrant还提供了[Docker的Provisoner][docker-provisioner]，用来安装、配置Docker。当你运行的虚拟机中没有安装Docker时，它会自动帮你安装最新的Docker。
 
 在最后一行，我设置了一个端口映射，将虚拟机的Docker daemon的端口4243映射到本地，这样就可以使用Mac中Homebrew所带的docker客户端来执行相应的操作了（要注意Mac客户端的版本需和虚拟机中Docker daemon的版本一致）。
 
