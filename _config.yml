@@ -1,24 +1,17 @@
-# Dependencies
-markdown: redcarpet
-pygments: true
-redcarpet:
-  extensions:
-      - no_intra_emphasis
-      - tables
-      - fenced_code_blocks
-      - disable_indented_code_blocks
-      - autolink, strikethrough
-      - space_after_headers
-      - superscript
-
-# Permalinks
-permalink: pretty
-
 # Setup
 title: 跬步
 description: 'My notes and thoughts.'
 url: http://hjw.xxx
 
 paginate: 5
+permalink: pretty
 
 exclude: [Rakefile]
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+links:
+  - name: RSS
+    url: /feed.xml  
