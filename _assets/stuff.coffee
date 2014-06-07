@@ -1,5 +1,3 @@
----
----
 jQuery ->
 
   $.each $("[data-time]"), ( index, ele ) ->
