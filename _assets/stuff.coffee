@@ -1,8 +1,5 @@
 jQuery ->
 
-  $.each $("[data-time]"), ( index, ele ) ->
-    $(ele).html( prettyDate( new Date( $(this).data("time") ) ) )
-
   $(document).on "keydown", (e) ->
     if e.keyCode == 39 && $("#js-next-post").length
       location.href = $("#js-next-post").attr("href")
