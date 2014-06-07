@@ -35,8 +35,7 @@ desc "compile and run the site"
 task :default do
   pids = [
     spawn("jekyll server -w"),
-    spawn("scss --watch --load-path _sass _assets:assets"),
-    spawn("coffee -b -w -o assets -c _assets/*.coffee")
+    spawn("scss --watch --style compressed --load-path _sass _assets:assets")
   ]
 
   trap "INT" do
