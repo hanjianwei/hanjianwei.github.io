@@ -18,7 +18,7 @@ url: http://hjw.xxx
 paginate: 5
 permalink: pretty
 
-exclude: [Rakefile]
+exclude: [Rakefile, Gemfile, Gemfile.lock]
 
 sass:
   sass_dir: _sass
