@@ -96,6 +96,5 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jemoji
   sass
   stringex
