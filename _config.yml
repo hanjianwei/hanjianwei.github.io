@@ -24,6 +24,9 @@ sass:
   sass_dir: _sass
   style: :compressed
 
+gems:
+  - jemoji
+
 links:
   - name: RSS
     url: /feed.xml
