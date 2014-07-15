@@ -76,4 +76,4 @@ ln -s "/Volumes/Macintosh HD/cache" `brew --cache`
 - [kitchenplan](https://github.com/kitchenplan/kitchenplan): 基于[Chef](http://www.getchef.com)的方案。
 - [thoughtbot/laptop](https://github.com/thoughtbot/laptop): 用于Mac和Linux安装配置的一套脚本。
 
-其实还有很多……找一个适合你的方案吧。
+其实还有很多……[说说你的方案吧](https://github.com/hanjianwei/feedback/issues/new)。
