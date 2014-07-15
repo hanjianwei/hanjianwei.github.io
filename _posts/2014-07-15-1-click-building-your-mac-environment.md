@@ -34,6 +34,8 @@ Homebrew的好处是，你很容易将当前安装的程序列表[备份](http:/
 
 Dotfiles中还可以保存一些常用的脚本，比如[mathiasbynens的dotfiles](https://github.com/mathiasbynens/dotfiles/blob/master/.osx)中就包含了很多OSX的设置脚本，一键运行完成你大部分的系统设置。
 
+然而，单靠配置文件有时候也不能完全解决问题，比如安装vim的时候，希望不但能保留.vimrc之类的配置文件，还希望能把所有的插件装上去。这时候就需要介绍下面一个系统了：Boxen。
+
 ### 用Boxen自动化环境设置
 
 [Boxen](https://boxen.github.com)是GitHub的自动化部署工具，它能够快速为新员工构建一个开发环境。Boxen基于[Puppet](https://puppetlabs.com)，它针对Mac系统做了一系列的设置，使得环境配置更加方便快捷。关于Boxen的介绍可以看看[Gary Larizza的这篇博客](http://garylarizza.com/blog/2013/02/15/puppet-plus-github-equals-laptop-love/).
@@ -46,7 +48,7 @@ GitHub提供了一个Boxen工程的模板，叫做[our-boxen](https://github.com
 
 Boxen支持Homebrew/Cask，所以我们上面[安装的App可以直接写文件中](https://github.com/hanjianwei/my-boxen/blob/master/modules/people/manifests/hanjianwei/applications.pp)，下次部署时只要一个`boxen`命令即可。Boxen自身也只是App的安装，其[GitHub帐户](https://github.com/boxen)中包含了很多可用的App，和Homebrew/Cask相比，这些App的更新可能相对较慢，但一般会提供更多的配置选项。对于简单的的应用，我一般使用Homebrew/Cask来管理，对于配置比较复杂的（如Ruby）我会采用Boxen提供的版本。
 
-此外，我写了一个[puppet-dotfiles](https://github.com/hanjianwei/puppet-dotfiles)，可以使用Mackup兼容的配置文件，直接在Boxen工程中进行配置，使得程序的配置更加自动化。
+此外，我写了一个puppet的模块[puppet-dotfiles](https://github.com/hanjianwei/puppet-dotfiles)，可以使用Mackup兼容的配置文件，直接在Boxen工程中进行配置，使得程序的配置更加自动化。该模块除了用Mackup的配置文件，还会进行了一些其它的设置，比如安装vim的时候会安装上[Vundle](https://github.com/gmarik/Vundle.vim)及其它插件、自动安装[prezto](https://github.com/sorin-ionescu/prezto)及其模块等。
 
 Boxen的另外一个好处是删除简单，只要把`/opt/boxen`删除即可（当然可能你还要删除`/opt`下的`homebrew-cask`之类的）。
 
