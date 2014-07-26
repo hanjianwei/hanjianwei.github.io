@@ -1,5 +1,3 @@
-@import "bourbon/bourbon";
-
 @import "global";
 @import "syntax";
 @import "responsive";
@@ -52,17 +50,15 @@ hr { border: 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margi
       margin-top: 1px;
       background-color: #ddd;
       margin-right: 10px;
-      @include transition(.4s);
     }
     float: left;
     color: #676767;
-    @include transition(.4s);
     text-transform: uppercase;
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     .firstname { margin-right: 5px; }
-    .lastname { opacity: .4; @include transition(.4s); }
+    .lastname { opacity: .4; }
   }
 }
 
@@ -80,12 +76,10 @@ hr { border: 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margi
     border: 1px solid transparent;
     overflow: hidden;
     position: relative;
-    @include transition(.5s);
     &.has-cover {
       padding-right: 185px;
     }
     .post-cover {
-      @include transition(.5s);
       position: absolute;
       width: 160px;
       top: 0;
@@ -127,7 +121,6 @@ hr { border: 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margi
   border: 5px solid #eee;
   border-right-color: transparent;
   border-bottom-color: transparent;
-  @include transition(.5s);
 }
 
 article {
