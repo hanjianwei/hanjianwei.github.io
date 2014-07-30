@@ -13,7 +13,7 @@ redcarpet:
 # Setup
 title: 跬步
 description: 'My notes and thoughts.'
-url: http://hjw.xxx
+url: http://hanjianwei.com
 
 paginate: 5
 permalink: pretty
