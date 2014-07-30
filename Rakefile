@@ -30,20 +30,3 @@ task :new_post, :title do |t, args|
 
   system "vim #{filename}"
 end
-
-desc "compile and run the site"
-task :default do
-  pids = [
-    spawn("jekyll server -w"),
-    spawn("scss --watch --style compressed --load-path _sass _assets:assets")
-  ]
-
-  trap "INT" do
-    Process.kill "INT", *pids
-    exit 1
-  end
-
-  loop do
-    sleep 1
-  end
-end
