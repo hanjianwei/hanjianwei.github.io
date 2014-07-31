@@ -13,7 +13,7 @@ defaults:
     values:
       layout: post
 
-exclude: [Rakefile, Gemfile, Gemfile.lock, README.md]
+exclude: [Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
 
 markdown: redcarpet
 redcarpet:

@@ -1,4 +1,12 @@
 language: ruby
 rvm:
   - 2.1.1
-script: "bundle exec jekyll build"
+
+before_install:
+  - export NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+script:
+  - "bundle exec jekyll build"
+
+notifications:
+  email: false
