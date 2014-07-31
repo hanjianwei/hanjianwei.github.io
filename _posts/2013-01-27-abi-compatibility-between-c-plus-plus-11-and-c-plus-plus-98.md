@@ -1,9 +1,7 @@
 ---
-layout: post
 title: "C++11 和 C++98 的 ABI 兼容性"
 date: 2013-01-27 21:38
-tags:
-    - "C++"
+tags: cpp
 ---
 
 [C++11][] 出来已经好几年了，对其中有些特性还是很感兴趣的，比如 rvalue reference、lambda、alias templates、range-based for 等，正好最近在写 C++ 的代码，就准备尝试一下。

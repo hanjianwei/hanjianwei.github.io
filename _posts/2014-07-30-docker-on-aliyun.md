@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "阿里云服务器的Docker配置"
 date: 2014-07-30 20:04
-tags: DevOps
+tags: devops
 ---
 
 最近把程序放到[阿里云](http://www.aliyun.com)服务器上，并尝试用[Docker](https://www.docker.com)来部署。阿里云的镜像列表里面已经有了Ubuntu 14.04 64位，可以直接[安装Docker](https://docs.docker.com/installation/ubuntulinux/)。然而，由于阿里云服务器的特殊情况，需要进行配置才能用。

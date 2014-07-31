@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "走马观花看Puppet"
 date: 2014-07-14 16:18
-tags: DevOps
+tags: devops
 ---
 
 [Puppet](http://puppetlabs.com)是目前最流行的一套[配置管理(Configuration Management，简称CM)](http://en.wikipedia.org/wiki/Configuration_management)系统。它提供了一套简洁、强大的框架，使系统管理的重用、分享更加简单，让系统配置更加自动化。在云计算时代，动辄需要配置大量主机，它的作用更加明显。

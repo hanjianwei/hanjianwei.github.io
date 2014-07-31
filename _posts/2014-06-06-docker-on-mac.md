@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "Docker on Mac"
 date: 2014-06-06 15:58
-tags: DevOps
+tags: devops
 ---
 
 在虚拟化领域，[Docker][]是一颗冉冉升起的新星。它构建于[LXC][]之上，比传统的虚拟机技术相比，它没有操作系统层，因此更加轻量化，灵活性和可移植性也更好。

@@ -3,7 +3,15 @@ description: 'My notes and thoughts.'
 url: http://hanjianwei.com
 
 paginate: 5
-permalink: pretty
+permalink: date
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: post
+    values:
+      layout: post
 
 exclude: [Rakefile, Gemfile, Gemfile.lock, README.md]
 
