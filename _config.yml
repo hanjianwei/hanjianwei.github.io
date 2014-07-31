@@ -5,10 +5,21 @@ url: http://hanjianwei.com
 paginate: 5
 permalink: pretty
 
-exclude: [Rakefile, Gemfile, Gemfile.lock]
+exclude: [Rakefile, Gemfile, Gemfile.lock, README.md]
+
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - no_intra_emphasis
+    - tables
+    - fenced_code_blocks
+    - disable_indented_code_blocks
+    - autolink
+    - strikethrough
+    - space_after_headers
+    - superscript
 
 sass:
-  sass_dir: _sass
   style: :compressed
 
 gems:
