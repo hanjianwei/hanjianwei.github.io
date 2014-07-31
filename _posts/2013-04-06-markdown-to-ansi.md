@@ -42,7 +42,7 @@ md.render('Hello **markdown**\n')
 写了一个简单的 Gem，安装方法如下：
 
 ~~~ bash
-gem install md2ansi
+$ gem install md2ansi
 ~~~
 
 欢迎 [fork](https://github.com/hanjianwei/md2ansi)。

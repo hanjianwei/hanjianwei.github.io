@@ -27,7 +27,7 @@ Could not find a free IP address range for interface 'docker0'. Please configure
 这也是[阿里云官方论坛给出的方法](http://bbs.aliyun.com/read/152090.html)。
 
 ~~~ bash
-# ifconfig eth0 down
+$ sudo ifconfig eth0 down
 ~~~
 
 这个方法的缺点是，你就无法访问内网了，而阿里云的内部流量是不收费的（用mirrors.aliyuncs.com来升级不占用公网流量），这点还是比较可惜的。
@@ -35,17 +35,17 @@ Could not find a free IP address range for interface 'docker0'. Please configure
 ### 自己创建网桥`docker0`，将其绑定到`eth0`。
 
 ~~~ bash
-# apt-get install bridge-utils
-# brctl addbr docker0
-# brctl addif docker0 eth0
-# ip link set dev docker0 up
-# ifconfig docker0 <your-private-ip>
+$ sudo apt-get install bridge-utils
+$ sudo brctl addbr docker0
+$ sudo brctl addif docker0 eth0
+$ sudo ip link set dev docker0 up
+$ sudo ifconfig docker0 <your-private-ip>
 ~~~
 
 ### 为Docker设置启动参数，指定`docker0`的IP
 
 ~~~ bash
-# docker -d --bip=<your-private-ip>
+$ sudo docker -d --bip=<your-private-ip>
 ~~~
 
 要注意的是，其中的IP设置要使用标准的CIDR表示，如`10.171.211.13/21`。 在Ubuntu上，可以通过`/etc/default/docker.io`文件中的`DOCKER_OPTS`设置该选项。个人更倾向于这种方法，方便快捷。

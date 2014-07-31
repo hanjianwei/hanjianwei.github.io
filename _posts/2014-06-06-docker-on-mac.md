@@ -14,7 +14,7 @@ Docker有两个主要的部件：daemon和作为客户端的二进制程序「do
 boot2docker使用了一个非常轻量的Linux发行版[CoreOS][]来作为Docker的运行环境，启动很快、占用空间很少。通过[Homebrew][]来安装非常方便：
 
 ~~~ bash
-brew install boot2docker docker
+$ brew install boot2docker docker
 ~~~
 
 boot2docker的一个问题是和Mac之间共享文件非常不方便，官方给出的方案是[用Samba来共享文件][boot2docker-sharing]。
@@ -32,7 +32,7 @@ end
 这个配置文件表示，启动Docker的时候使用`ubuntu:14.04`这个image。然后，执行操作：
 
 ~~~ bash
-vagrant up --provider=docker
+$ vagrant up --provider=docker
 ~~~
 
 在非Linux系统上，Docker是需要运行在虚拟机中的。如果没有配置虚拟机（比如上述例子），Vagrant会自动使用[boot2docker][vagrant-boot2docker]作为虚拟机。当然，你可以指定一个已有的Vagrantfile作为Docker的运行主机：

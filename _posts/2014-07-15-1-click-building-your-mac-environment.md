@@ -59,8 +59,8 @@ Boxen的另外一个好处是删除简单，只要把`/opt/boxen`删除即可（
 Homebrew/Cask安装程序时会把安装文件缓存下来，下次重装的时候就不会再次下载了。我的Mac是11年的型号，光驱位换了SSD，所以就把这些缓存文件备份到原来的硬盘：
 
 ~~~ bash
-mv `brew --cache` "/Volumes/Macintosh HD/"
-ln -s "/Volumes/Macintosh HD/cache" `brew --cache`
+$ mv `brew --cache` "/Volumes/Macintosh HD/"
+$ ln -s "/Volumes/Macintosh HD/cache" `brew --cache`
 ~~~
 
 这样万一SSD坏掉，重装起来也会比较快一点:sweat_smile:。
