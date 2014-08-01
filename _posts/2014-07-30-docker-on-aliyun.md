@@ -17,36 +17,60 @@ Could not find a free IP address range for interface 'docker0'. Please configure
 
 > When Docker starts, it creates a virtual interface named docker0 on the host machine. It randomly chooses an address and subnet from the private range defined by RFC 1918 that are not in use on the host machine, and assigns it to docker0.
 
-也就是说，Docker在启动时，会创建一个虚拟接口`docker0`，并为其随机选择一个未被占用的内部IP。这个`docker0`其实并非一般的网络接口，而是一个虚拟的网桥（Ethernet Bridge），其作用是为了容器（Container）和宿主（Host）机器之间的通信。每当Docker启动一个容器时，它都会创建一对对等接口（"peer" interface）。这对接口有点类似于管道，向其中的一个接口发送数据包，另外一个接口就会接收到。Docker把其中的一个接口分配给容器，作为它的`eth0`接口；然后，为另外一个接口分配一个唯一的名字比如`vethAQI2QT`，将其分配给宿主机器，并将其绑定到`docker0`这个网桥上。这样每个容器都可以和宿主机器进行通信了。
+也就是说，Docker在启动时，会创建一个虚拟接口`docker0`，并为其选择一个没有在宿主机器上使用的地址和子网。这个`docker0`其实并非一般的网络接口，而是一个虚拟的网桥（Ethernet Bridge），其作用是为了容器（Container）和宿主（Host）机器之间的通信。每当Docker启动一个容器时，它都会创建一对对等接口（"peer" interface）。这对接口有点类似于管道，向其中的一个接口发送数据包，另外一个接口就会接收到。Docker把其中的一个接口分配给容器，作为它的`eth0`接口；然后，为另外一个接口分配一个唯一的名字比如`vethAQI2QT`，将其分配给宿主机器，并将其绑定到`docker0`这个网桥上。这样每个容器都可以和宿主机器进行通信了。
 
-上述过程在一般的环境中可能没什么问题，但在阿里云特殊的环境中可能就有问题了：Docker每次启动时都不能找到空闲的内部IP（阿里云为每台主机只分配一个内部IP），所以直接报错了。要解决该问题，有好几种方法：
+那么，在阿里云中为什么会启动失败呢？在[Docker的源代码](https://github.com/docker/docker)搜索上述错误信息，可以看出问题出在[createBridge](https://github.com/docker/docker/blob/4398108433121ce2ac9942e607da20fa1680871a/daemon/networkdriver/bridge/driver.go#L246)这个函数中。该函数会检查[下列IP段](https://github.com/docker/docker/blob/503d124677f5a0221e1bf8c8ed7320a15c5e01db/daemon/networkdriver/bridge/driver.go#L53-L70):
 
-### 删除内网网卡信息。
+``` go
+var addrs = []string{
+    "172.17.42.1/16",
+    "10.0.42.1/16",
+    "10.1.42.1/16",
+    "10.42.42.1/16",
+    "172.16.42.1/24",
+    "172.16.43.1/24",
+    "172.16.44.1/24",
+    "10.0.42.1/24",
+    "10.0.43.1/24",
+    "192.168.42.1/24",
+    "192.168.43.1/24",
+    "192.168.44.1/24",
+}
+~~~
 
-这也是[阿里云官方论坛给出的方法](http://bbs.aliyun.com/read/152090.html)。
+对于每个IP段，Docker会检查它是否和当前机器的域名服务器或路由表有重叠，如果有的话，就放弃该IP段。让我们看看阿里云服务器的路由表：
+
+``` bash
+$ route -n
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         121.40.83.247   0.0.0.0         UG    0      0        0 eth1
+10.0.0.0        10.171.223.247  255.0.0.0       UG    0      0        0 eth0
+10.171.216.0    0.0.0.0         255.255.248.0   U     0      0        0 eth0
+121.40.80.0     0.0.0.0         255.255.252.0   U     0      0        0 eth1
+172.16.0.0      10.171.223.247  255.240.0.0     UG    0      0        0 eth0
+192.168.0.0     10.171.223.247  255.255.0.0     UG    0      0        0 eth0
+```
+
+检查一下路由表会发现，Docker所检查的IP段在路由表中都有了，所以不能找到一个有效的IP段。
+
+解决方法其实也很简单，简单粗暴的方法就是把内网的网卡信息直接删掉，它在路由表中所对应的信息也没有了:
 
 ~~~ bash
 $ sudo ifconfig eth0 down
 ~~~
 
-这个方法的缺点是，你就无法访问内网了，而阿里云的内部流量是不收费的（用mirrors.aliyuncs.com来升级不占用公网流量），这点还是比较可惜的。
+这种方法的缺点也很明显：你就无法访问内网了，而阿里云的内部流量是不收费的（用mirrors.aliyuncs.com来升级不占用公网流量），这点还是比较可惜的。
 
-### 自己创建网桥`docker0`，将其绑定到`eth0`。
-
-~~~ bash
-$ sudo apt-get install bridge-utils
-$ sudo brctl addbr docker0
-$ sudo brctl addif docker0 eth0
-$ sudo ip link set dev docker0 up
-$ sudo ifconfig docker0 <your-private-ip>
-~~~
-
-### 为Docker设置启动参数，指定`docker0`的IP
+另一种方法是把路由表中不用的项删除，这样Docker就能找到能用的IP段了：
 
 ~~~ bash
-$ sudo docker -d --bip=<your-private-ip>
+$ sudo route del -net 172.16.0.0/12
+$ sudo service docker start
+$ ifconfig docker0
+docker0   Link encap:Ethernet  HWaddr 56:84:7a:fe:97:99
+          inet addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.0.0
 ~~~
 
-要注意的是，其中的IP设置要使用标准的CIDR表示，如`10.171.211.13/21`。 在Ubuntu上，可以通过`/etc/default/docker.io`文件中的`DOCKER_OPTS`设置该选项。个人更倾向于这种方法，方便快捷。
+重新启动服务，可以看到`docker0`已经建立成功，所用的IP地址就是我们删除路由表项之后腾出来的IP地址。采用这种方法，我们仍然可以使用内网的服务。
 
 上面的命令只是临时改变运行参数，要永久改变请查询相关手册。
