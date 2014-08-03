@@ -26,6 +26,10 @@ redcarpet:
     - strikethrough
     - space_after_headers
     - superscript
+    - underline
+    - highlight
+    - quote
+    - footnotes
 
 sass:
   style: :compressed
