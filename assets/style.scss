@@ -1,18 +1,28 @@
 ---
 ---
-@import "global";
 @import "syntax";
 @import "responsive";
 
+html, body { height: 100%; }
+
 body {
+  &, * {
+    -webkit-font-smoothing: antialiased;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
   background-color: #f4f4f4;
   color: #343434;
   line-height: 1.6em;
-  font-family: "Source Han Sans CN", "Hiragino Sans GB", "Noto Sans S Chinese", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  font-family: "Hiragino Sans GB", "Source Han Sans CN", "Noto Sans S Chinese", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   padding: 20px 10px;
+  margin: 0;
 }
 
 a {
+  text-decoration: none;
   color: #6AD;
   font-weight: 500;
 }
@@ -21,10 +31,17 @@ b, strong, h1, h2, h3, h4, h5 {
   font-weight: 700;
 }
 
+p { margin: 0 0 0.6em; }
+.upcase { text-transform: uppercase; }
+.downcase { text-transform: lowercase; }
+.fly-center { text-align: center; }
+.small { font-size: 10px }
+.muted { color: #8f8f8f; }
+
 hr { border: 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margin: 20px 0; height: 6px; }
 
 .wrapper {
-  max-width: 620px;
+  max-width: 960px;
   width: 100%;
   margin: auto;
 }
@@ -128,9 +145,9 @@ hr { border: 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margi
 article {
   padding: 25px;
   background-color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   color: #565656;
-  line-height: 1.6em;
+  line-height: 1.8em;
   position: relative;
   hr { border-color: #efefef; }
   p {
@@ -151,6 +168,7 @@ article {
     margin: 10px auto;
     border-radius: 4px;
   }
+
   blockquote {
     font-style: normal;
     margin: 20px 0 20px -30px;
@@ -160,6 +178,7 @@ article {
     border-left: 10px solid #e0e9ed;
     box-shadow: -5px 0 0 white,  -5px 5px 0 white,  -5px -5px 0 white;
     p:first-child, p:last-child { margin: 0; }
+    small { color: #aaa; }
   }
   ul, ol {
     margin: 20px 0 20px 20px;
@@ -211,5 +230,23 @@ table {
 }
 
 code {
-    font-family: "Source Code Pro", "Monaco", "Menlo", "Consolas", serif;
+  white-space: nowrap;
+  color: #000;
+  font-family: "Source Code Pro", "Monaco", "Menlo", "Consolas", serif;
+}
+
+pre code {
+  white-space: pre;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+pre, code {
+  background-color: #F8F8FF;
+  border: 1px solid #DDDDDD;
+  font-size: 16px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  overflow: scroll;
 }
