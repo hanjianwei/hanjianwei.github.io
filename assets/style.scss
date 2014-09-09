@@ -146,6 +146,7 @@ article {
   padding: 25px;
   background-color: #fff;
   font-size: 18px;
+  font-weight: 500;
   color: #565656;
   line-height: 1.8em;
   position: relative;
@@ -232,7 +233,7 @@ table {
 code {
   white-space: nowrap;
   color: #000;
-  font-family: "Source Code Pro", "Monaco", "Menlo", "Consolas", serif;
+  font-family: "Menlo", "Consolas", "Source Code Pro", "Monaco", serif;
 }
 
 pre code {
