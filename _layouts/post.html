@@ -1,62 +1,25 @@
-<html>
-  <head>
-    <meta content='{{ site.title }}' property='og:title' />
-    <title>{{ site.title }}</title>
-    {% include head.html %}
-  </head>
-  <body>
-    <div class="wrapper">
+---
+layout: default
+---
 
-      {% include header.html %}
+<div class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <span class="post-date">{{ page.date | date_to_string }}</span>
+  {{ content }}
+</div>
 
-        <section class="content">
-          <article>
-            <div class="mark"></div>
-            <header>
-              <h2 class="post-title">{{ page.title }}</h2>
-              {% if page.date %}
-                <small class="datetime muted">{{ page.date | date_to_string }}</small>
-              {% endif %}
-            </header>
-            {{ content }}
-            <hr />
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-             var disqus_shortname = 'hjwblog';
-             var disqus_identifier = '{{ page.url }}';
-
-             (function() {
-               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-               dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-             })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </article>
-          {% if page.previous or page.next %}
-          <div class="pagination">
-            {% if page.previous %}
-              <div class="tip">Use ← and → to navigate between posts.</div>
-              <a href="{{ page.previous.url }}" id="js-previous-post">
-                <span class="small-title">Previous Post</span>
-                <h4>{{ page.previous.title }}</h4>
-                <span class="small upcase datetime muted">{{ page.previous.date | date_to_string }}</span>
-              </a>
-            {% endif %}
-            {% if page.next %}
-              <hr />
-              <a href="{{ page.next.url }}" id="js-next-post">
-                <span class="small-title">Next Post</span>
-                <h4>{{ page.next.title }}</h4>
-                <span class="small upcase datetime muted">{{ page.next.date | date_to_string }}</span>
-              </a>
-            {% endif %}
-          </div>
-          {% endif %}
-        </section>
-
-      {% include footer.html %}
-    </div>
-  </body>
-</html>
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <h3>
+          <a href="{{ post.url }}">
+            {{ post.title }}
+            <small>{{ post.date | date_to_string }}</small>
+          </a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

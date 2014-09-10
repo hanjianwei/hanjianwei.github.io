@@ -1,9 +1,10 @@
-title: 跬步
-description: 'My notes and thoughts.'
-url: http://hanjianwei.com
+title:          跬步
+description:    'My notes and thoughts.'
 
-paginate: 5
-permalink: date
+url:            http://hanjianwei.com
+baseurl:        '/'
+paginate:       5
+permalink:      date
 
 defaults:
   -
@@ -13,7 +14,7 @@ defaults:
     values:
       layout: post
 
-exclude: [Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
+exclude: [Rakefile, Gemfile, Gemfile.lock, README.md]
 
 markdown: redcarpet
 redcarpet:
@@ -36,7 +37,3 @@ sass:
 
 gems:
   - jemoji
-
-links:
-  - name: RSS
-    url: /feed.xml
