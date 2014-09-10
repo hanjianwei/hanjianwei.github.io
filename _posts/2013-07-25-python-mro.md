@@ -1,6 +1,5 @@
 ---
 title: "Python的方法解析顺序(MRO)"
-date: 2013-07-25 20:34
 tags: python
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "Markdown 的 Ansi 显示"
-date: 2013-04-06 20:42
 tags: web
 ---
 

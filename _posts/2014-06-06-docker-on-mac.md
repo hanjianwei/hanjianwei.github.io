@@ -1,6 +1,5 @@
 ---
 title: "Docker on Mac"
-date: 2014-06-06 15:58
 tags: devops
 ---
 

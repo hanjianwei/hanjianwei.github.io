@@ -1,6 +1,5 @@
 ---
 title: "DocPad：基于 CoffeeScript 的静态网站生成器"
-date: 2013-01-06 21:40
 tags: web
 ---
 

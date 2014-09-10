@@ -1,6 +1,5 @@
 ---
 title: "阿里云服务器的Docker配置"
-date: 2014-07-30 20:04
 tags: devops
 ---
 

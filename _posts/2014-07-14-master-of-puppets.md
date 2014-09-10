@@ -1,6 +1,5 @@
 ---
 title: "走马观花看Puppet"
-date: 2014-07-14 16:18
 tags: devops
 ---
 

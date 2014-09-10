@@ -1,6 +1,5 @@
 ---
 title: "一袋烟功夫构建Mac环境"
-date: 2014-07-15 10:23
 tags: devops
 ---
 
