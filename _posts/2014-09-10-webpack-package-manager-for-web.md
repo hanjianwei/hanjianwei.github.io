@@ -26,12 +26,12 @@ document.write(require("./content.js"));
 ~~~ html
 <!-- index.html -->
 <html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
+  </body>
 </html>
 ~~~
 
@@ -48,7 +48,7 @@ Web开发中用到的不但有Javascript，还有CSS以及各种静态文件。W
 ~~~ css
 /* style.css */
 body {
-    background: yellow;
+  background: yellow;
 }
 ~~~
 
@@ -73,19 +73,19 @@ Webpack提供了很多[常见的loader](http://webpack.github.io/docs/list-of-lo
 
 ~~~ javascript
 {
-    module: {
-        loaders: [
-            {test: /\.coffee$/, loader: 'coffee'},
-            {test: /\.html$/,   loader: 'html'},
-            {test: /\.json$/,   loader: 'json'},
-            {test: /\.css$/,    loader: 'style!css!autoprefixer'},
-            {test: /\.scss$/,   loader: 'style!css!autoprefixer!sass'},
-            {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
-            {test: /\.ttf$/,    loader: "file"},
-            {test: /\.eot$/,    loader: "file"},
-            {test: /\.svg$/,    loader: "file"}
-        ]
-    }
+  module: {
+    loaders: [
+      {test: /\.coffee$/, loader: 'coffee'},
+      {test: /\.html$/,   loader: 'html'},
+      {test: /\.json$/,   loader: 'json'},
+      {test: /\.css$/,    loader: 'style!css!autoprefixer'},
+      {test: /\.scss$/,   loader: 'style!css!autoprefixer!sass'},
+      {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
+      {test: /\.ttf$/,    loader: "file"},
+      {test: /\.eot$/,    loader: "file"},
+      {test: /\.svg$/,    loader: "file"}
+    ]
+  }
 }
 ~~~
 
@@ -107,15 +107,15 @@ Webpack的文件加载分为三种：
 
 ~~~ javascript
 {
-    resolve: {
-        root: [appRoot, nodeRoot, bowerRoot],
-        modulesDirectories: [appModuleRoot],
-        alias: {
-            'angular': 'angular/angular',
-            'lodash': 'lodash/dist/lodash'
-        },
-        extensions: ['', '.js', '.coffee', '.html', '.css', '.scss']
-    }
+  resolve: {
+    root: [appRoot, nodeRoot, bowerRoot],
+    modulesDirectories: [appModuleRoot],
+    alias: {
+      'angular': 'angular/angular',
+      'lodash': 'lodash/dist/lodash'
+    },
+    extensions: ['', '.js', '.coffee', '.html', '.css', '.scss']
+  }
 }
 ~~~
 
@@ -138,44 +138,44 @@ var bowerRoot = path.join(__dirname, 'bower_components');
 var nodeRoot = path.join(__dirname, 'node_modules');
 
 module.exports = {
-    entry: 'app',
-    output: {
-        path: path.resolve('./app/assets'),
-        filename: 'bundle.js',
-        publicPath: '/assets/'
+  entry: 'app',
+  output: {
+    path: path.resolve('./app/assets'),
+    filename: 'bundle.js',
+    publicPath: '/assets/'
+  },
+  resolve: {
+    root: [appRoot, nodeRoot, bowerRoot],
+    modulesDirectories: [appModuleRoot],
+    alias: {
+      'angular-ui-tree': 'angular-ui-tree/dist/',
+      'angular-date-range-picker': 'angular-date-range-picker/build/'
     },
-    resolve: {
-        root: [appRoot, nodeRoot, bowerRoot],
-        modulesDirectories: [appModuleRoot],
-        alias: {
-            'angular-ui-tree': 'angular-ui-tree/dist/',
-            'angular-date-range-picker': 'angular-date-range-picker/build/'
-        },
-        extensions: ['', '.js', '.coffee', '.html', '.css', '.scss']
-    },
-    resolveLoader: {
-        root: nodeRoot
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            _: 'lodash'
-        }),
-        new webpack.ResolverPlugin([
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-        ])
-    ],
-    module: {
-        loaders: [
-            {test: /\.coffee$/, loader: 'coffee'},
-            {test: /\.html$/,   loader: 'html'},
-            {test: /\.json$/,   loader: 'json'},
-            {test: /\.css$/,    loader: 'style!css!autoprefixer'},
-            {test: /\.scss$/,   loader: 'style!css!autoprefixer!sass'},
-            {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
-            {test: /\.ttf$/,    loader: "file"},
-            {test: /\.eot$/,    loader: "file"},
-            {test: /\.svg$/,    loader: "file"}
-        ]
-    }
+    extensions: ['', '.js', '.coffee', '.html', '.css', '.scss']
+  },
+  resolveLoader: {
+    root: nodeRoot
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      _: 'lodash'
+    }),
+    new webpack.ResolverPlugin([
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+    ])
+  ],
+  module: {
+    loaders: [
+      {test: /\.coffee$/, loader: 'coffee'},
+      {test: /\.html$/,   loader: 'html'},
+      {test: /\.json$/,   loader: 'json'},
+      {test: /\.css$/,    loader: 'style!css!autoprefixer'},
+      {test: /\.scss$/,   loader: 'style!css!autoprefixer!sass'},
+      {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
+      {test: /\.ttf$/,    loader: "file"},
+      {test: /\.eot$/,    loader: "file"},
+      {test: /\.svg$/,    loader: "file"}
+    ]
+  }
 };
 ~~~
