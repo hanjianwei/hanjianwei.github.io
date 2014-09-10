@@ -3,3 +3,7 @@
 @import "poole";
 @import "syntax";
 @import "lanyon";
+
+.emoji { display: inline; }
+
+body { @extend .theme-base-0d; }
