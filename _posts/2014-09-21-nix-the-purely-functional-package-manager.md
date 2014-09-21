@@ -156,7 +156,7 @@ $ ls -l ~/.nix-profile
 /Users/hjw/.nix-profile -> /nix/var/nix/profiles/my-profile
 ~~~
 
-如果我们从来不真正删除包，毫无疑问硬盘慢慢就会被占满，Nix运行我们进行垃圾回收。我们需要首先删除不用的profile：
+如果我们从来不真正删除包，毫无疑问硬盘慢慢就会被占满，Nix支持垃圾回收。我们需要首先删除不用的profile：
 
 ~~~ bash
 $ nix-env --delete-generations 5
