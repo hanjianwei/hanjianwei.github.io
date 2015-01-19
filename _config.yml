@@ -1,11 +1,17 @@
-title:          跬步
-tagline:        On Coding
-description:    'My notes and thoughts.'
+title:                跬步
+tagline:              On Coding
+description:          'Read | Think | Write'
 
-url:            http://hanjianwei.com
-baseurl:        '/'
-paginate:       5
-permalink:      date
+url:                  http://hanjianwei.com
+baseurl:              '/'
+paginate:             5
+permalink:            date
+relative_permalinks:  true
+cdn:                  http://xblog.qiniudn.com
+
+github:
+    repository_url:   https://github.com/hanjianwei/hanjianwei.github.io
+    owner_name:       hanjianwei 
 
 defaults:
   -
@@ -17,6 +23,7 @@ defaults:
 
 exclude: [Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
 
+lsi:      true
 markdown: redcarpet
 redcarpet:
   extensions:
@@ -36,5 +43,4 @@ redcarpet:
 sass:
   style: :compressed
 
-gems:
-  - jemoji
+gems: [jemoji]
