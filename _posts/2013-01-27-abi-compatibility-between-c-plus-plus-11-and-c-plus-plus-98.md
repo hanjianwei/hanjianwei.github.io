@@ -22,4 +22,4 @@ Mac OS X 下面主要的编译器是 Clang，对于 [C++11 的支持][Clang-c++1
 [C++11]: http://en.wikipedia.org/wiki/C%2B%2B11
 [Clang-c++11]: http://clang.llvm.org/cxx_status.html
 [compatibility]: https://github.com/mxcl/homebrew/issues/10938
-[gcc-compatibility]: http://www.mentby.com/Group/gcc-discuss/c98c11-abi-compatibility-for-gcc-47.html
+[gcc-compatibility]: https://gcc.gnu.org/wiki/Cxx11AbiCompatibility
