@@ -5,13 +5,13 @@ description:          'Read | Think | Write'
 url:                  http://hanjianwei.com
 baseurl:              '/'
 paginate:             5
-permalink:            date
+permalink:            pretty
 relative_permalinks:  true
 cdn:                  http://xblog.qiniudn.com
 
 github:
     repository_url:   https://github.com/hanjianwei/hanjianwei.github.io
-    owner_name:       hanjianwei 
+    owner_name:       hanjianwei
 
 defaults:
   -
@@ -20,6 +20,11 @@ defaults:
       type: posts
     values:
       layout: post
+  -
+    scope:
+      path: "wechat"
+    values:
+      layout: page
 
 exclude: [Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
 
