@@ -21,7 +21,7 @@ App的程序名及其ID会被写入到`Applications.txt`中。
 while read -r app; do
   read -r appid
 
-  if [[ -e "$app" ]]; then
+  if [[ ! -e "$app" ]]; then
     open -W "macappstore://itunes.apple.com/cn/app/id$appid"
   fi
 done < "./Applications.txt"
