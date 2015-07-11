@@ -14,7 +14,7 @@ file { '/tmp/foobar.txt':
 }
 ~~~
 
-将上述内容保存为`test.pp`（称为[manifest](http://docs.puppetlabs.com/learning/manifests.html)），然后执行`puppet apply test.pp`，就会确保存在一个文件`/tmp/foobar.txt`，其中的内容为「Hello World!」。在这个过程中，Puppet会检查我们声明的条件是否满足，如果满足就什么也不做；如果不满足就执行相应的操作以满足我们的要求，而这个过程对用户来说是完全透明的，你不用写各种脚本去执行各种检测和修改。
+将上述内容保存为`test.pp`（称为[manifest](https://docs.puppetlabs.com/pe/latest/puppet_modules_manifests.html#manifests)），然后执行`puppet apply test.pp`，就会确保存在一个文件`/tmp/foobar.txt`，其中的内容为「Hello World!」。在这个过程中，Puppet会检查我们声明的条件是否满足，如果满足就什么也不做；如果不满足就执行相应的操作以满足我们的要求，而这个过程对用户来说是完全透明的，你不用写各种脚本去执行各种检测和修改。
 
 在Puppet中，`file`是一种`资源(resource)`。[资源](http://docs.puppetlabs.com/puppet/3.6/reference/lang_resources.html)是一个相当广的概念，用户、软件包、文件、服务甚至Git的库都是资源，用`puppet describe -l`可以查看系统中所有的资源类型。每种资源都有一个类型（如`file`），一个名字（如`/tmp/foobar.txt`）以及一系列的属性（如`ensure`、`content`等），可以通过`puppet describe <resource_type>`得到资源的具体描述。
 

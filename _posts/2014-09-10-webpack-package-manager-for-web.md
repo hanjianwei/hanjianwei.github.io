@@ -9,7 +9,7 @@ tags: web
 
 长久以来，Web开发者都是把所需Javascript、CSS文件一股脑放进HTML里面，对于庞大的项目来说管理起来非常麻烦。[Node.js](http://nodejs.org)的出现改变了这种状态，虽然Javascript的模块并非Node.js发明，但确实是它把这个概念发扬光大了。
 
-但Node.js毕竟是用于服务端的，为了将模块化技术用于浏览器，人们又造出了一大堆工具：[RequireJS](http://requirejs.org)、[Browserify](http://browserify.org)、[LABjs](http://labjs.com)、[Sea.js](http://seajs.org/docs/)、[Duo](http://duojs.org)等。同时，由于Javascript的标准没有对模块的规范进行定义，人们又定义了一系列不同的模块定义：[CommonJS](http://wiki.commonjs.org/wiki/CommonJS)、[AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)、[CMD](https://github.com/seajs/seajs/issues/242)、[UMD](https://github.com/umdjs/umd)等。这真是一件令人悲伤的事情，希望ES6 Module的出现能中止这种分裂的状态。
+但Node.js毕竟是用于服务端的，为了将模块化技术用于浏览器，人们又造出了一大堆工具：[RequireJS](http://requirejs.org)、[Browserify](http://browserify.org)、[LABjs](http://labjs.com)、[Sea.js](http://seajs.org/docs/)、[Duo](http://duojs.org)等。同时，由于Javascript的标准没有对模块的规范进行定义，人们又定义了一系列不同的模块定义：[CommonJS](https://en.wikipedia.org/wiki/CommonJS)、[AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)、[CMD](https://github.com/seajs/seajs/issues/242)、[UMD](https://github.com/umdjs/umd)等。这真是一件令人悲伤的事情，希望ES6 Module的出现能中止这种分裂的状态。
 
 Webpack同时支持CommonJS和AMD形式的模块，对于不支持的模块格式，还支持对模块进行[shimming](http://webpack.github.io/docs/shimming-modules.html)。举个简单的例子：
 
