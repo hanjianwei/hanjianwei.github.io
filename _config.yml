@@ -48,4 +48,6 @@ redcarpet:
 sass:
   style: :compressed
 
-gems: [jemoji]
+gems:
+  - jemoji
+  - jekyll-feed
