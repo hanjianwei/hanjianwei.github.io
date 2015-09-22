@@ -61,9 +61,9 @@ $ mv `brew --cache` "/Volumes/Macintosh HD/"
 $ ln -s "/Volumes/Macintosh HD/cache" `brew --cache`
 ~~~
 
-这样万一SSD坏掉，重装起来也会比较快一点:sweat_smile:。
+这样万一SSD坏掉，重装起来也会比较快一点。
 
-当然，编译也是一项非常耗时的任务，这个问题主要存在Homebrew中（因为Cask只是些dmg、pkg）。不过Homebrew非常佛心地提供了编译好的二进制版本（叫做[Bottle](https://github.com/Homebrew/homebrew/wiki/Bottles#bottle-creation)）:smile:，只要你用默认选项安装，就会使用二进制版本，免去你的编译之苦。然而，不幸的是，某些程序的编译过程需要具体的路径信息（比如Qt），Homebrew默认是安装在`/usr/local`的，而Boxen把Homebrew安装在了`/opt/boxen/homebrew`中，所以就[不能享受到这项好处了](https://github.com/boxen/puppet-homebrew/issues/8)，希望将来能够有所改进吧！
+当然，编译也是一项非常耗时的任务，这个问题主要存在Homebrew中（因为Cask只是些dmg、pkg）。不过Homebrew非常佛心地提供了编译好的二进制版本（叫做[Bottle](https://github.com/Homebrew/homebrew/wiki/Bottles#bottle-creation)），只要你用默认选项安装，就会使用二进制版本，免去你的编译之苦。然而，不幸的是，某些程序的编译过程需要具体的路径信息（比如Qt），Homebrew默认是安装在`/usr/local`的，而Boxen把Homebrew安装在了`/opt/boxen/homebrew`中，所以就[不能享受到这项好处了](https://github.com/boxen/puppet-homebrew/issues/8)，希望将来能够有所改进吧！
 
 ### 其它方案
 

@@ -44,5 +44,4 @@ sass:
   style: :compressed
 
 gems:
-  - jemoji
   - jekyll-feed
