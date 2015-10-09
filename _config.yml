@@ -8,10 +8,6 @@ paginate:             5
 permalink:            pretty
 cdn:                  http://xblog.qiniudn.com
 
-github:
-    repository_url:   https://github.com/hanjianwei/hanjianwei.github.io
-    owner_name:       hanjianwei
-
 defaults:
   -
     scope:
@@ -42,5 +38,8 @@ redcarpet:
 sass:
   style: :compressed
 
+repository: hanjianwei/hanjianwei.github.io
+
 gems:
   - jekyll-feed
+  - jekyll-github-metadata
