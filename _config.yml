@@ -6,7 +6,6 @@ url:                  http://hanjianwei.com
 baseurl:              '/'
 paginate:             5
 permalink:            pretty
-relative_permalinks:  true
 cdn:                  http://xblog.qiniudn.com
 
 github:
@@ -21,7 +20,7 @@ defaults:
     values:
       layout: post
 
-exclude: [Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
+exclude: [LICENSE.md, Gemfile, Gemfile.lock, README.md, vendor]
 
 lsi:      true
 markdown: redcarpet
