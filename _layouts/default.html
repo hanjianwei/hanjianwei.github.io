@@ -26,6 +26,8 @@
 
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+
     <script>
       (function(document) {
         var toggle = document.querySelector('.sidebar-toggle');
@@ -51,6 +53,8 @@
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
+
+      hljs.initHighlightingOnLoad();
     </script>
   </body>
 </html>

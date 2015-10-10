@@ -1,5 +1,5 @@
-title:                跬步
-tagline:              On Coding
+title:                M-x
+tagline:              butterfly
 description:          'Read | Think | Write'
 
 url:                  http://hanjianwei.com
@@ -19,21 +19,6 @@ defaults:
 exclude: [LICENSE.md, Gemfile, Gemfile.lock, README.md, vendor]
 
 lsi:      true
-markdown: redcarpet
-redcarpet:
-  extensions:
-    - no_intra_emphasis
-    - tables
-    - fenced_code_blocks
-    - disable_indented_code_blocks
-    - autolink
-    - strikethrough
-    - space_after_headers
-    - superscript
-    - underline
-    - highlight
-    - quote
-    - footnotes
 
 sass:
   style: :compressed
