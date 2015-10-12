@@ -20,7 +20,7 @@ Could not find a free IP address range for interface 'docker0'. Please configure
 
 那么，在阿里云中为什么会启动失败呢？在[Docker的源代码](https://github.com/docker/docker)搜索上述错误信息，可以看出问题出在[createBridge](https://github.com/docker/docker/blob/4398108433121ce2ac9942e607da20fa1680871a/daemon/networkdriver/bridge/driver.go#L246)这个函数中。该函数会检查[下列IP段](https://github.com/docker/docker/blob/503d124677f5a0221e1bf8c8ed7320a15c5e01db/daemon/networkdriver/bridge/driver.go#L53-L70):
 
-``` go
+~~~ go
 var addrs = []string{
     "172.17.42.1/16",
     "10.0.42.1/16",
@@ -39,7 +39,7 @@ var addrs = []string{
 
 对于每个IP段，Docker会检查它是否和当前机器的域名服务器或路由表有重叠，如果有的话，就放弃该IP段。让我们看看阿里云服务器的路由表：
 
-``` bash
+~~~ bash
 $ route -n
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         121.40.83.247   0.0.0.0         UG    0      0        0 eth1
@@ -48,7 +48,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 121.40.80.0     0.0.0.0         255.255.252.0   U     0      0        0 eth1
 172.16.0.0      10.171.223.247  255.240.0.0     UG    0      0        0 eth0
 192.168.0.0     10.171.223.247  255.255.0.0     UG    0      0        0 eth0
-```
+~~~
 
 检查一下路由表会发现，Docker所检查的IP段在路由表中都有了，所以不能找到一个有效的IP段。
 
