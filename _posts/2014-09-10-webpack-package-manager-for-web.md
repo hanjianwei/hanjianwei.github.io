@@ -13,17 +13,17 @@ tags: web
 
 Webpack同时支持CommonJS和AMD形式的模块，对于不支持的模块格式，还支持对模块进行[shimming](http://webpack.github.io/docs/shimming-modules.html)。举个简单的例子：
 
-~~~ javascript
+{% highlight javascript %}
 // content.js
 module.exports = "It works from content.js.";
-~~~
+{% endhighlight %}
 
-~~~ javascript
+{% highlight javascript %}
 // entry.js
 document.write(require("./content.js"));
-~~~
+{% endhighlight %}
 
-~~~ html
+{% highlight html %}
 <!-- index.html -->
 <html>
   <head>
@@ -33,37 +33,37 @@ document.write(require("./content.js"));
     <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
   </body>
 </html>
-~~~
+{% endhighlight %}
 
 这里`entry.js`是入口文件，它加载了`content.js`。通过命令行对`entry.js`进行编译：
 
-~~~ bash
+{% highlight bash %}
 $ webpack ./entry.js bundle.js
-~~~
+{% endhighlight %}
 
 打开`index.html`就会看到`content.js`中的内容已经被加载进来了。
 
 Web开发中用到的不但有Javascript，还有CSS以及各种静态文件。Webpack定义了一种叫[加载器loader](http://webpack.github.io/docs/using-loaders.html)的东西，它能够把各种资源文件进行转换，用正确的格式加载到浏览器中。比如对于上述程序，如果我们有一个对应的CSS文件：
 
-~~~ css
+{% highlight css %}
 /* style.css */
 body {
   background: yellow;
 }
-~~~
+{% endhighlight %}
 
 我们修改一下`entry.js`来加载该CSS：
 
-~~~ javascript
+{% highlight javascript %}
 require("!style!css!./style.css");
 document.write(require("./content.js"));
-~~~
+{% endhighlight %}
 
 然后再重新编译、打开`index.html`就可以看到CSS加载进来了。执行上述程序前我们必须安装所需的loader：
 
-~~~ bash
+{% highlight bash %}
 npm install --save-dev style-loader css-loader
-~~~
+{% endhighlight %}
 
 在编译时，css-loader会读取CSS文件，并处理其中的import，返回CSS代码；而style-loader会将返回的CSS代码作为DOM的style。如果你用的是SASS，只要把require语句改成`require("!style!css!sass!./style.scss")`就可以了。
 
@@ -71,7 +71,7 @@ Webpack提供了很多[常见的loader](http://webpack.github.io/docs/list-of-lo
 
 上述require CSS的代码虽然功能强大，但写起来比较繁琐，Webpack支持在[配置文件中进行配置](http://webpack.github.io/docs/using-loaders.html#configuration)，把符合条件的文件用同一组loader来进行处理。下面是我用的一组loader：
 
-~~~ javascript
+{% highlight javascript %}
 {
   module: {
     loaders: [
@@ -87,7 +87,7 @@ Webpack提供了很多[常见的loader](http://webpack.github.io/docs/list-of-lo
     ]
   }
 }
-~~~
+{% endhighlight %}
 
 有了上述配置，直接`require('./style.css')`就可以了，系统会自动先执行[autoprefixer](https://github.com/postcss/autoprefixer)，然后加载CSS，然后再加载为DOM的style。
 
@@ -105,7 +105,7 @@ Webpack的文件加载分为三种：
 
 对于复杂的模块路径，还可以设置别名。一个路径解析配置的例子：
 
-~~~ javascript
+{% highlight javascript %}
 {
   resolve: {
     root: [appRoot, nodeRoot, bowerRoot],
@@ -117,7 +117,7 @@ Webpack的文件加载分为三种：
     extensions: ['', '.js', '.coffee', '.html', '.css', '.scss']
   }
 }
-~~~
+{% endhighlight %}
 
 ### 工具的集成
 
@@ -127,7 +127,7 @@ Webpack能够和[grunt](http://webpack.github.io/docs/usage-with-grunt.html)、[
 
 最后附上我的配置文件：
 
-~~~ javascript
+{% highlight javascript %}
 // webpack.config.js
 var path = require('path');
 var webpack = require('webpack');
@@ -178,4 +178,4 @@ module.exports = {
     ]
   }
 };
-~~~
+{% endhighlight %}

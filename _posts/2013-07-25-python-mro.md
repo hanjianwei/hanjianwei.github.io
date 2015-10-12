@@ -23,7 +23,7 @@ Python 有[两种类][new_class]：经典类（classic class）和新式类（ne
 
 经典类采用了一种很简单的 MRO 方法：从左至右的[深度优先遍历][depth_first]。以上述「菱形继承」为例，其查找顺序为 `[D, B, A, C, A]`，如果只保留重复类的第一个则结果为 `[D, B, A, C]`。我们可以用 `inspect.getmro` 来获取类的 MRO：
 
-~~~ pycon
+{% highlight pycon %}
 >>> import inspect
 >>> class A:
 ...     def show(self):
@@ -40,7 +40,7 @@ Python 有[两种类][new_class]：经典类（classic class）和新式类（ne
 >>> x = D()
 >>> x.show()
 A.show()
-~~~
+{% endhighlight %}
 
 这种深度优先遍历对于简单的情况还能处理的不错，但是对于上述「菱形继承」其结果却不尽如人意：虽然 `C.show()` 是 `A.show()` 的更具体化版本（显示了更多的信息），但我们的 `x.show()` 没有调用它，而是调用了 `A.show()`。这显然不是我们希望的结果。
 
@@ -56,7 +56,7 @@ Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常�
 
 按照深度遍历，其顺序为 `[D, B, A, object, C, A, object]`，重复类只保留最后一个，因此变为 `[D, B, C, A, object]`。代码为：
 
-~~~ pycon
+{% highlight pycon %}
 >>> class A(object):
 ...     def show(self):
 ...         print "A.show()"
@@ -72,19 +72,19 @@ Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常�
 >>> x = D()
 >>> x.show()
 C.show()
-~~~
+{% endhighlight %}
 
 这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：
 
 ![Class conflict][class_conflict]
 
-~~~ pycon
+{% highlight pycon %}
 >>> class X(object): pass
 >>> class Y(object): pass
 >>> class A(X, Y): pass
 >>> class B(Y, X): pass
 >>> class C(A, B): pass
-~~~
+{% endhighlight %}
 
 首先进行深度遍历，结果为 `[C, A, X, object, Y, object, B, Y, object, X, object]`；然后，只保留重复元素的最后一个，结果为 `[C, A, B, Y, X, object]`。Python 2.2 在实现该方法的时候进行了调整，使其更尊重基类中类出现的顺序，其实际结果为 `[C, A, B, X, Y, object]`。
 
@@ -102,7 +102,7 @@ C.show()
 
 为解决 Python 2.2 中 MRO 所存在的问题，Python 2.3以后采用了[ C3 方法][c3]来确定方法解析顺序。你如果在 Python 2.3 以后版本里输入上述代码，就会产生一个异常，禁止创建具有二义性的继承关系：
 
-~~~ pycon
+{% highlight pycon %}
 >>> class C(A, B): pass
 Traceback (most recent call last):
   File "<ipython-input-8-01bae83dc806>", line 1, in <module>
@@ -110,7 +110,7 @@ Traceback (most recent call last):
 TypeError: Error when calling the metaclass bases
     Cannot create a consistent method resolution
 order (MRO) for bases X, Y
-~~~
+{% endhighlight %}
 
 我们把类 `C` 的线性化（MRO）记为 `L[C] = [C1, C2,…,CN]`。其中 `C1` 称为 `L[C]` 的头，其余元素 `[C2,…,CN]` 称为尾。如果一个类 `C` 继承自基类 `B1`、`B2`、……、`BN`，那么我们可以根据以下两步计算出 `L[C]`：
 
@@ -131,7 +131,7 @@ order (MRO) for bases X, Y
 L[object] = [object]
 L[X] = [X, object]
 L[Y] = [Y, object]
-~~~
+~~~~
 
 `A` 的线性化计算如下：
 
@@ -141,7 +141,7 @@ L[A] = [A] + merge(L[X], L[Y], [X], [Y])
      = [A, X] + merge([object], [Y, object], [Y])
      = [A, X, Y] + merge([object], [object])
      = [A, X, Y, object]
-~~~
+~~~~
 
 注意第3步，`merge([object], [Y, object], [Y])` 中首先输出的是 `Y` 而不是 `object`。这是因为 `object` 虽然是第一个列表的头，但是它出现在了第二个列表的尾部。所以我们会跳过第一个列表，去检查第二个列表的头部，也就是 `Y`。`Y` 没有出现在其它列表的尾部，所以将其输出。
 
@@ -149,7 +149,7 @@ L[A] = [A] + merge(L[X], L[Y], [X], [Y])
 
 ~~~
 L[B] = [B, Y, X, object]
-~~~
+~~~~
 
 最后，我们看看 `C` 的线性化结果：
 
@@ -158,7 +158,7 @@ L[C] = [C] + merge(L[A], L[B], [A], [B])
      = [C] + merge([A, X, Y, object], [B, Y, X, object], [A], [B])
      = [C, A] + merge([X, Y, object], [B, Y, X, object], [B])
      = [C, A, B] + merge([X, Y, object], [Y, X, object])
-~~~
+~~~~
 
 到了最后一步我们没有办法继续计算下去 了：`X` 虽然是第一个列表的头，但是它出现在了第二个列表的尾部；`Y` 虽然是第二个列表的头，但是它出现在了第一个列表的尾部。因此，我们无法构建一个没有二义性的继承关系，只能手工去解决（比如改变 `B` 基类中 `X`、`Y` 的顺序）。
 
@@ -183,11 +183,11 @@ L[A] = [A] + merge(L[B], L[C], [B], [C])
      = [A, B, C, D, E] + merge([object], [F, object])
      = [A, B, C, D, E, F] + merge([object], [object])
      = [A, B, C, D, E, F, object]
-~~~
+~~~~
 
 当然，可以用代码验证类的 MRO，上面的例子可以写作：
 
-~~~ pycon
+{% highlight pycon %}
 >>> class D(object): pass
 >>> class E(object): pass
 >>> class F(object): pass
@@ -196,7 +196,7 @@ L[A] = [A] + merge(L[B], L[C], [B], [C])
 >>> class A(B, C): pass
 >>> A.__mro__
 (<class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.D'>, <class '__main__.E'>, <class '__main__.F'>, <type 'object'>)
-~~~
+{% endhighlight %}
 
 [diamond]: {{ site.cdn }}/images/python-mro/class_diamond.svg "菱形继承"
 [new_diamond]: {{ site.cdn }}/images/python-mro/newclass_diamond.svg "新式类菱形继承"

@@ -12,7 +12,7 @@ tags: web
 
 看 [Redcarpet](https://github.com/vmg/redcarpet) 的介绍发现它支持自定义 Render，于是就写了个 Markdown 到 Ansi 的工具。原理很简单：首先，Redcarpet 把 Markdown 解析为一系列的元素；然后，定义 `Redcarpet::Render::Base` 的子类对这些元素进行处理。这里用 [ansi](http://rubyworks.github.io/ansi/) 来对文字进行着色，用 [Pygments.rb](https://github.com/tmm1/pygments.rb) 来对代码进行高亮。代码如下：
 
-~~~ ruby
+{% highlight ruby %}
 class Ansi < Redcarpet::Render::Base
   def normal_text(text)
     text.strip
@@ -33,12 +33,12 @@ end
 
 md = Redcarpet::Markdown.new(Ansi, :fenced_code_blocks => true)
 md.render('Hello **markdown**\n')
-~~~
+{% endhighlight %}
 
 写了一个简单的 Gem，安装方法如下：
 
-~~~ bash
+{% highlight bash %}
 $ gem install md2ansi
-~~~
+{% endhighlight %}
 
 欢迎 [fork](https://github.com/hanjianwei/md2ansi)。
