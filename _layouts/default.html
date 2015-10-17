@@ -1,56 +1,29 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
   {% include head.html %}
 
   <body>
+    <div class="container">
+      <header>
+        <nav>
+          <ul>
+            <li class="brand"><a href="/"><img src="/badge.png">M-x <small>butterfly</small></a></li>
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/tags">Tags</a></li>
+            <li><a href="/feed.xml">Feed</a></li>
+          </ul>
+        </nav>
+      </header>
 
-    {% include sidebar.html %}
-
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="/" title="Home">{{ site.title }}</a>
-            <small>{{ site.tagline }}</small>
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
+      <main>
+      <div>
         {{ content }}
       </div>
+      </main>
+
+      <footer>
+        Copyright @2015
+      </footer>
     </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
-
-          checkbox.checked = false;
-        }, false);
-      })(document);
-
-      var disqus_shortname = 'hjwblog';
-      var disqus_identifier = '{{ page.url }}';
-
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
   </body>
 </html>

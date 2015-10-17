@@ -1,9 +1,9 @@
 title:                M-x
 tagline:              butterfly
-description:          'Read | Think | Write'
+description:          Amazing physics going on...
 
 url:                  http://hanjianwei.com
-baseurl:              '/'
+baseurl:              ''
 paginate:             5
 permalink:            pretty
 cdn:                  http://xblog.qiniudn.com
@@ -18,10 +18,8 @@ defaults:
 
 exclude: [LICENSE.md, Gemfile, Gemfile.lock, README.md, vendor]
 
-lsi:      true
-
 sass:
-  style: :compressed
+  style: :nested
 
 repository: hanjianwei/hanjianwei.github.io
 
