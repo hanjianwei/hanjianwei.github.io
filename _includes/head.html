@@ -7,14 +7,14 @@
 
   <title>
     {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
+      {{ site.name }} &middot; {{ site.tagline }}
     {% else %}
-      {{ page.title }} &middot; {{ site.title }}
+      {{ page.title }} &middot; {{ site.name }}
     {% endif %}
   </title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/style.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/public/css/style.css">
 
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">

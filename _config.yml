@@ -1,9 +1,8 @@
-title:                M-x
+name:                 M-x
 tagline:              butterfly
 description:          Amazing physics going on...
 
 url:                  http://hanjianwei.com
-baseurl:              ''
 paginate:             5
 permalink:            pretty
 cdn:                  http://xblog.qiniudn.com
@@ -26,3 +25,4 @@ repository: hanjianwei/hanjianwei.github.io
 gems:
   - jekyll-feed
   - jekyll-github-metadata
+  - jekyll-mentions
