@@ -1,7 +1,9 @@
 ---
-layout: default
+layout: archive
 title: Archive
 ---
+
+# Archive
 
 {% for post in site.posts %}
 
@@ -15,6 +17,5 @@ title: Archive
 ## {{ year }}
 {% endunless %}
 {% endunless %}
-
-- <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d" }}</time> [{{ post.title }}]({{ post.url }})
+- <span class="time">{{ post.date | date: "%b %d" }}</span> [{{ post.title }}]({{ post.url }})
 {% endfor %}

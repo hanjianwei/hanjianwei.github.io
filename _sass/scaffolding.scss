@@ -1,6 +1,6 @@
 html {
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.8;
 }
 @media (min-width: 38em) {
   html {
@@ -41,6 +41,18 @@ header nav, h1, h2, h3 {
   }
   small {
     color: #c0c0c0;
+  }
+}
+
+main article time {
+  color: #9a9a9a;
+}
+
+main .archive {
+  span.time {
+    text-transform: uppercase;
+    color: #9a9a9a;
+    margin-right: 1rem;
   }
 }
 
