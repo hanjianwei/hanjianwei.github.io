@@ -1,5 +1,25 @@
 html {
   font-size: 16px;
+  line-height: 2;
+}
+@media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
 }
 
 a {
@@ -36,4 +56,3 @@ footer {
     }
   }
 }
-

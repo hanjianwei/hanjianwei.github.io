@@ -4,9 +4,23 @@ body {
 }
 
 .container {
-  max-width: 42rem;
+  width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.container {
+  max-width: 28rem;
+}
+@media (min-width: 38em) {
+  .container {
+    max-width: 32rem;
+  }
+}
+@media (min-width: 56em) {
+  .container {
+    max-width: 42rem;
+  }
 }
 
 header nav {
@@ -23,6 +37,17 @@ header nav {
       &.brand {
         margin-right: auto;
       }
+    }
+  }
+}
+
+@media (max-width: 56em) {
+  header nav {
+    ul {
+      justify-content: flex-start;
+    }
+    .brand {
+      display: none;
     }
   }
 }
