@@ -19,9 +19,19 @@ header nav, h1, h2, h3 {
   a {
     color: #505050;
   }
+  small {
+    color: #c0c0c0;
+  }
 }
 
-footer a {
-  color: inherit;
+footer {
+  color: #c0c0c0;
+  a {
+    color: inherit;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
 }
 

@@ -1,36 +1,46 @@
 @font-face {
-  font-family: 'GB Heiti';
-  src: local('.PingFang SC Light'),
-       local('.PingFang-SC-Light'),
-       local('.PingFang SC'),
-       local('Hiragino Sans GB'),
-       local('Heiti SC Light'),
+  font-family: "GB Heiti";
+  src: local(".PingFang SC Light"),
+       local(".PingFang-SC-Light"),
+       local(".PingFang SC"),
+       local("Hiragino Sans GB"),
+       local("Heiti SC Light"),
        local(STHeitiSC-Light),
-       local('Heiti SC'),
+       local("Heiti SC"),
 
-       local('Microsoft Yahei'),
+       local("Microsoft Yahei"),
 
-       local('Noto Sans CJK SC'),
-       local('Source Han Sans SC'),
-       local('Source Han Sans CN'),
-       local('Droid Sans Fallback'),
-       local('WenQuanYi Micro Hei');
+       local("Noto Sans CJK SC"),
+       local("Source Han Sans SC"),
+       local("Source Han Sans CN"),
+       local("Droid Sans Fallback"),
+       local("WenQuanYi Micro Hei");
 }
 
 @font-face {
-  font-family: 'En Sans Serif';
+  font-family: "En Sans Serif";
   src: local(-apple-system),
-       local('Helvetica Neue'),
+       local("Helvetica Neue"),
        local(Helvetica),
        local(Arial);
 }
 
 @font-face {
-  font-family: 'Programming Mono';
-  src: local('Menlo'),
-       local('Consolas'),
-       local('Source Code Pro'),
-       local('Monaco');
+  font-family: "Programming Mono";
+  src: local("Menlo"),
+       local("Consolas"),
+       local("Source Code Pro"),
+       local("Monaco");
+}
+
+@font-face {
+  font-family: "Font Awesome";
+  src: local("FontAwesome"),
+       url("fontawesome-webfont.woff") format("woff");
+}
+
+.fo {
+  font-family: "Font Awesome";
 }
 
 $font-sans-serif:  "En Sans Serif", "GB Heiti", sans-serif !default;
@@ -57,11 +67,9 @@ header nav {
   small {
     font-size: 75%;
     font-weight: 400;
-    color: #c0c0c0;
   }
 }
 
 footer {
   font-size: 0.8rem;
-  color: #c0c0c0;
 }
