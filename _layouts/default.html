@@ -7,7 +7,7 @@
       <header>
         <nav>
           <ul>
-            <li class="brand"><a href="/"><img src="/badge.png" alt="Site logo">M-x <small>butterfly</small></a></li>
+            <li class="brand"><a href="/"><img src="/badge.png" alt="Site logo">{{ site.name }}</a> <small>{{ site.tagline }}</small></li>
             <li><a href="/archive">Archive</a></li>
             <li><a href="/tags">Tags</a></li>
             <li><a href="/feed.xml">Feed</a></li>
@@ -21,8 +21,6 @@
         {{ content }}
       </div>
       </main>
-
-      <footer>&copy; {{ site.time | date: '%Y' }} Jianwei Han. Powered by <a href="http://jekyllrb.com/">Jekyll</a> and <a href="https://github.com">GitHub</a>.</footer>
     </div>
   </body>
 </html>

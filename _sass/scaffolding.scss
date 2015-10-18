@@ -1,0 +1,23 @@
+html {
+  font-size: 16px;
+}
+
+a {
+  color: #268bd2;
+  text-decoration: none;
+
+  strong {
+    color: inherit;
+  }
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+header nav, h1, h2, h3 {
+  a {
+    color: #505050;
+  }
+}
+
