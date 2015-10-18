@@ -27,9 +27,11 @@ header nav, h1, h2, h3 {
 footer {
   color: #c0c0c0;
   a {
+    margin-left: 0.5rem;
     color: inherit;
     &:hover,
     &:focus {
+      color: #505050;
       text-decoration: none;
     }
   }

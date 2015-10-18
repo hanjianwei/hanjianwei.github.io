@@ -1,0 +1,5 @@
+repository: hanjianwei/hanjianwei.github.io
+gems:
+  - jekyll-feed
+  - jekyll-mentions
+  - jekyll-github-metadata

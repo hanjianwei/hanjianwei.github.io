@@ -5,6 +5,8 @@ description:          Amazing physics going on...
 url:                  http://hanjianwei.com
 paginate:             5
 permalink:            pretty
+
+disqus:               hjwblog
 cdn:                  http://xblog.qiniudn.com
 
 defaults:
@@ -20,9 +22,6 @@ exclude: [LICENSE.md, Gemfile, Gemfile.lock, README.md, vendor]
 sass:
   style: :nested
 
-repository: hanjianwei/hanjianwei.github.io
-
 gems:
   - jekyll-feed
-  - jekyll-github-metadata
   - jekyll-mentions
