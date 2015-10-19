@@ -1,6 +1,6 @@
 {% capture namespace %}{{ page.path | split:"/" | last | split:"." | first }}{% endcapture %}
 
 <figure>
-  <img src="/assets/{{ namespace }}/{{ include.name }}" alt="{{ include.caption }}">
+  <img src="{{ site.cdn }}/assets/{{ namespace }}/{{ include.name }}" alt="{{ include.caption }}">
   <figcaption>{{ include.caption }}</figcaption>
 </figure>
