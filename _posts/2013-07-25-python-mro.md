@@ -7,7 +7,7 @@ tags: python
 
 先看一个「菱形继承」的例子：
 
-![Diamond relationship][diamond]
+{% include fig.html name="class_diamond.svg" caption="菱形继承" %}
 
 如果 `x` 是 `D` 的一个实例，那么 `x.show()` 到底会调用哪个 `show` 方法呢？如果按照 `[D, B, A, C]` 的搜索顺序，那么 `x.show()` 会调用 `A.show()`；如果按照 `[D, B, C, A]` 的搜索顺序，那么 `x.show()` 会调用 `C.show()`。由此可见，MRO 是把类的继承关系线性化的一个过程，而线性化方式决定了程序运行过程中具体会调用哪个方法。既然如此，那什么样的 MRO 才是最合理的？Python 中又是如何实现的呢？
 
@@ -52,7 +52,7 @@ A.show()
 
 Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 `object` 因此类图稍有改变：
 
-![New class diamond][new_diamond]
+{% include fig.html name="newclass_diamond.svg" caption="新式类菱形继承" %}
 
 按照深度遍历，其顺序为 `[D, B, A, object, C, A, object]`，重复类只保留最后一个，因此变为 `[D, B, C, A, object]`。代码为：
 
@@ -76,7 +76,7 @@ C.show()
 
 这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：
 
-![Class conflict][class_conflict]
+{% include fig.html name="class_conflict.svg" caption="类型冲突" %}
 
 {% highlight pycon %}
 >>> class X(object): pass
@@ -164,7 +164,7 @@ L[C] = [C] + merge(L[A], L[B], [A], [B])
 
 我们再看一个没有冲突的例子：
 
-![C3 Example][c3_example]
+{% include fig.html name="c3_example.svg" caption="C3例子" %}
 
 计算过程如下：
 
@@ -198,10 +198,6 @@ L[A] = [A] + merge(L[B], L[C], [B], [C])
 (<class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.D'>, <class '__main__.E'>, <class '__main__.F'>, <type 'object'>)
 {% endhighlight %}
 
-[diamond]: {{ site.cdn }}/images/python-mro/class_diamond.svg "菱形继承"
-[new_diamond]: {{ site.cdn }}/images/python-mro/newclass_diamond.svg "新式类菱形继承"
-[class_conflict]: {{ site.cdn }}/images/python-mro/class_conflict.svg "类型冲突"
-[c3_example]: /images/python-mro/c3_example.svg "C3例子"
 [c3]: http://en.wikipedia.org/wiki/C3_linearization
 [guido]: http://python-history.blogspot.com/2010/06/method-resolution-order.html
 [new_class]: http://wiki.python.org/moin/NewClassVsClassicClass
