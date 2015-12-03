@@ -33,32 +33,42 @@ $ /etc/init.d/shadowsocks enable
 $ /etc/init.d/shadowsocks start
 {% endhighlight %}
 
-你可以将自己系统的SOCKS Proxy设置为`192.168.1.1:1080`，测试下shadowsocks是否工作正常。
-
-### 配置VPN
-
-安装pptp的支持包：
-
-{% highlight bash %}
-$ opkg install ppp-mod-pptp
-{% endhighlight %}
-
-然后，编辑`/etc/config/network`，添加/修改下面的部分：
-
-~~~
-config 'interface' 'vpn'
-        option 'ifname'    'pptp-vpn'  
-        option 'proto'     'pptp'
-        option 'username'  'vpnusername'
-        option 'password'  'vpnpassword'
-        option 'server'    'vpn.example.org or ipaddress'
-        option 'buffering' '1'
-~~~~
+你可以将自己系统的SOCKS Proxy设置为`192.168.1.1:1080`，测试下shadowsocks是否工作正常。如果工作正常，将`/etc/init.d/shadowsocks`文件中的`ss-local`换成`ss-redir`并重启shadowsocks，表示我们要用shadowsocks进行转发。
 
 ### DSN服务器设置
 
-为了防止DNS污染，利用dnsmasq将[gfwlist](https://github.com/gfwlist/gfwlist)中的域名用8.8.8.8解析。OpenWrt自带的dnsmasq功能是有限制的，首先安装上完全版的dnsmasq:
+为了防止DNS污染，利用dnsmasq将[gfwlist](https://github.com/gfwlist/gfwlist)中的域名用OpenDNS解析。OpenWrt自带的dnsmasq功能是有限制的，首先安装上完全版的dnsmasq，并安装ipset包:
 
 {% highlight bash %}
 $ opkg remove dnsmasq && opkg install dnsmasq-full
+$ opkg install ipset
 {% endhighlight %}
+
+我们创建一个名为gfw的ipset，并设置所有ipset中的IP都通过shadowsocks转发。
+
+{% highlight bash %}
+$ ipset create gfw hash:ip
+$ iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to-port 1079
+{% endhighlight %}
+
+为了防止路由器重启时规则丢失，可以将上述规则写到`/etc/firewall.user`文件中。
+
+然后利用[gfwlist2dnsmasq](https://github.com/cokebar/gfwlist2dnsmasq)生成`dnsmasq_list.conf`文件，记得运行命令之前将`gfwlist2dnsmasq.py`中的`mydnsip`改成208.67.220.220，`mydnsport`改成443，`ipsetname`改成gfw。
+
+{% highlight bash %}
+$ python gfwlist2dnsmasq.py
+{% endhighlight %}
+
+修改dnsmasq的配置文件`/etc/dnsmasq.conf`，在最后加上一句：
+
+{% highlight conf %}
+conf-dir=/etc/dnsmasq.d
+{% endhighlight %}
+
+最后将生成的`dnsmasq_list.conf`拷贝到`/etc/dnsmasq.d`中，重启dnsmasq：
+
+{% highlight bash %}
+$ /etc/init.d/dnsmasq restart
+{% endhighlight %}
+
+搞定！
