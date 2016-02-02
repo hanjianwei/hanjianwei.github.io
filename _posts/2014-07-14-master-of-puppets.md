@@ -140,4 +140,4 @@ planfile {'katie':
 
 要发挥Puppet最大的优势，必须了解[Agent/Master Puppet](http://docs.puppetlabs.com/learning/agent_master_basic.html)（为什么现在都不用Master/Slave了？看[这里](https://github.com/django/django/pull/2692)）。不过我暂时都是单机用用，就先不去了解了。
 
-当然了，题目就叫走马观花，看这篇Blog你是不可能完全掌握Puppet的啦，感兴趣就去看看[tutorial](http://docs.puppetlabs.com/learning/)和[reference](http://docs.puppetlabs.com/puppet/latest/reference/)吧！
+当然了，题目就叫走马观花，看这篇Blog你是不可能完全掌握Puppet的啦，感兴趣就去看看[tutorial](https://puppetlabs.com/download-learning-vm)和[reference](http://docs.puppetlabs.com/puppet/latest/reference/)吧！
