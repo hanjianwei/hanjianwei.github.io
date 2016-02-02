@@ -7,17 +7,17 @@ tags: devops
 
 备份程序主要用了系统的`mdfind`和`mdls`命令:
 
-{% highlight bash %}
+~~~ bash
 mdfind "kMDItemAppStoreHasReceipt=1" | while read -r app; do
   echo "$app\n$(mdls -name kMDItemAppStoreAdamID -raw $app)"
 done > Applications.txt
-{% endhighlight %}
+~~~~
 
 App的程序名及其ID会被写入到`Applications.txt`中。
 
 恢复安装时，读入`Applications.txt`，逐个读入应用，并打开AppStore进行安装：
 
-{% highlight bash %}
+~~~ bash
 while read -r app; do
   read -r appid
 
@@ -25,6 +25,6 @@ while read -r app; do
     open -W "macappstore://itunes.apple.com/cn/app/id$appid"
   fi
 done < "./Applications.txt"
-{% endhighlight %}
+~~~~
 
 也算一种半人肉的安装方式吧。

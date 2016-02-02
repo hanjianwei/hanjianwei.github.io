@@ -25,3 +25,4 @@ sass:
 gems:
   - jekyll-feed
   - jekyll-mentions
+  - jekyll-paginate

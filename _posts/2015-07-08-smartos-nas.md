@@ -16,14 +16,14 @@ SmartOS使用了ZFS文件系统，所有虚拟机的zone都是存放在一个叫
 为了取得更好的性能，用[format](http://docs.oracle.com/cd/E23824_01/html/821-1459/disksprep-10.html)将SSD（c1t4d0）分为32G和224G两个分区，分别作为ZIL(log)和L2ARC(cache):
 
 
-{% highlight bash %}
+~~~ bash
 # zpool add zones log c1t4d0s0
 # zpool add zones cache c1t4d0s1
-{% endhighlight %}
+~~~~
 
 配置完之后磁盘的信息如下：
 
-{% highlight bash %}
+~~~ bash
 # zpool status
   pool: zones
  state: ONLINE
@@ -43,7 +43,7 @@ config:
           c1t4d0s1  ONLINE       0     0     0
 
 errors: No known data errors
-{% endhighlight %}
+~~~~
 
 如果上述步骤搞错了，可以参照[官方的步骤](https://wiki.smartos.org/display/DOC/SmartOS+Clean+Re-install)重装。很不幸的是，我安装官方的步骤选择Grub第2项（noinstall）几乎每次都会死机，如果你遇到和我一样的情况，也可以在启动时出现Grub界面的时候，在第1项按`e`，然后在最后加上`destroy_zpools=true`的选项，这样启动后就会删除所有的zpool，然后就可以重新配置了。（注意：磁盘上已经有数据的慎用！）
 
@@ -55,30 +55,30 @@ U盘启动的SmartOS是一个只读系统，你所能做的事情非常有限。
 
 此外，我希望数据能够单独存储，即使虚拟机坏掉或者删除数据仍然存在，因此专门建立一个数据存储的dataset：
 
-{% highlight bash %}
+~~~ bash
 # zfs create zones/datastore
-{% endhighlight %}
+~~~~
 
 #### kvm虚拟机
 
 kvm是从linux移植过来的技术，能支持大部分常见的操作系统，在创建kvm虚拟机之前首先要创建或下载相应的镜像。Joyent已经提供了很多常见的镜像，如果我想装一个debian 8，可以首先进行搜索：
 
-{% highlight bash %}
+~~~ bash
 # imgadm avail | grep debian-8
 ca291f66-048c-11e5-98b3-c3f2a972a4cc  debian-8                20150527    linux    2015-05-27T16:24:03Z
 2f56d126-20d0-11e5-9e5b-5f3ef6688aba  debian-8                20150702    linux    2015-07-02T15:37:02Z
-{% endhighlight %}
+~~~~
 
 然后可以选择需要的镜像进行下载：
 
-{% highlight bash %}
+~~~ bash
 # imgadm import 2f56d126-20d0-11e5-9e5b-5f3ef6688aba
-{% endhighlight %}
+~~~~
 
 创建虚拟机时，首先需要创建一个JSON格式的虚拟机描述文件，下面是debian 8的描述文件，主要是网络设置以及镜像设置：
 
 
-{% highlight javascript %}
+~~~ javascript
 {
   "brand": "kvm",
   "alias": "debian",
@@ -109,20 +109,20 @@ ca291f66-048c-11e5-98b3-c3f2a972a4cc  debian-8                20150527    linux 
     }
   ]
 }
-{% endhighlight %}
+~~~~
 
 具体的可用选项可以查看`vmadm`的[文档](https://github.com/joyent/smartos-live/blob/master/src/vm/man/vmadm.1m.md)以及SmartOS的[wiki](https://wiki.smartos.org/display/DOC/How+to+create+a+KVM+VM+%28+Hypervisor+virtualized+machine+%29+in+SmartOS)。
 
 将文件存为`debian8.json`，然后就可以通过`vmadm`创建镜像：
 
-{% highlight bash %}
+~~~ bash
 # vmadm create -f debian8.json 
 Successfully created VM b94d3a92-4a3b-4fae-baca-e53c726be924
-{% endhighlight %}
+~~~~
 
 可以通过`vmadm list`来查看当前虚拟机的状态。创建好的虚拟机可以通过VNC登录，首先要查看虚拟机的VNC信息，然后通过ip和端口进行登录：
 
-{% highlight bash %}
+~~~ bash
 # vmadm info b94d3a92-4a3b-4fae-baca-e53c726be924 vnc
 {
   "vnc": {
@@ -131,20 +131,20 @@ Successfully created VM b94d3a92-4a3b-4fae-baca-e53c726be924
     "display": 51969
   }
 }
-{% endhighlight %}
+~~~~
 
 我们希望在虚拟机中访问`datastore`，并将重要的数据存在其中，这样即使虚拟机挂掉也不影响数据的访问。可以通过[NFS](https://wiki.smartos.org/display/DOC/Configuring+NFS+in+SmartOS)来进行文件恭喜。首先将`datastore`共享：
 
-{% highlight bash %}
+~~~ bash
 # zfs set sharenfs='rw=@192.168.1.0/24,root=192.168.1.102' zones/datastore
-{% endhighlight %}
+~~~~
 
 在debian里面安装nfs相关的包并将datastore挂载过去：
 
-{% highlight bash %}
+~~~ bash
 # apt-get update && apt-get install nfs-common
 # mkdir -p /mnt/datastore && mount -o rw,async,hard,intr 192.168.1.100:/zones/datastore /mnt/datastore
-{% endhighlight %}
+~~~~
 
 在debian虚拟机中就可以将常用数据放在/mnt/datastore中了。
 
@@ -153,7 +153,7 @@ Successfully created VM b94d3a92-4a3b-4fae-baca-e53c726be924
 
 Zone是一种更高效的虚拟化技术，但是它适用的OS也比较有限。比如你如果想玩玩SmartOS，那用Global Zone的系统可能不是一个很好的选择，因为它是只读的，而且缺少包管理等工具。我们可以用zone虚拟一个SmartOS，你可以用`imgadm`搜索并下载`base64`镜像，并通过下面的JSON文件来创建虚拟机：
 
-{% highlight javascript %}
+~~~ javascript
 {
   "brand": "joyent",
   "image_uuid": "62f148f8-6e84-11e4-82c5-efca60348b9f",
@@ -171,11 +171,11 @@ Zone是一种更高效的虚拟化技术，但是它适用的OS也比较有限�
     }
   ]
 }
-{% endhighlight %}
+~~~~
 
 然后，用`vmadm`来创建虚拟机。和kvm不同的是，这种方式创建的虚拟机不能用VNC登录，但是可以用zlogin来登录：
 
-{% highlight bash %}
+~~~ bash
 # vmadm create -f smartos.json 
 Successfully created VM 0b3c7b3b-9f19-4d26-ab22-a8b10a9add25
 # zlogin 0b3c7b3b-9f19-4d26-ab22-a8b10a9add25 
@@ -186,11 +186,11 @@ Successfully created VM 0b3c7b3b-9f19-4d26-ab22-a8b10a9add25
   |__|   `--'  `-' `;-| `-' '  ' `-'
                    /  ; Instance (base64 14.3.0)
                    `-'  http://wiki.joyent.com/jpc2/Base+Instance
-{% endhighlight %}
+~~~~
 
 Zone不只是支持SmartOS，它还支持[LX Branded Zones](https://wiki.smartos.org/display/DOC/LX+Branded+Zones)，允许你在zone里面直接运行linux。`imgadm avail`中列出的镜像中以`lx-`开头的支持LX Branded Zones。此外，使用这种方法创建虚拟机时，不必用NFS来共享数据，可以直接通过`filesystems`字段来指定目录映射。下面是一个`lx-ubuntu-14.04`的例子：
 
-{% highlight javascript %}
+~~~ javascript
 {
   "brand": "lx",
   "alias": "ubuntu1404",
@@ -215,7 +215,7 @@ Zone不只是支持SmartOS，它还支持[LX Branded Zones](https://wiki.smartos
     }
   ]
 }
-{% endhighlight %}
+~~~~
 
 可以看到我们直接将Global Zone的`zones/datastore`映射到虚拟机的`/mnt/datastore`。然后就可以通过zlogin进行登录，设置好ssh后也可以通过ssh远程登录。
 

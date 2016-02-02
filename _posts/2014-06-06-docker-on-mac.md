@@ -11,43 +11,43 @@ Docker有两个主要的部件：daemon和作为客户端的二进制程序「do
 
 boot2docker使用了一个非常轻量的Linux发行版[CoreOS][]来作为Docker的运行环境，启动很快、占用空间很少。通过[Homebrew][]来安装非常方便：
 
-{% highlight bash %}
+~~~ bash
 $ brew install boot2docker docker
-{% endhighlight %}
+~~~~
 
 boot2docker的一个问题是和Mac之间共享文件非常不方便，官方给出的方案是[用Samba来共享文件][boot2docker-sharing]。
 
 我更喜欢的一种方式是用Vagrant来管理Docker。Vagrant是一个管理虚拟机的软件，1.6版本加入了对[Docker的支持][vagrant-docker]，可以在Vagrant中对Docker进行管理。Vagrant可以把[Docker作为Provider][vagrant-docker-provider]，在Vagrantfile配置Docker相关的操作。一个简单的Vagrantfile的例子：
 
-{% highlight ruby %}
+~~~ ruby
 Vagrant.configure("2") do |config|
   config.vm.provider "docker" do |d|
     d.image = "ubuntu:14.04"
   end
 end
-{% endhighlight %}
+~~~~
 
 这个配置文件表示，启动Docker的时候使用`ubuntu:14.04`这个image。然后，执行操作：
 
-{% highlight bash %}
+~~~ bash
 $ vagrant up --provider=docker
-{% endhighlight %}
+~~~~
 
 在非Linux系统上，Docker是需要运行在虚拟机中的。如果没有配置虚拟机（比如上述例子），Vagrant会自动使用[boot2docker][vagrant-boot2docker]作为虚拟机。当然，你可以指定一个已有的Vagrantfile作为Docker的运行主机：
 
-{% highlight ruby %}
+~~~ ruby
 Vagrant.configure("2") do |config|
   config.vm.provider "docker" do |d|
     d.vagrant_vagrantfile = "../path/to/Vagrantfile"
   end
 end
-{% endhighlight %}
+~~~~
 
 同直接使用boot2docker相比，Vagrant提供了非常便捷的手段处理Mac和虚拟机之间的交互，如[文件夹同步][vagrant-synced-folder]、[端口映射][vagrant-network]等。在进行文件夹同步时，Vagrant会尝试使用最佳方式进行同步，比如对boot2docker会使用rsync进行同步。
 
 boot2docker虽然比较精简，但是功能毕竟有限，我使用了一个Ubuntu 14.04来作为Docker的运行主机，相应的Vagrantfile如下：
 
-{% highlight ruby %}
+~~~ ruby
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -62,7 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network "forwarded_port", guest: 4243, host: 4243
 end
-{% endhighlight %}
+~~~~
 
 注意中间的[Provisioner部分][vagrant-provisioners]，Vagrant的Provisioner的主要作用是自动安装一些软件、执行一些任务。上面的`apt.sh`是一个脚本，用来修改Ubuntu的apt源；`docker.sh`用来修改Docker的配置参数。值得注意的是，Vagrant还提供了[Docker的Provisoner][docker-provisioner]，用来安装、配置Docker。当你运行的虚拟机中没有安装Docker时，它会自动帮你安装最新的Docker。
 

@@ -20,7 +20,7 @@ Could not find a free IP address range for interface 'docker0'. Please configure
 
 那么，在阿里云中为什么会启动失败呢？在[Docker的源代码](https://github.com/docker/docker)搜索上述错误信息，可以看出问题出在[createBridge](https://github.com/docker/docker/blob/4398108433121ce2ac9942e607da20fa1680871a/daemon/networkdriver/bridge/driver.go#L246)这个函数中。该函数会检查[下列IP段](https://github.com/docker/docker/blob/503d124677f5a0221e1bf8c8ed7320a15c5e01db/daemon/networkdriver/bridge/driver.go#L53-L70):
 
-{% highlight go %}
+~~~ go
 var addrs = []string{
     "172.17.42.1/16",
     "10.0.42.1/16",
@@ -35,11 +35,11 @@ var addrs = []string{
     "192.168.43.1/24",
     "192.168.44.1/24",
 }
-{% endhighlight %}
+~~~~
 
 对于每个IP段，Docker会检查它是否和当前机器的域名服务器或路由表有重叠，如果有的话，就放弃该IP段。让我们看看阿里云服务器的路由表：
 
-{% highlight bash %}
+~~~ bash
 $ route -n
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         121.40.83.247   0.0.0.0         UG    0      0        0 eth1
@@ -48,26 +48,26 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 121.40.80.0     0.0.0.0         255.255.252.0   U     0      0        0 eth1
 172.16.0.0      10.171.223.247  255.240.0.0     UG    0      0        0 eth0
 192.168.0.0     10.171.223.247  255.255.0.0     UG    0      0        0 eth0
-{% endhighlight %}
+~~~~
 
 检查一下路由表会发现，Docker所检查的IP段在路由表中都有了，所以不能找到一个有效的IP段。
 
 解决方法其实也很简单，简单粗暴的方法就是把内网的网卡信息直接删掉，它在路由表中所对应的信息也没有了:
 
-{% highlight bash %}
+~~~ bash
 $ sudo ifconfig eth0 down
-{% endhighlight %}
+~~~~
 
 这种方法的缺点也很明显：你就无法访问内网了，而阿里云的内部流量是不收费的（用mirrors.aliyuncs.com来升级不占用公网流量），这点还是比较可惜的。
 
 另一种方法是把路由表中不用的项删除，这样Docker就能找到能用的IP段了：
 
-{% highlight bash %}
+~~~ bash
 $ sudo route del -net 172.16.0.0/12
 $ sudo service docker start
 $ ifconfig docker0
 docker0   Link encap:Ethernet  HWaddr 56:84:7a:fe:97:99
           inet addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.0.0
-{% endhighlight %}
+~~~~
 
 重新启动服务，可以看到`docker0`已经建立成功，所用的IP地址就是我们删除路由表项之后腾出来的IP地址。采用这种方法，我们仍然可以使用内网的服务。如果要每次启动的时候设置，编辑`/etc/network/interfaces`，将`up route add -net 172.16.0.0 ....`那一行删掉即可。

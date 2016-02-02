@@ -18,9 +18,9 @@ WNDR4300是网上比较推荐的支持OpenWrt的路由器：其内存和闪存�
 
 首先，在路由器上安装[shadowsocks](https://shadowsocks.org)的客户端：
 
-{% highlight bash %}
+~~~ bash
 $ opkg install http://openwrt-dist.sourceforge.net/releases/ar71xx/packages/shadowsocks-libev_2.4.1-1_ar71xx.ipk
-{% endhighlight %}
+~~~~
 
 安装时到shadowsock的[下载页面](http://openwrt-dist.sourceforge.net/releases/ar71xx/packages/)确定软件的具体版本。如果你空间有限，也可以装`polarssl`版本。
 
@@ -28,10 +28,10 @@ $ opkg install http://openwrt-dist.sourceforge.net/releases/ar71xx/packages/shad
 
 然后设置shadowsock自动启动：
 
-{% highlight bash %}
+~~~ bash
 $ /etc/init.d/shadowsocks enable
 $ /etc/init.d/shadowsocks start
-{% endhighlight %}
+~~~~
 
 你可以将自己系统的SOCKS Proxy设置为`192.168.1.1:1080`，测试下shadowsocks是否工作正常。如果工作正常，将`/etc/init.d/shadowsocks`文件中的`ss-local`换成`ss-redir`并重启shadowsocks，表示我们要用shadowsocks进行转发。
 
@@ -39,25 +39,25 @@ $ /etc/init.d/shadowsocks start
 
 为了防止DNS污染，利用dnsmasq将[gfwlist](https://github.com/gfwlist/gfwlist)中的域名用OpenDNS解析。OpenWrt自带的dnsmasq功能是有限制的，首先安装上完全版的dnsmasq，并安装ipset包:
 
-{% highlight bash %}
+~~~ bash
 $ opkg remove dnsmasq && opkg install dnsmasq-full
 $ opkg install ipset
-{% endhighlight %}
+~~~~
 
 我们创建一个名为gfw的ipset，并设置所有ipset中的IP都通过shadowsocks转发。
 
-{% highlight bash %}
+~~~ bash
 $ ipset create gfw hash:ip
 $ iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to-port 1079
-{% endhighlight %}
+~~~~
 
 为了防止路由器重启时规则丢失，可以将上述规则写到`/etc/firewall.user`文件中。
 
 然后利用[gfwlist2dnsmasq](https://github.com/cokebar/gfwlist2dnsmasq)生成`dnsmasq_list.conf`文件，记得运行命令之前将`gfwlist2dnsmasq.py`中的`mydnsip`改成208.67.220.220，`mydnsport`改成443，`ipsetname`改成gfw。
 
-{% highlight bash %}
+~~~ bash
 $ python gfwlist2dnsmasq.py
-{% endhighlight %}
+~~~~
 
 修改dnsmasq的配置文件`/etc/dnsmasq.conf`，在最后加上一句：
 
@@ -67,8 +67,8 @@ conf-dir=/etc/dnsmasq.d
 
 最后将生成的`dnsmasq_list.conf`拷贝到`/etc/dnsmasq.d`中，重启dnsmasq：
 
-{% highlight bash %}
+~~~ bash
 $ /etc/init.d/dnsmasq restart
-{% endhighlight %}
+~~~~
 
 搞定！
