@@ -3,14 +3,14 @@ title: 网件WNDR4300上安装配置OpenWrt
 tags: nas
 ---
 
-WNDR4300是网上比较推荐的支持OpenWrt的路由器：其内存和闪存都是128M，OpenWrt对其也有比较好的支持，是一个比较适合折腾的路由器。
+WNDR4300是对OpenWrt支持比较好的一款路由器：其内存和闪存都是128M，有比较好的ROM支持，是一个比较适合折腾的路由器。
 
-### OpenWrt安装、配置
+### OpenWrt的安装、配置
 
-首先下载WNDR4300的固件，OpenWrt的[下载页面](https://downloads.openwrt.org)列出了不同版本的的固件，一般来说下载最新的release即可。
+首先，下载WNDR4300的固件，OpenWrt的[下载页面](https://downloads.openwrt.org)列出了不同版本的的固件，一般来说下载最新的release即可。
 比如当前支持WNDR4300的最新固件是[Chaos Calmer 15.05](https://downloads.openwrt.org/chaos_calmer/15.05/ar71xx/nand/openwrt-15.05-ar71xx-nand-wndr4300-ubi-factory.img)。在下载的时候需要注意，如果是第一次刷机，要下载factory固件；如果以前刷过OpenWrt，下载sysupgrade。
 
-然后，进入路由器的web界面，找到「固件升级」，选择下载的包确定。重启后，路由器的系统就变成OpenWrt了。需要注意的是，重启后默认Wifi没有开启，按一下路由器上的Wifi开关即可。在电脑上，脸上OpenWrt这个热点，浏览器打开`192.168.1.1`登录，用户名为root，没有密码。进入系统后，先进入「System → Administration」修改密码、添加SSH公钥等。
+然后，进入路由器的web界面，找到「固件升级」，选择下载的包确定。重启后，路由器的系统就变成OpenWrt了。需要注意的是，重启后默认Wifi没有开启，按一下路由器上的Wifi开关即可。在电脑上，连上OpenWrt这个热点，浏览器打开`192.168.1.1`登录，用户名为root，没有密码。进入系统后，先进入「System → Administration」修改密码、添加SSH公钥等。
 
 在web页面选择「Network → Interfaces」，对WAN口进行配置。然后进入「Network → Wifi」，设置SSID和Wifi密码。
 
