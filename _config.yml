@@ -22,7 +22,7 @@ exclude: [LICENSE.md, Gemfile, Gemfile.lock, README.md, vendor]
 sass:
   style: :nested
 
-gems:
+plugins:
   - jekyll-feed
   - jekyll-mentions
   - jekyll-paginate
