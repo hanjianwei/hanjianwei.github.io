@@ -1,6 +1,1 @@
 repository: hanjianwei/hanjianwei.github.io
-plugins:
-  - jekyll-feed
-  - jekyll-github-metadata
-  - jekyll-mentions
-  - jekyll-paginate

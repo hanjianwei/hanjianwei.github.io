@@ -25,4 +25,3 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-mentions
-  - jekyll-paginate
