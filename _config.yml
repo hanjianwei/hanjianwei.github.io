@@ -7,7 +7,6 @@ paginate:             5
 permalink:            pretty
 
 disqus:               hjwblog
-cdn:                  http://xblog.qiniudn.com
 
 remote_theme:         "hanjianwei/jekyll-theme-blog"
 
