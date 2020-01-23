@@ -1,6 +1,7 @@
 ---
 title: "Webpack: 为Web开发而生的模块管理器"
-tags: web
+date: 2014-09-10T20:04:00+08:00
+tags: [web]
 ---
 
 对于开发人员而言，好的包管理器可以让工作事半功倍。现在流行的编程语言大多有自己的[包管理系统](http://blogs.atlassian.com/2014/04/git-project-dependencies/#GitAndProjectDependencies-Firstchoice:useanappropriatebuild/dependencytoolinsteadofgit)。近年来，Web开发越来越火，其开发工具也随之越来越好用了，而[Webpack](http://webpack.github.io)就是一款专为Web开发设计的包管理器。它能够很好地管理、打包Web开发中所用到的HTML、Javascript、CSS以及各种静态文件（图片、字体等），让开发过程更加高效。

@@ -1,6 +1,7 @@
 ---
 title: "DocPad：基于 CoffeeScript 的静态网站生成器"
-tags: web
+date: 2013-01-06T21:40:00+08:00
+tags: [web]
 ---
 
 [DocPad][] 是一个静态网站生成器，同 [Jekyll][]、[Octopress][] 相比，它的可定制性更强；

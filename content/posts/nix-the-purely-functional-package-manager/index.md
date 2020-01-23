@@ -1,6 +1,7 @@
 ---
 title: "Nix: 纯函数式包管理器"
-tags: devops
+date: 2014-09-21T20:04:00+08:00
+tags: [devops]
 ---
 
 [Nix](http://nixos.org/nix/)是一个Linux/Unix下的[包管理器](https://en.wikipedia.org/wiki/Package_management_system)，它支持原子升级和回滚、能够同时安装同一个包的多个版本、支持多用户，能够更加简单地搭建开发、构建环境。它最大的卖点在于 *函数式* 的管理方式：把软件包作为函数式语言的值，这些值由没有副作用的函数构建，一旦构建完就不再改变，这意味着你的软件运行环境一旦构建就不会改变——这对于可重现的开发而言非常重要。

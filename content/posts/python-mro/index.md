@@ -1,13 +1,14 @@
 ---
 title: "Python的方法解析顺序(MRO)"
-tags: python
+date: 2013-07-25T20:34:00+08:00
+tags: [python]
 ---
 
 对于支持继承的编程语言来说，其方法（属性）可能定义在当前类，也可能来自于基类，所以在方法调用时就需要对当前类和基类进行搜索以确定方法所在的位置。而搜索的顺序就是所谓的「方法解析顺序」（Method Resolution Order，或MRO）。对于只支持单继承的语言来说，MRO 一般比较简单；而对于 Python 这种支持多继承的语言来说，MRO 就复杂很多。
 
 先看一个「菱形继承」的例子：
 
-{% include fig.html name="class_diamond.svg" caption="菱形继承" %}
+![菱形继承](class_diamond.svg)
 
 如果 `x` 是 `D` 的一个实例，那么 `x.show()` 到底会调用哪个 `show` 方法呢？如果按照 `[D, B, A, C]` 的搜索顺序，那么 `x.show()` 会调用 `A.show()`；如果按照 `[D, B, C, A]` 的搜索顺序，那么 `x.show()` 会调用 `C.show()`。由此可见，MRO 是把类的继承关系线性化的一个过程，而线性化方式决定了程序运行过程中具体会调用哪个方法。既然如此，那什么样的 MRO 才是最合理的？Python 中又是如何实现的呢？
 
@@ -23,7 +24,7 @@ Python 有[两种类][new_class]：经典类（classic class）和新式类（ne
 
 经典类采用了一种很简单的 MRO 方法：从左至右的[深度优先遍历][depth_first]。以上述「菱形继承」为例，其查找顺序为 `[D, B, A, C, A]`，如果只保留重复类的第一个则结果为 `[D, B, A, C]`。我们可以用 `inspect.getmro` 来获取类的 MRO：
 
-~~~ pycon
+~~~ python
 >>> import inspect
 >>> class A:
 ...     def show(self):
@@ -52,11 +53,11 @@ A.show()
 
 Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 `object` 因此类图稍有改变：
 
-{% include fig.html name="newclass_diamond.svg" caption="新式类菱形继承" %}
+![新式类菱形继承](newclass_diamond.svg)
 
 按照深度遍历，其顺序为 `[D, B, A, object, C, A, object]`，重复类只保留最后一个，因此变为 `[D, B, C, A, object]`。代码为：
 
-~~~ pycon
+~~~ python
 >>> class A(object):
 ...     def show(self):
 ...         print "A.show()"
@@ -76,9 +77,9 @@ C.show()
 
 这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：
 
-{% include fig.html name="class_conflict.svg" caption="类型冲突" %}
+![类型冲突](class_conflict.svg)
 
-~~~ pycon
+~~~ python
 >>> class X(object): pass
 >>> class Y(object): pass
 >>> class A(X, Y): pass
@@ -102,7 +103,7 @@ C.show()
 
 为解决 Python 2.2 中 MRO 所存在的问题，Python 2.3以后采用了[ C3 方法][c3]来确定方法解析顺序。你如果在 Python 2.3 以后版本里输入上述代码，就会产生一个异常，禁止创建具有二义性的继承关系：
 
-~~~ pycon
+~~~ python
 >>> class C(A, B): pass
 Traceback (most recent call last):
   File "<ipython-input-8-01bae83dc806>", line 1, in <module>
@@ -164,7 +165,7 @@ L[C] = [C] + merge(L[A], L[B], [A], [B])
 
 我们再看一个没有冲突的例子：
 
-{% include fig.html name="c3_example.svg" caption="C3例子" %}
+![C3例子](c3_example.svg)
 
 计算过程如下：
 
@@ -187,7 +188,7 @@ L[A] = [A] + merge(L[B], L[C], [B], [C])
 
 当然，可以用代码验证类的 MRO，上面的例子可以写作：
 
-~~~ pycon
+~~~ python
 >>> class D(object): pass
 >>> class E(object): pass
 >>> class F(object): pass

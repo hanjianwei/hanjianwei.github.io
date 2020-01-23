@@ -1,0 +1,24 @@
+baseURL = "https://hanjianwei.com/"
+languageCode = "en-us"
+title = "M-x butterfly"
+enableEmoji = true
+theme = "paper"
+disqusShortname = "hjwblog"
+
+[params]
+  Author = "Jianwei Han"
+  GitHubUser = "hanjianwei"
+  Description = "Amazing physics going on..."
+[permalinks]
+  posts = "/:year/:month/:day/:filename/"
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4

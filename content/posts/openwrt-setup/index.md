@@ -1,6 +1,7 @@
 ---
 title: 网件WNDR4300上安装配置OpenWrt
-tags: nas
+date: 2015-12-02T20:04:00+08:00
+tags: [nas]
 ---
 
 WNDR4300是对OpenWrt支持比较好的一款路由器：其内存和闪存都是128M，有比较好的ROM支持，是一个比较适合折腾的路由器。

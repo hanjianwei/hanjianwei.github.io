@@ -1,6 +1,7 @@
 ---
 title: "Markdown 的 Ansi 显示"
-tags: web
+date: 2013-04-06T20:42:00+08:00
+tags: [web]
 ---
 
 随着 Jekyll、Octopres、Docpad 等一批静态博客生成器的兴起，Markdown 已经成为写博客的利器。不过，有时候想把博客上的文章直接贴到 BBS 上还是需要去做一些转换，把格式转换为 ANSI 颜色控制符。
