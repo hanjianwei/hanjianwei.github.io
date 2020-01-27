@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "CN Heiti";
+  src: local("Hiragino Sans CN"),
+       local("Heiti SC Light"),
+       local(STHeitiSC-Light),
+       local("Heiti SC"),
+
+       local("Microsoft Yahei"),
+
+       local("Noto Sans CJK SC"),
+       local("Source Han Sans SC"),
+       local("Source Han Sans CN"),
+       local("Droid Sans Fallback"),
+       local("WenQuanYi Micro Hei");
+}
+
+@font-face {
+  font-family: "CN Songti";
+  src: local("Songti SC"),
+       local("Noto Serif CJK SC"),
+       local("Source Han Serif SC"),
+       local("Source Han Serif CN"),
+       local(STSong),
+       local("AR PL New Sung"),
+       local("AR PL SungtiL CN"),
+       local(NSimSun),
+       local(SimSun),
+       local("WenQuanYi Bitmap Song"),
+       local("AR PL UMing CN"),
+       local("AR PL UMing HK"),
+       local("AR PL UMing TW"),
+       local("AR PL UMing TW MBE"),
+       local(PMingLiU),
+       local(MingLiU);
+}
+
+@font-face {
+  font-family: "CN Kaiti";
+  src: local("Kaiti SC"), 
+       local(STKaiti), 
+       local("AR PL UKai CN"), 
+       local("AR PL UKai HK"),
+       local("AR PL UKai TW"), 
+       local("AR PL UKai TW MBE"),
+       local("AR PL KaitiM CN"), 
+       local(KaiTi), 
+       local(KaiTi_CN2312),
+       local(DFKai-SB);
+}
+
+@font-face {
+  font-family: "En Sans Serif";
+  src: local(-apple-system),
+       local("Helvetica Neue"),
+       local(Helvetica),
+       local(Arial);
+}
+
+@font-face {
+  font-family: "En Serif";
+  src: local(Baskerville),
+       local(Georgia),
+       local("Liberation Serif");
+}
+
+@font-face {
+  font-family: "Programming Mono";
+  src: local("Menlo"),
+       local("Consolas"),
+       local("Source Code Pro"),
+       local("Monaco");
+}
+
+$font-serif: "En Serif", "CN Kaiti", "CN Songti", serif !default;
+$font-sans-serif:  "En Sans Serif", "CN Heiti", sans-serif !default;
+$font-monospace: "Programming Mono", monospace !default;
+
+html {
+  font-family: $font-sans-serif;
+}
+
+code,
+pre {
+  font-family: $font-monospace;
+}

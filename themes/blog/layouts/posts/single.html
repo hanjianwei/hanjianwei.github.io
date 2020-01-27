@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="post">
+  <article>
+    <h1>{{ .Title }}</h1>
+    <time>{{ .Date.Format "2 Jan 2006" }}</time>
+    <p>
+    {{ .Content }}
+    </p>
+  </article>
+
+  <aside class="comments">
+    <div id="disqus_thread"></div>
+  </aside>
+
+  {{ partial "disqus.html" . }}
+</div>
+{{ end }}
