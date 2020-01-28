@@ -65,7 +65,9 @@
 
 @font-face {
   font-family: "Programming Mono";
-  src: local("Menlo"),
+  src: local("JetBrains Mono"),
+       local("Fira Code"),
+       local("Menlo"),
        local("Consolas"),
        local("Source Code Pro"),
        local("Monaco");
