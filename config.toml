@@ -5,12 +5,18 @@ theme = "blog"
 disqusShortname = "hjwblog"
 hasCJKLanguage = true
 summaryLength = 128
-Paginate = 5
+paginate = 5
+
+[author]
+  name = "Jianwei Han"
+  email = "blog@hanjianwei.com"
+
+[social]
+  github = "hanjianwei"
+  twitter = "hanjianwei"
 
 [params]
-  Since = "2013"
-  Author = "Jianwei Han"
-  GitHubUser = "hanjianwei"
+  since = "2013"
 
 [permalinks]
   posts = "/:year/:month/:day/:filename/"
