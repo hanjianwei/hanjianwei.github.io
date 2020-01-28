@@ -1,7 +1,7 @@
 baseURL = "https://hanjianwei.com/"
 languageCode = "en-us"
 title = "M-x butterfly"
-theme = "blog"
+theme = "lean"
 disqusShortname = "hjwblog"
 hasCJKLanguage = true
 summaryLength = 128
