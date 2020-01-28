@@ -62,7 +62,7 @@ $ python gfwlist2dnsmasq.py
 
 修改dnsmasq的配置文件`/etc/dnsmasq.conf`，在最后加上一句：
 
-~~~
+~~~ ini
 conf-dir=/etc/dnsmasq.d
 ~~~~
 

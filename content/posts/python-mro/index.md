@@ -128,7 +128,7 @@ order (MRO) for bases X, Y
 
 `object`，`X`，`Y` 的线性化结果比较简单：
 
-~~~
+~~~ plaintext
 L[object] = [object]
 L[X] = [X, object]
 L[Y] = [Y, object]
@@ -136,7 +136,7 @@ L[Y] = [Y, object]
 
 `A` 的线性化计算如下：
 
-~~~
+~~~ plaintext
 L[A] = [A] + merge(L[X], L[Y], [X], [Y])
      = [A] + merge([X, object], [Y, object], [X], [Y])
      = [A, X] + merge([object], [Y, object], [Y])
@@ -148,13 +148,13 @@ L[A] = [A] + merge(L[X], L[Y], [X], [Y])
 
 同理，`B` 的线性化结果为：
 
-~~~
+~~~ plaintext
 L[B] = [B, Y, X, object]
 ~~~~
 
 最后，我们看看 `C` 的线性化结果：
 
-~~~
+~~~ plaintext
 L[C] = [C] + merge(L[A], L[B], [A], [B])
      = [C] + merge([A, X, Y, object], [B, Y, X, object], [A], [B])
      = [C, A] + merge([X, Y, object], [B, Y, X, object], [B])
@@ -169,7 +169,7 @@ L[C] = [C] + merge(L[A], L[B], [A], [B])
 
 计算过程如下：
 
-~~~
+~~~ plaintext
 L[object] = [object]
 L[D] = [D, object]
 L[E] = [E, object]

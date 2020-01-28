@@ -8,7 +8,7 @@ tags: [devops]
 
 安装完Docker之后，发现Docker服务并没有起来，检查日志发现有这么一段：
 
-~~~
+~~~ plaintext
 [/var/lib/docker|3c476c9d] -job init_networkdriver() = ERR (1)
 Could not find a free IP address range for interface 'docker0'. Please configure its address manually and run 'docker -b docker0'
 ~~~~
