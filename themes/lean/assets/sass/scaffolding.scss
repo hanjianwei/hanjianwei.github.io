@@ -55,6 +55,12 @@ header nav {
     color: #505050;
     text-decoration: none;
   }
+  article p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
 }
 
 main article time {
