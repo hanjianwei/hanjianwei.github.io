@@ -1,7 +1,9 @@
+<a href="{{ .Permalink }}">
   <article>
-    <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+    <h1>{{ .Title }}</h1>
     <time>{{ .Date.Format "2 Jan 2006" }}</time>
     <p>
     {{ .Summary }}
     </p>
   </article>
+</a>

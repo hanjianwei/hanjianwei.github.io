@@ -50,9 +50,10 @@ header nav {
     }
 }
 
-h1, h2, h3 {
+.posts {
   a {
     color: #505050;
+    text-decoration: none;
   }
 }
 
@@ -64,6 +65,12 @@ article, aside.comments {
     background-color: #fff;
     padding: 1rem 1rem;
     margin-top: 1rem;
+}
+
+.pagination {
+    a, span {
+        padding-right: 0.5rem;
+    }
 }
 
 footer {
