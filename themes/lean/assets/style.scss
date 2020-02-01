@@ -1,5 +1,3 @@
-@import "sass/modern-normalize";
-@import "sass/scaffolding";
-@import "sass/typography";
-@import "sass/layout";
-@import "sass/syntax";
+@import "base/index";
+@import "component/index";
+@import "layout/index";
