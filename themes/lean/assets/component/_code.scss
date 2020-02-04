@@ -1,5 +1,10 @@
 @import "syntax";
 
+code,
+pre {
+  font-family: $font-monospace;
+}
+
 .highlight pre {
   white-space: pre;
   overflow: auto;

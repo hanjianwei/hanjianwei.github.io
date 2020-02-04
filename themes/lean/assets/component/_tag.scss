@@ -1,0 +1,20 @@
+.tags {
+  .tag {
+    display: inline-flex;
+    background-color: $main-bg;
+    padding: 0.3rem;
+    margin: 0.3rem;
+
+    a {
+      color: $tag-link-color;
+      text-decoration: none;
+    }
+    .tag-count {
+      color: $tag-count-color;
+    }
+  }
+}
+
+.tag-terms {
+  @extend %post-list;
+}

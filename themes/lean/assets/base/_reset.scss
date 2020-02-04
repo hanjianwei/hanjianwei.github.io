@@ -1,20 +1,22 @@
 html {
-  font-size: 16px;
   line-height: 1.8;
-  background-color: #ebebeb
-}
-@media (min-width: 38em) {
-  html {
+  font-family: $font-sans-serif;
+  font-size: 16px;
+  @media (min-width: 38em) {
     font-size: 18px;
   }
-}
-@media (min-width: 56em) {
-  html {
+  @media (min-width: 56em) {
     font-size: 20px;
   }
 }
 
-h1, h2, h3 {
+body {
+  background-color: $body-bg;
+}
+
+h1,
+h2,
+h3 {
   font-weight: 500;
 }
 
@@ -35,4 +37,8 @@ a {
   &:focus {
     text-decoration: underline;
   }
+}
+
+time {
+  color: $time-color;
 }

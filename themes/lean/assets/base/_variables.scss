@@ -1,0 +1,40 @@
+@import "color-system";
+
+// Body
+$body-bg: #ebebeb !default;
+
+// Header
+$header-bg: #24292e !default;
+$header-link-color: $white !default;
+
+// Main
+$main-bg: $white !default;
+%main {
+  background-color: $main-bg;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+// Post
+$post-link-color: #268bd2 !default;
+%post-list {
+  @extend %main;
+  a {
+    color: inherit;
+  }
+  time {
+      margin-right: 1rem;
+  }
+  li {
+      list-style-type: none;
+  }
+}
+
+// Footer
+$footer-color: #c0c0c0 !default;
+$footer-link-hover-color: #505050 !default;
+
+// Other
+$time-color: #9a9a9a !default;
+$tag-link-color: #666 !default;
+$tag-count-color: $pink !default;

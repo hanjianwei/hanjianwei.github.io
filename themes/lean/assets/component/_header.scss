@@ -1,9 +1,9 @@
 header nav {
     font-size: 1rem;
     font-weight: bold;
-    background-color: #24292e;
+    background-color: $header-bg;
     a {
-        color: #fff;
+        color: $header-link-color;
     }
 
   ul {

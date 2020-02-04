@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{ if eq .Section "posts" }}
+    {{ range $value := .Data.Pages.GroupByDate "2006" }}
+      <div class="archive">
+        <h1>{{ .Key }}</h1>
+        <ul>
+          {{ range $value.Pages }}
+            <li><a href="{{ .RelPermalink }}"><time>{{ .Date.Format "01-02" }}</time>{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end  }}

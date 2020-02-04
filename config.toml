@@ -1,5 +1,6 @@
 baseURL = "https://hanjianwei.com/"
-languageCode = "en-us"
+languageCode = "en"
+defaultContentLanguage = "en"
 title = "M-x butterfly"
 theme = "lean"
 disqusShortname = "hjwblog"
@@ -17,11 +18,6 @@ paginate = 5
 
 [params]
   since = "2013"
-
-[menu]
-  [[menu.main]]
-    name = "Home"
-    url = "/"
 
 [permalinks]
   posts = "/:year/:month/:day/:filename/"

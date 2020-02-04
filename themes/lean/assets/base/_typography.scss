@@ -74,14 +74,5 @@
 }
 
 $font-serif: "En Serif", "CN Kaiti", "CN Songti", serif !default;
-$font-sans-serif:  "En Sans Serif", "CN Heiti", sans-serif !default;
+$font-sans-serif: "En Sans Serif", "CN Heiti", sans-serif !default;
 $font-monospace: "Programming Mono", monospace !default;
-
-html {
-  font-family: $font-sans-serif;
-}
-
-code,
-pre {
-  font-family: $font-monospace;
-}
