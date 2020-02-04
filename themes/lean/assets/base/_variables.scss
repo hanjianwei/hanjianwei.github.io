@@ -23,10 +23,19 @@ $post-link-color: #268bd2 !default;
     color: inherit;
   }
   time {
-      margin-right: 1rem;
+    margin-right: 1rem;
   }
-  li {
+  ul {
+    padding-inline-start: 0;
+    @media (min-width: 38em) {
+      padding-inline-start: 1rem;
+    }
+    @media (min-width: 56em) {
+      padding-inline-start: 2rem;
+    }
+    li {
       list-style-type: none;
+    }
   }
 }
 
