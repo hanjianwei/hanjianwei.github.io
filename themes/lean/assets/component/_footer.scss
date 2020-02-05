@@ -1,11 +1,10 @@
 footer {
   font-size: 0.8rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
   color: $footer-color;
 
   a {
-    margin-left: 0.5rem;
+    margin: 0 0.2rem;
     color: inherit;
     &:hover,
     &:focus {

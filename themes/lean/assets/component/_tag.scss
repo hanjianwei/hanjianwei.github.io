@@ -1,9 +1,14 @@
 .tags {
+  display: flex;
+  flex-wrap: wrap;
+
   .tag {
-    display: inline-flex;
     background-color: $main-bg;
     padding: 0.3rem 0.7rem;
-    margin-right: 0.4rem;
+    margin-right: 0.3rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
 
     a {
       color: $tag-link-color;

@@ -1,4 +1,7 @@
 .pagination {
+  &:last-child {
+    padding-right: 0;
+  }
   a,
   span {
     padding-right: 0.5rem;
