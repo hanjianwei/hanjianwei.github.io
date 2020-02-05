@@ -9,7 +9,7 @@
   
     <!-- css -->
     {{ $styleSass := resources.Get "style.scss" }}
-    {{ $styleCSS := $styleSass | resources.ToCSS | resources.Minify }}
+    {{ $styleCSS := $styleSass | resources.ToCSS }}
     <link rel="stylesheet" href="{{ $styleCSS.Permalink }}">
   
     <!-- rss -->
