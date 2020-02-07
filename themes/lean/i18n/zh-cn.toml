@@ -1,2 +1,4 @@
-[home]
-other = "首页"
+[archive]
+other = "归档"
+[tags]
+other = "标签"

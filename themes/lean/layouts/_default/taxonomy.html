@@ -1,3 +1,5 @@
+{{- define "title" }}{{ T .Data.Plural }}→{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
 {{ define "main" }}
   {{ if eq .Data.Plural "tags" -}}
     <div class="tag-terms">

@@ -1,3 +1,5 @@
+{{- define "title" }}{{ T .Data.Plural }} - {{ .Site.Title }}{{ end -}}
+
 {{ define "main" }}
   {{ $name := .Data.Plural -}}
   {{ $terms := .Data.Terms.ByCount -}}

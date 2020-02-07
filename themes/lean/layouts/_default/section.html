@@ -1,3 +1,5 @@
+{{- define "title" }}{{ T "archive" }} - {{ .Site.Title }}{{ end -}}
+
 {{ define "main" }}
   {{ if eq .Section "posts" }}
     {{ range $value := .Data.Pages.GroupByDate "2006" }}

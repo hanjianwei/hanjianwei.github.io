@@ -1,7 +1,7 @@
 baseURL = "https://hanjianwei.com/"
 languageCode = "en"
 defaultContentLanguage = "en"
-title = "M-x butterfly"
+title = "Stone Horse"
 theme = "lean"
 disqusShortname = "hjwblog"
 hasCJKLanguage = true
