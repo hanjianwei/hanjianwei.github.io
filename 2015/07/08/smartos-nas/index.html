@@ -1,0 +1,122 @@
+<!doctype html><html lang=en-us><head><title>SmartOS折腾笔记 - Stone Horse</title><meta http-equiv=x-ua-compatible content="ie=edge"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://hanjianwei.com/style.css></head><body><div class=container><header><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Archives</a></li><li><a href=/tags>Tags</a></li></ul></nav></header><main><div class=post><article><h1>SmartOS折腾笔记</h1><time>Jul 8, 2015</time><p><p>前段时间入手了一台<a href="http://www8.hp.com/us/en/products/proliant-servers/product-detail.html?oid=5379860">Gen8</a>，准备用做家里文件、媒体服务器。看了<a href=https://www.vmware.com/products/vsphere-hypervisor>EXSi</a>、<a href=http://www.freenas.org>FreeNAS</a>、<a href=http://www.nas4free.org>NAS4Free</a>、<a href=https://www.proxmox.com/en/>Proxmox</a>等方案后，觉得还是<a href=https://smartos.org>SmartOS</a>最好。它支持<a href=https://en.wikipedia.org/wiki/ZFS>ZFS</a>，能够更好管理数据、保证数据有效性；此外，它支持<a href=https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine>kvm</a>虚拟化技术，能够虚拟常见的操作系统，满足各种软件需求；它还支持类似Docker的<a href=https://en.wikipedia.org/wiki/Solaris_Containers#Branded_zones>Zones</a>容器技术，比kvm更为高效。</p><h3 id=安装配置>安装配置</h3><p>SmartOS可以装在一个U盘里面。这样的好处很多，比如增加了系统的安全性和稳定性，可用磁盘空间也大了，系统升级也很简单——更新一下U盘就行了。我用了一个16G的U盘，按照<a href=https://wiki.smartos.org/display/DOC/Creating+a+SmartOS+Bootable+USB+Key>官方的教程</a>下载镜像、创建可启动U盘，然后从U盘启动就可以了。</p><p>SmartOS使用了<a href=https://wiki.smartos.org/display/DOC/Zones>zones</a>技术，U盘启动后进入一个全局的zone(Global Zone)，负责管理其它的zone。一个zone就是一个虚拟化的实例，SmartOS创建的每个虚拟机都是跑在一个单独的zone里面。</p><p>SmartOS使用了ZFS文件系统，所有虚拟机的zone都是存放在一个叫<code>zones</code>的zpool中。第一次启动时，除了让你配置网络，还会要求你创建<code>zones</code>。我有4块3T的硬盘，1块256G的SSD，在启动时选择4块硬盘组成一个<a href=https://blogs.oracle.com/ahl/entry/what_is_raid_z>raidz</a>来作为zones池。在我的机器上，4块硬盘分别是c1t0d0, c1t1d0, c1t2d0和c1t3d0。</p><p>为了取得更好的性能，用<a href=http://docs.oracle.com/cd/E23824_01/html/821-1459/disksprep-10.html>format</a>将SSD（c1t4d0）分为32G和224G两个分区，分别作为ZIL(log)和L2ARC(cache):</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># zpool add zones log c1t4d0s0</span>
+<span class=c1># zpool add zones cache c1t4d0s1</span>
+</code></pre></div><p>配置完之后磁盘的信息如下：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># zpool status</span>
+  pool: zones
+ state: ONLINE
+  scan: none requested
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        zones       ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+          raidz1-0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+            c1t0d0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+            c1t1d0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+            c1t2d0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+            c1t3d0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+        logs
+          c1t4d0s0  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+        cache
+          c1t4d0s1  ONLINE       <span class=m>0</span>     <span class=m>0</span>     <span class=m>0</span>
+
+errors: No known data errors
+</code></pre></div><p>如果上述步骤搞错了，可以参照<a href=https://wiki.smartos.org/display/DOC/SmartOS+Clean+Re-install>官方的步骤</a>重装。很不幸的是，我安装官方的步骤选择Grub第2项（noinstall）几乎每次都会死机，如果你遇到和我一样的情况，也可以在启动时出现Grub界面的时候，在第1项按<code>e</code>，然后在最后加上<code>destroy_zpools=true</code>的选项，这样启动后就会删除所有的zpool，然后就可以重新配置了。（注意：磁盘上已经有数据的慎用！）</p><h3 id=创建虚拟机>创建虚拟机</h3><p>U盘启动的SmartOS是一个只读系统，你所能做的事情非常有限。不过SmartOS就是为虚拟化而生的，它支持zones和kvm两种虚拟化技术，前者类似容器技术，具有很好的性能，但支持的OS较少；后者性能不如前者，但能支持大部分常见的OS。</p><p><code>imgadm</code>和<code>vmadm</code>是管理虚拟机的两个常用命令，前者主要用来管理镜像，而后者用来管理虚拟机。你可以通过<code>imgadm avail</code>来查看已有的虚拟机镜像，用<code>vmadm create</code>来根据镜像创建虚拟机。</p><p>此外，我希望数据能够单独存储，即使虚拟机坏掉或者删除数据仍然存在，因此专门建立一个数据存储的dataset：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># zfs create zones/datastore</span>
+</code></pre></div><h4 id=kvm虚拟机>kvm虚拟机</h4><p>kvm是从linux移植过来的技术，能支持大部分常见的操作系统，在创建kvm虚拟机之前首先要创建或下载相应的镜像。Joyent已经提供了很多常见的镜像，如果我想装一个debian 8，可以首先进行搜索：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># imgadm avail | grep debian-8</span>
+ca291f66-048c-11e5-98b3-c3f2a972a4cc  debian-8                <span class=m>20150527</span>    linux    2015-05-27T16:24:03Z
+2f56d126-20d0-11e5-9e5b-5f3ef6688aba  debian-8                <span class=m>20150702</span>    linux    2015-07-02T15:37:02Z
+</code></pre></div><p>然后可以选择需要的镜像进行下载：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># imgadm import 2f56d126-20d0-11e5-9e5b-5f3ef6688aba</span>
+</code></pre></div><p>创建虚拟机时，首先需要创建一个JSON格式的虚拟机描述文件，下面是debian 8的描述文件，主要是网络设置以及镜像设置：</p><div class=highlight><pre class=chroma><code class=language-javascript data-lang=javascript><span class=p>{</span>
+  <span class=s2>&#34;brand&#34;</span><span class=o>:</span> <span class=s2>&#34;kvm&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;alias&#34;</span><span class=o>:</span> <span class=s2>&#34;debian&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;hostname&#34;</span><span class=o>:</span> <span class=s2>&#34;debian&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;resolvers&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=s2>&#34;192.168.1.1&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;114.114.114.114&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;8.8.8.8&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;8.8.4.4&#34;</span>
+  <span class=p>],</span>
+  <span class=s2>&#34;ram&#34;</span><span class=o>:</span> <span class=s2>&#34;2048&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;vcpus&#34;</span><span class=o>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;nics&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=s2>&#34;nic_tag&#34;</span><span class=o>:</span> <span class=s2>&#34;admin&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;ip&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.102&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;netmask&#34;</span><span class=o>:</span> <span class=s2>&#34;255.255.255.0&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;gateway&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.1&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;model&#34;</span><span class=o>:</span> <span class=s2>&#34;virtio&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;primary&#34;</span><span class=o>:</span> <span class=kc>true</span>
+    <span class=p>}</span>
+  <span class=p>],</span>
+  <span class=s2>&#34;disks&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=s2>&#34;image_uuid&#34;</span><span class=o>:</span> <span class=s2>&#34;2f56d126-20d0-11e5-9e5b-5f3ef6688aba&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;boot&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+      <span class=s2>&#34;model&#34;</span><span class=o>:</span> <span class=s2>&#34;virtio&#34;</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div><p>具体的可用选项可以查看<code>vmadm</code>的<a href=https://github.com/joyent/smartos-live/blob/master/src/vm/man/vmadm.1m.md>文档</a>以及SmartOS的<a href=https://wiki.smartos.org/display/DOC/How+to+create+a+KVM+VM+%28+Hypervisor+virtualized+machine+%29+in+SmartOS>wiki</a>。</p><p>将文件存为<code>debian8.json</code>，然后就可以通过<code>vmadm</code>创建镜像：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># vmadm create -f debian8.json</span> 
+Successfully created VM b94d3a92-4a3b-4fae-baca-e53c726be924
+</code></pre></div><p>可以通过<code>vmadm list</code>来查看当前虚拟机的状态。创建好的虚拟机可以通过VNC登录，首先要查看虚拟机的VNC信息，然后通过ip和端口进行登录：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># vmadm info b94d3a92-4a3b-4fae-baca-e53c726be924 vnc</span>
+<span class=o>{</span>
+  <span class=s2>&#34;vnc&#34;</span>: <span class=o>{</span>
+    <span class=s2>&#34;host&#34;</span>: <span class=s2>&#34;192.168.1.100&#34;</span>,
+    <span class=s2>&#34;port&#34;</span>: 57869,
+    <span class=s2>&#34;display&#34;</span>: <span class=m>51969</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div><p>我们希望在虚拟机中访问<code>datastore</code>，并将重要的数据存在其中，这样即使虚拟机挂掉也不影响数据的访问。可以通过<a href=https://wiki.smartos.org/display/DOC/Configuring+NFS+in+SmartOS>NFS</a>来进行文件恭喜。首先将<code>datastore</code>共享：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># zfs set sharenfs=&#39;rw=@192.168.1.0/24,root=192.168.1.102&#39; zones/datastore</span>
+</code></pre></div><p>在debian里面安装nfs相关的包并将datastore挂载过去：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># apt-get update &amp;&amp; apt-get install nfs-common</span>
+<span class=c1># mkdir -p /mnt/datastore &amp;&amp; mount -o rw,async,hard,intr 192.168.1.100:/zones/datastore /mnt/datastore</span>
+</code></pre></div><p>在debian虚拟机中就可以将常用数据放在/mnt/datastore中了。</p><h4 id=zone>zone</h4><p>Zone是一种更高效的虚拟化技术，但是它适用的OS也比较有限。比如你如果想玩玩SmartOS，那用Global Zone的系统可能不是一个很好的选择，因为它是只读的，而且缺少包管理等工具。我们可以用zone虚拟一个SmartOS，你可以用<code>imgadm</code>搜索并下载<code>base64</code>镜像，并通过下面的JSON文件来创建虚拟机：</p><div class=highlight><pre class=chroma><code class=language-javascript data-lang=javascript><span class=p>{</span>
+  <span class=s2>&#34;brand&#34;</span><span class=o>:</span> <span class=s2>&#34;joyent&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;image_uuid&#34;</span><span class=o>:</span> <span class=s2>&#34;62f148f8-6e84-11e4-82c5-efca60348b9f&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;alias&#34;</span><span class=o>:</span> <span class=s2>&#34;smartos&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;hostname&#34;</span><span class=o>:</span> <span class=s2>&#34;smartos&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;max_physical_memory&#34;</span><span class=o>:</span> <span class=mi>2048</span><span class=p>,</span>
+  <span class=s2>&#34;quota&#34;</span><span class=o>:</span> <span class=mi>20</span><span class=p>,</span>
+  <span class=s2>&#34;resolvers&#34;</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;192.168.1.1&#34;</span><span class=p>,</span> <span class=s2>&#34;114.114.114.114&#34;</span><span class=p>,</span> <span class=s2>&#34;8.8.8.8&#34;</span><span class=p>,</span> <span class=s2>&#34;8.8.4.4&#34;</span><span class=p>],</span>
+  <span class=s2>&#34;nics&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=s2>&#34;nic_tag&#34;</span><span class=o>:</span> <span class=s2>&#34;admin&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;ip&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.101&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;netmask&#34;</span><span class=o>:</span> <span class=s2>&#34;255.255.255.0&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;gateway&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.1&#34;</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div><p>然后，用<code>vmadm</code>来创建虚拟机。和kvm不同的是，这种方式创建的虚拟机不能用VNC登录，但是可以用zlogin来登录：</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># vmadm create -f smartos.json</span> 
+Successfully created VM 0b3c7b3b-9f19-4d26-ab22-a8b10a9add25
+<span class=c1># zlogin 0b3c7b3b-9f19-4d26-ab22-a8b10a9add25</span> 
+<span class=o>[</span>Connected to zone <span class=s1>&#39;0b3c7b3b-9f19-4d26-ab22-a8b10a9add25&#39;</span> pts/2<span class=o>]</span>
+   __        .                   .
+ _<span class=p>|</span>  <span class=p>|</span>_      <span class=p>|</span> .-. .  . .-. :--. <span class=p>|</span>-
+<span class=p>|</span>_    _<span class=p>|</span>     <span class=p>;|</span>   <span class=o>||</span>  <span class=p>|</span><span class=o>(</span>.-<span class=s1>&#39; |  | |
+</span><span class=s1>  |__|   `--&#39;</span>  <span class=sb>`</span>-<span class=s1>&#39; `;-| `-&#39;</span> <span class=s1>&#39;  &#39;</span> <span class=sb>`</span>-<span class=s1>&#39;
+</span><span class=s1>                   /  ; Instance (base64 14.3.0)
+</span><span class=s1>                   `-&#39;</span>  http://wiki.joyent.com/jpc2/Base+Instance
+</code></pre></div><p>Zone不只是支持SmartOS，它还支持<a href=https://wiki.smartos.org/display/DOC/LX+Branded+Zones>LX Branded Zones</a>，允许你在zone里面直接运行linux。<code>imgadm avail</code>中列出的镜像中以<code>lx-</code>开头的支持LX Branded Zones。此外，使用这种方法创建虚拟机时，不必用NFS来共享数据，可以直接通过<code>filesystems</code>字段来指定目录映射。下面是一个<code>lx-ubuntu-14.04</code>的例子：</p><div class=highlight><pre class=chroma><code class=language-javascript data-lang=javascript><span class=p>{</span>
+  <span class=s2>&#34;brand&#34;</span><span class=o>:</span> <span class=s2>&#34;lx&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;alias&#34;</span><span class=o>:</span> <span class=s2>&#34;ubuntu1404&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;kernel_version&#34;</span><span class=o>:</span> <span class=s2>&#34;3.13.0&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;max_physical_memory&#34;</span><span class=o>:</span> <span class=mi>2048</span><span class=p>,</span>
+  <span class=s2>&#34;image_uuid&#34;</span><span class=o>:</span> <span class=s2>&#34;a21a64a0-0809-11e5-a64f-ff80e8e8086f&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;resolvers&#34;</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;192.168.1.1&#34;</span><span class=p>,</span><span class=s2>&#34;114.114.114.114&#34;</span><span class=p>,</span><span class=s2>&#34;8.8.8.8&#34;</span><span class=p>,</span><span class=s2>&#34;8.8.4.4&#34;</span><span class=p>],</span>
+  <span class=s2>&#34;nics&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=s2>&#34;nic_tag&#34;</span><span class=o>:</span> <span class=s2>&#34;admin&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;ip&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.103&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;netmask&#34;</span><span class=o>:</span> <span class=s2>&#34;255.255.255.0&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;gateway&#34;</span><span class=o>:</span> <span class=s2>&#34;192.168.1.1&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;primary&#34;</span><span class=o>:</span> <span class=kc>true</span>
+    <span class=p>}</span>
+  <span class=p>],</span>
+  <span class=s2>&#34;filesystems&#34;</span><span class=o>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=s2>&#34;type&#34;</span><span class=o>:</span> <span class=s2>&#34;lofs&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;source&#34;</span><span class=o>:</span> <span class=s2>&#34;zones/datastore&#34;</span><span class=p>,</span>
+      <span class=s2>&#34;target&#34;</span><span class=o>:</span> <span class=s2>&#34;/mnt/datastore&#34;</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div><p>可以看到我们直接将Global Zone的<code>zones/datastore</code>映射到虚拟机的<code>/mnt/datastore</code>。然后就可以通过zlogin进行登录，设置好ssh后也可以通过ssh远程登录。</p><p>SmartOS确实是一个很适合NAS的系统，还有更多的特性有待发掘。</p></p></article><aside class=comments><div id=disqus_thread></div></aside><script>var disqus_shortname='hjwblog';var disqus_identifier='\/2015\/07\/08\/smartos-nas\/';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script></div></main><footer>&copy; 2013 - 2020 Jianwei Han.
+<a href=https://www.github.com/hanjianwei/hanjianwei.github.io/tree/hugo><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2 43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8.0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6 144.1-135.1c5.1-4.7 5.1-12.8.0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"/></svg></a><a href=https://www.github.com/hanjianwei><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8.0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8.0-21.5 4.9-32.3 14.6-51.8 45.3.0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8.0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9.0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2.0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8.0-73.5 38.7-73.5 82.6.0 87.8 80.4 101.3 150.4 101.3h48.2c70.3.0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8.0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg></a><a href=https://twitter.com/hanjianwei><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a><a href=mailto:blog@hanjianwei.com><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V4e2c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5.0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg></a><a title="PGP Key" href="https://pgp.mit.edu/pks/lookup?op=get&search=0x309B79EC85BB7488"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" class="svg-inline--fa fa-key fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M512 176.001C512 273.203 433.202 352 336 352c-11.22.0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999.0 01261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255.0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999.0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z"/></svg></a><a href=/index.xml><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328.0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765.0 183.105.0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686.0 38.981.0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"/></svg></a></footer></div></body></html>
