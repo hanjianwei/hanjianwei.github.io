@@ -1,6 +1,7 @@
 ---
 title: "Webpack: 为Web开发而生的模块管理器"
 date: 2014-09-10T20:04:00+08:00
+disqus: true
 tags: [web]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: SmartOS折腾笔记
 date: 2015-07-08T20:04:00+08:00
+disqus: true
 tags: [nas]
 ---
 

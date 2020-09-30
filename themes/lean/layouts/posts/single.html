@@ -9,9 +9,13 @@
   </article>
 
   <aside class="comments">
+    {{ partial "utterances.html" }}
+
+    {{ if .Params.disqus }}
     <div id="disqus_thread"></div>
+    {{ partial "disqus.html" . }}
+    {{ end }}
   </aside>
 
-  {{ partial "disqus.html" . }}
 </div>
 {{ end }}

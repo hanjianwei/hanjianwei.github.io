@@ -1,6 +1,7 @@
 ---
 title: "走马观花看Puppet"
 date: 2014-07-14T16:18:00+08:00
+disqus: true
 tags: [devops]
 ---
 
