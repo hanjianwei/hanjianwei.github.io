@@ -13,4 +13,4 @@ format:
   html:
     theme:
       - litera
-    css: styles.css
+      - custom.scss

@@ -1,0 +1,29 @@
+/*-- scss:defaults --*/
+// 定义无衬线字体（正文）
+$font-family-sans-serif: 
+  "Helvetica Neue",
+  Arial,
+  "Noto Sans CJK SC",
+  "PingFang SC",        // 苹方（macOS/iOS）
+  "Microsoft YaHei",    // 微软雅黑（Windows）
+  "Source Han Sans SC", // 思源黑体（跨平台）
+  "WenQuanYi Micro Hei",// 文泉驿（Linux）
+  sans-serif !default;  // !default 允许后续覆盖
+
+// 定义等宽字体（代码）
+$font-family-monospace: 
+  "Maple Mono NF CN",
+  "JetBrains Mono",
+  "Monaco", 
+  "Consolas",
+  "Courier New",
+  "Sarasa Mono SC",     // 更纱黑体等宽
+  "Noto Sans Mono CJK SC",
+  "WenQuanYi Micro Hei Mono",
+  monospace !default;
+ 
+
+/*-- scss:rules --*/
+.category {
+  font-variant: small-caps;
+}
