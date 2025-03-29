@@ -14,4 +14,9 @@ quarto render
 quarto preview
 ```
 
+## Publish
+
+```bash
+quarto publish gh-pages
+```
 
