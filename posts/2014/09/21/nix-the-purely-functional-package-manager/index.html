@@ -216,11 +216,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> which hello</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/hjw/.nix-profile/bin/hello</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>可以看到，<code>hello</code>来自于<code>$HOME/.nix-profile</code>，而后者是一个符号链接，其指向如下：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="nix-profile.svg" class="img-fluid figure-img"></p>
-<figcaption>Nix profile</figcaption>
+<div class="cell" data-file="nix-profile.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-nix-profile" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nix-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 405.83 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 401.83,-256 401.83,4 -4,4"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<polygon fill="none" stroke="black" points="244.25,-252 153.58,-252 153.58,-216 244.25,-216 244.25,-252"></polygon>
+<text text-anchor="middle" x="198.91" y="-229.8" font-family="Times,serif" font-size="14.00">~/.nix-profile</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<polygon fill="none" stroke="black" points="284.15,-180 113.68,-180 113.68,-144 284.15,-144 284.15,-180"></polygon>
+<text text-anchor="middle" x="198.91" y="-157.8" font-family="Times,serif" font-size="14.00">/nix/var/nix/profiles/default</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>a-&gt;b</title>
+<path fill="none" stroke="black" d="M198.91,-215.7C198.91,-207.98 198.91,-198.71 198.91,-190.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-190.1 198.91,-180.1 195.41,-190.1 202.41,-190.1"></polygon>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<polygon fill="none" stroke="black" points="303.26,-108 94.57,-108 94.57,-72 303.26,-72 303.26,-108"></polygon>
+<text text-anchor="middle" x="198.91" y="-85.8" font-family="Times,serif" font-size="14.00">/nix/var/nix/profiles/default-6-link</text>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge2" class="edge">
+<title>b-&gt;c</title>
+<path fill="none" stroke="black" d="M198.91,-143.7C198.91,-135.98 198.91,-126.71 198.91,-118.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-118.1 198.91,-108.1 195.41,-118.1 202.41,-118.1"></polygon>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<polygon fill="none" stroke="black" points="397.74,-36 0.09,-36 0.09,0 397.74,0 397.74,-36"></polygon>
+<text text-anchor="middle" x="198.91" y="-13.8" font-family="Times,serif" font-size="14.00">/nix/store/hsw97dr9h9z3wmlwhx2lib8r3k2f9wv3-user-environment</text>
+</g>
+<!-- c&#45;&gt;d -->
+<g id="edge3" class="edge">
+<title>c-&gt;d</title>
+<path fill="none" stroke="black" d="M198.91,-71.7C198.91,-63.98 198.91,-54.71 198.91,-46.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-46.1 198.91,-36.1 195.41,-46.1 202.41,-46.1"></polygon>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nix-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Nix profile.
+</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>进一步查看最后一个目录（省略部分输出）：</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> /nix/store/hsw97dr9h9z3wmlwhx2lib8r3k2f9wv3-user-environment</span>
@@ -433,7 +490,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/hanjianwei\.com");
+      var filterRegex = new RegExp("https:\/\/hanjianwei\.github\.io");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

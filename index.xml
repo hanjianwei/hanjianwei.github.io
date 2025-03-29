@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>Byte-Sized Blog</title>
-<link>https://hanjianwei.com/</link>
-<atom:link href="https://hanjianwei.com/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://hanjianwei.github.io/</link>
+<atom:link href="https://hanjianwei.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.6</generator>
 <lastBuildDate>Wed, 18 Mar 2020 03:04:19 GMT</lastBuildDate>
 <item>
   <title>40%键盘YDPM40</title>
-  <link>https://hanjianwei.com/posts/2020/03/18/ydpm40-keyboard/</link>
+  <link>https://hanjianwei.github.io/posts/2020/03/18/ydpm40-keyboard/</link>
   <description><![CDATA[ 
 
 
@@ -23,7 +23,7 @@
 <p>最近看到有人晒的<a href="https://ergodox-ez.com/pages/planck">Planck EZ</a>，对40%键盘非常心动，不过Planck EZ的价格还是太高了，于是在咸鱼上入了一把<a href="https://ydkb.io/help/#/keyboards/ydpm40">YDPM40</a>。YDPM40是YANG设计的，分为YDP40和YDM40两种布局，前者是类似于Planck的直排，而后者更接近于一般键盘的斜排。我买的这把是YDM40，共44个键，非常适合极简主义者以及囊中羞涩（毕竟需要的轴比较少）、喜欢折腾的人。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2020/03/18/ydpm40-keyboard/ydpm40.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/2020/03/18/ydpm40-keyboard/ydpm40.jpg" class="img-fluid figure-img"></p>
 <figcaption>YDPM40</figcaption>
 </figure>
 </div>
@@ -46,7 +46,7 @@ stack of layers                     array_of_keycode[row][column]
 <p>在定义布局时，我想尽量保持布局和其他键盘一致，同时使得常用的键都能够在默认层上，所以复用了很多的键（比如单按左空格就是空格，长按或与其他键组合就是开启第7层），这是我的键盘布局：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2020/03/18/ydpm40-keyboard/layers.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/2020/03/18/ydpm40-keyboard/layers.jpg" class="img-fluid figure-img"></p>
 <figcaption>My Layers</figcaption>
 </figure>
 </div>
@@ -990,12 +990,12 @@ font-style: inherit;">}</span></span></code></pre></div>
 
  ]]></description>
   <category>hardware</category>
-  <guid>https://hanjianwei.com/posts/2020/03/18/ydpm40-keyboard/</guid>
+  <guid>https://hanjianwei.github.io/posts/2020/03/18/ydpm40-keyboard/</guid>
   <pubDate>Wed, 18 Mar 2020 03:04:19 GMT</pubDate>
 </item>
 <item>
   <title>网件WNDR4300上安装配置OpenWrt</title>
-  <link>https://hanjianwei.com/posts/2015/12/02/openwrt-setup/</link>
+  <link>https://hanjianwei.github.io/posts/2015/12/02/openwrt-setup/</link>
   <description><![CDATA[ 
 
 
@@ -1085,12 +1085,12 @@ font-style: inherit;">$</span> /etc/init.d/dnsmasq restart</span></code></pre></
 
  ]]></description>
   <category>nas</category>
-  <guid>https://hanjianwei.com/posts/2015/12/02/openwrt-setup/</guid>
+  <guid>https://hanjianwei.github.io/posts/2015/12/02/openwrt-setup/</guid>
   <pubDate>Wed, 02 Dec 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>SmartOS折腾笔记</title>
-  <link>https://hanjianwei.com/posts/2015/07/08/smartos-nas/</link>
+  <link>https://hanjianwei.github.io/posts/2015/07/08/smartos-nas/</link>
   <description><![CDATA[ 
 
 
@@ -1792,12 +1792,12 @@ font-style: inherit;">"/mnt/datastore"</span></span>
 
  ]]></description>
   <category>nas</category>
-  <guid>https://hanjianwei.com/posts/2015/07/08/smartos-nas/</guid>
+  <guid>https://hanjianwei.github.io/posts/2015/07/08/smartos-nas/</guid>
   <pubDate>Wed, 08 Jul 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>备份Mac AppStore中安装的应用</title>
-  <link>https://hanjianwei.com/posts/2015/02/16/backup-mac-appstore-apps/</link>
+  <link>https://hanjianwei.github.io/posts/2015/02/16/backup-mac-appstore-apps/</link>
   <description><![CDATA[ 
 
 
@@ -1934,12 +1934,12 @@ font-style: inherit;">"./Applications.txt"</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2015/02/16/backup-mac-appstore-apps/</guid>
+  <guid>https://hanjianwei.github.io/posts/2015/02/16/backup-mac-appstore-apps/</guid>
   <pubDate>Mon, 16 Feb 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>Nix: 纯函数式包管理器</title>
-  <link>https://hanjianwei.com/posts/2014/09/21/nix-the-purely-functional-package-manager/</link>
+  <link>https://hanjianwei.github.io/posts/2014/09/21/nix-the-purely-functional-package-manager/</link>
   <description><![CDATA[ 
 
 
@@ -2046,11 +2046,68 @@ font-style: inherit;">$</span> which hello</span>
 background-color: null;
 font-style: inherit;">/Users/hjw/.nix-profile/bin/hello</span></span></code></pre></div>
 <p>可以看到，<code>hello</code>来自于<code>$HOME/.nix-profile</code>，而后者是一个符号链接，其指向如下：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2014/09/21/nix-the-purely-functional-package-manager/nix-profile.svg" class="img-fluid figure-img"></p>
-<figcaption>Nix profile</figcaption>
+<div class="cell" data-file="nix-profile.dot" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-nix-profile" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nix-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 405.83 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 401.83,-256 401.83,4 -4,4"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<polygon fill="none" stroke="black" points="244.25,-252 153.58,-252 153.58,-216 244.25,-216 244.25,-252"></polygon>
+<text text-anchor="middle" x="198.91" y="-229.8" font-family="Times,serif" font-size="14.00">~/.nix-profile</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<polygon fill="none" stroke="black" points="284.15,-180 113.68,-180 113.68,-144 284.15,-144 284.15,-180"></polygon>
+<text text-anchor="middle" x="198.91" y="-157.8" font-family="Times,serif" font-size="14.00">/nix/var/nix/profiles/default</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>a-&gt;b</title>
+<path fill="none" stroke="black" d="M198.91,-215.7C198.91,-207.98 198.91,-198.71 198.91,-190.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-190.1 198.91,-180.1 195.41,-190.1 202.41,-190.1"></polygon>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<polygon fill="none" stroke="black" points="303.26,-108 94.57,-108 94.57,-72 303.26,-72 303.26,-108"></polygon>
+<text text-anchor="middle" x="198.91" y="-85.8" font-family="Times,serif" font-size="14.00">/nix/var/nix/profiles/default-6-link</text>
+</g>
+<!-- b&#45;&gt;c -->
+<g id="edge2" class="edge">
+<title>b-&gt;c</title>
+<path fill="none" stroke="black" d="M198.91,-143.7C198.91,-135.98 198.91,-126.71 198.91,-118.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-118.1 198.91,-108.1 195.41,-118.1 202.41,-118.1"></polygon>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<polygon fill="none" stroke="black" points="397.74,-36 0.09,-36 0.09,0 397.74,0 397.74,-36"></polygon>
+<text text-anchor="middle" x="198.91" y="-13.8" font-family="Times,serif" font-size="14.00">/nix/store/hsw97dr9h9z3wmlwhx2lib8r3k2f9wv3-user-environment</text>
+</g>
+<!-- c&#45;&gt;d -->
+<g id="edge3" class="edge">
+<title>c-&gt;d</title>
+<path fill="none" stroke="black" d="M198.91,-71.7C198.91,-63.98 198.91,-54.71 198.91,-46.11"></path>
+<polygon fill="black" stroke="black" points="202.41,-46.1 198.91,-36.1 195.41,-46.1 202.41,-46.1"></polygon>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nix-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Nix profile.
+</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>进一步查看最后一个目录（省略部分输出）：</p>
 <div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="ex" style="color: null;
@@ -2568,12 +2625,12 @@ font-style: inherit;">make</span> install</span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2014/09/21/nix-the-purely-functional-package-manager/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/09/21/nix-the-purely-functional-package-manager/</guid>
   <pubDate>Sun, 21 Sep 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>Webpack: 为Web开发而生的模块管理器</title>
-  <link>https://hanjianwei.com/posts/2014/09/10/webpack-package-manager-for-web/</link>
+  <link>https://hanjianwei.github.io/posts/2014/09/10/webpack-package-manager-for-web/</link>
   <description><![CDATA[ 
 
 
@@ -3635,12 +3692,12 @@ font-style: inherit;">;</span></span></code></pre></div>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/2014/09/10/webpack-package-manager-for-web/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/09/10/webpack-package-manager-for-web/</guid>
   <pubDate>Wed, 10 Sep 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>阿里云服务器的Docker配置</title>
-  <link>https://hanjianwei.com/posts/2014/07/30/docker-on-aliyun/</link>
+  <link>https://hanjianwei.github.io/posts/2014/07/30/docker-on-aliyun/</link>
   <description><![CDATA[ 
 
 
@@ -3789,12 +3846,12 @@ font-style: inherit;">inet</span> addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2014/07/30/docker-on-aliyun/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/07/30/docker-on-aliyun/</guid>
   <pubDate>Wed, 30 Jul 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>一袋烟功夫构建Mac环境</title>
-  <link>https://hanjianwei.com/posts/2014/07/15/1-click-building-your-mac-environment/</link>
+  <link>https://hanjianwei.github.io/posts/2014/07/15/1-click-building-your-mac-environment/</link>
   <description><![CDATA[ 
 
 
@@ -3889,12 +3946,12 @@ font-style: inherit;">`</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2014/07/15/1-click-building-your-mac-environment/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/07/15/1-click-building-your-mac-environment/</guid>
   <pubDate>Tue, 15 Jul 2014 02:23:00 GMT</pubDate>
 </item>
 <item>
   <title>走马观花看Puppet</title>
-  <link>https://hanjianwei.com/posts/2014/07/14/master-of-puppets/</link>
+  <link>https://hanjianwei.github.io/posts/2014/07/14/master-of-puppets/</link>
   <description><![CDATA[ 
 
 
@@ -4006,12 +4063,12 @@ planfile {'katie':
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2014/07/14/master-of-puppets/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/07/14/master-of-puppets/</guid>
   <pubDate>Mon, 14 Jul 2014 08:18:00 GMT</pubDate>
 </item>
 <item>
   <title>Docker on Mac</title>
-  <link>https://hanjianwei.com/posts/2014/06/06/docker-on-mac/</link>
+  <link>https://hanjianwei.github.io/posts/2014/06/06/docker-on-mac/</link>
   <description><![CDATA[ 
 
 
@@ -4227,12 +4284,12 @@ font-style: inherit;">end</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/2014/06/06/docker-on-mac/</guid>
+  <guid>https://hanjianwei.github.io/posts/2014/06/06/docker-on-mac/</guid>
   <pubDate>Fri, 06 Jun 2014 07:58:00 GMT</pubDate>
 </item>
 <item>
   <title>混乱的标点符号</title>
-  <link>https://hanjianwei.com/posts/2013/07/26/punctuation/</link>
+  <link>https://hanjianwei.github.io/posts/2013/07/26/punctuation/</link>
   <description><![CDATA[ 
 
 
@@ -4496,12 +4553,12 @@ font-style: inherit;">end</span></span></code></pre></div>
 
  ]]></description>
   <category>writing</category>
-  <guid>https://hanjianwei.com/posts/2013/07/26/punctuation/</guid>
+  <guid>https://hanjianwei.github.io/posts/2013/07/26/punctuation/</guid>
   <pubDate>Fri, 26 Jul 2013 02:33:00 GMT</pubDate>
 </item>
 <item>
   <title>Python的方法解析顺序(MRO)</title>
-  <link>https://hanjianwei.com/posts/2013/07/25/python-mro/</link>
+  <link>https://hanjianwei.github.io/posts/2013/07/25/python-mro/</link>
   <description><![CDATA[ 
 
 
@@ -4510,11 +4567,31 @@ font-style: inherit;">end</span></span></code></pre></div>
 
 <p>对于支持继承的编程语言来说，其方法（属性）可能定义在当前类，也可能来自于基类，所以在方法调用时就需要对当前类和基类进行搜索以确定方法所在的位置。而搜索的顺序就是所谓的「方法解析顺序」（Method Resolution Order，或MRO）。对于只支持单继承的语言来说，MRO 一般比较简单；而对于 Python 这种支持多继承的语言来说，MRO 就复杂很多。</p>
 <p>先看一个「菱形继承」的例子：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2013/07/25/python-mro/class_diamond.svg" class="img-fluid figure-img"></p>
-<figcaption>菱形继承</figcaption>
-</figure>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class A {
+        +show()
+    }
+    class B
+    class C {
+        +show()
+    }
+    class D
+
+
+    A &lt;|-- B
+    A &lt;|-- C
+    B &lt;|-- D
+    C &lt;|-- D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
 </div>
 <p>如果 <code>x</code> 是 <code>D</code> 的一个实例，那么 <code>x.show()</code> 到底会调用哪个 <code>show</code> 方法呢？如果按照 <code>[D, B, A, C]</code> 的搜索顺序，那么 <code>x.show()</code> 会调用 <code>A.show()</code>；如果按照 <code>[D, B, C, A]</code> 的搜索顺序，那么 <code>x.show()</code> 会调用 <code>C.show()</code>。由此可见，MRO 是把类的继承关系线性化的一个过程，而线性化方式决定了程序运行过程中具体会调用哪个方法。既然如此，那什么样的 MRO 才是最合理的？Python 中又是如何实现的呢？</p>
 <p>Python 至少有<a href="http://python-history.blogspot.com/2010/06/method-resolution-order.html">三种不同的 MRO</a>：</p>
@@ -4642,11 +4719,32 @@ font-style: inherit;">&gt;&gt;&gt;</span> x.show()</span>
 <h3 class="anchored" data-anchor-id="python-2.2-的新式类-mro">Python 2.2 的新式类 MRO</h3>
 <p>为解决经典类 MRO 所存在的问题，Python 2.2 针对新式类提出了一种新的 MRO 计算方式：在定义类时就计算出该类的 MRO 并将其作为类的属性。因此新式类可以直接通过 <code>__mro__</code> 属性获取类的 MRO。</p>
 <p>Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 <code>object</code> 因此类图稍有改变：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2013/07/25/python-mro/newclass_diamond.svg" class="img-fluid figure-img"></p>
-<figcaption>新式类菱形继承</figcaption>
-</figure>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class object
+    class A {
+        +show()
+    }
+    class B
+    class C {
+        +show()
+    }
+    class D
+
+    object &lt;|-- A 
+    A &lt;|-- B
+    A &lt;|-- C
+    B &lt;|-- D
+    C &lt;|-- D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
 </div>
 <p>按照深度遍历，其顺序为 <code>[D, B, A, object, C, A, object]</code>，重复类只保留最后一个，因此变为 <code>[D, B, C, A, object]</code>。代码为：</p>
 <div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="op" style="color: #5E5E5E;
@@ -4763,11 +4861,32 @@ background-color: null;
 font-style: inherit;">&gt;&gt;&gt;</span> x.show()</span>
 <span id="cb2-15">C.show()</span></code></pre></div>
 <p>这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2013/07/25/python-mro/class_conflict.svg" class="img-fluid figure-img"></p>
-<figcaption>类型冲突</figcaption>
-</figure>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class object
+    class X
+    class Y
+    class A
+    class B
+    class C
+
+    object &lt;|-- X
+    object &lt;|-- Y
+    X &lt;|-- A
+    Y &lt;|-- A
+    X &lt;|-- B
+    Y &lt;|-- B
+    A &lt;|-- C
+    B &lt;|-- C
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
 </div>
 <div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4899,11 +5018,34 @@ L[Y] = [Y, object]</code></pre>
      = [C, A, B] + merge([X, Y, object], [Y, X, object])</code></pre>
 <p>到了最后一步我们没有办法继续计算下去 了：<code>X</code> 虽然是第一个列表的头，但是它出现在了第二个列表的尾部；<code>Y</code> 虽然是第二个列表的头，但是它出现在了第一个列表的尾部。因此，我们无法构建一个没有二义性的继承关系，只能手工去解决（比如改变 <code>B</code> 基类中 <code>X</code>、<code>Y</code> 的顺序）。</p>
 <p>我们再看一个没有冲突的例子：</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://hanjianwei.com/posts/2013/07/25/python-mro/c3_example.svg" class="img-fluid figure-img"></p>
-<figcaption>C3例子</figcaption>
-</figure>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class object
+    class A
+    class B
+    class C
+    class D
+    class E
+    class F
+
+    object &lt;|-- D
+    object &lt;|-- E
+    object &lt;|-- F
+    D &lt;|-- B
+    D &lt;|-- C
+    E &lt;|-- B
+    F &lt;|-- C
+    B &lt;|-- A
+    C &lt;|-- A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
 </div>
 <p>计算过程如下：</p>
 <pre class="plaintext"><code>L[object] = [object]
@@ -5053,12 +5195,12 @@ font-style: inherit;">&gt;</span>)</span></code></pre></div>
 
  ]]></description>
   <category>python</category>
-  <guid>https://hanjianwei.com/posts/2013/07/25/python-mro/</guid>
+  <guid>https://hanjianwei.github.io/posts/2013/07/25/python-mro/</guid>
   <pubDate>Thu, 25 Jul 2013 12:34:00 GMT</pubDate>
 </item>
 <item>
   <title>Markdown 的 Ansi 显示</title>
-  <link>https://hanjianwei.com/posts/2013/04/06/markdown-to-ansi/</link>
+  <link>https://hanjianwei.github.io/posts/2013/04/06/markdown-to-ansi/</link>
   <description><![CDATA[ 
 
 
@@ -5205,12 +5347,12 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/2013/04/06/markdown-to-ansi/</guid>
+  <guid>https://hanjianwei.github.io/posts/2013/04/06/markdown-to-ansi/</guid>
   <pubDate>Sat, 06 Apr 2013 12:42:00 GMT</pubDate>
 </item>
 <item>
   <title>C++11 和 C++98 的 ABI 兼容性</title>
-  <link>https://hanjianwei.com/posts/2013/01/27/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</link>
+  <link>https://hanjianwei.github.io/posts/2013/01/27/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</link>
   <description><![CDATA[ 
 
 
@@ -5232,12 +5374,12 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
  ]]></description>
   <category>cpp</category>
-  <guid>https://hanjianwei.com/posts/2013/01/27/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</guid>
+  <guid>https://hanjianwei.github.io/posts/2013/01/27/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</guid>
   <pubDate>Sun, 27 Jan 2013 13:38:00 GMT</pubDate>
 </item>
 <item>
   <title>DocPad：基于 CoffeeScript 的静态网站生成器</title>
-  <link>https://hanjianwei.com/posts/2013/01/06/docpad-static-site-generator-using-coffeescript/</link>
+  <link>https://hanjianwei.github.io/posts/2013/01/06/docpad-static-site-generator-using-coffeescript/</link>
   <description><![CDATA[ 
 
 
@@ -5353,7 +5495,7 @@ font-style: inherit;">).</span>value</span></code></pre></div></li>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/2013/01/06/docpad-static-site-generator-using-coffeescript/</guid>
+  <guid>https://hanjianwei.github.io/posts/2013/01/06/docpad-static-site-generator-using-coffeescript/</guid>
   <pubDate>Sun, 06 Jan 2013 13:40:00 GMT</pubDate>
 </item>
 </channel>
