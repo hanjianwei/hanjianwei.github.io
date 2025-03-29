@@ -9,7 +9,24 @@ categories: [python]
 
 先看一个「菱形继承」的例子：
 
-![菱形继承](class_diamond.svg)
+```{mermaid}
+%%| fig-align: center
+classDiagram
+    class A {
+        +show()
+    }
+    class B
+    class C {
+        +show()
+    }
+    class D
+
+
+    A <|-- B
+    A <|-- C
+    B <|-- D
+    C <|-- D
+```
 
 如果 `x` 是 `D` 的一个实例，那么 `x.show()` 到底会调用哪个 `show` 方法呢？如果按照 `[D, B, A, C]` 的搜索顺序，那么 `x.show()` 会调用 `A.show()`；如果按照 `[D, B, C, A]` 的搜索顺序，那么 `x.show()` 会调用 `C.show()`。由此可见，MRO 是把类的继承关系线性化的一个过程，而线性化方式决定了程序运行过程中具体会调用哪个方法。既然如此，那什么样的 MRO 才是最合理的？Python 中又是如何实现的呢？
 
@@ -54,7 +71,25 @@ A.show()
 
 Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 `object` 因此类图稍有改变：
 
-![新式类菱形继承](newclass_diamond.svg)
+```{mermaid}
+%%| fig-align: center
+classDiagram
+    class object
+    class A {
+        +show()
+    }
+    class B
+    class C {
+        +show()
+    }
+    class D
+
+    object <|-- A 
+    A <|-- B
+    A <|-- C
+    B <|-- D
+    C <|-- D
+```
 
 按照深度遍历，其顺序为 `[D, B, A, object, C, A, object]`，重复类只保留最后一个，因此变为 `[D, B, C, A, object]`。代码为：
 
@@ -78,7 +113,25 @@ C.show()
 
 这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：
 
-![类型冲突](class_conflict.svg)
+```{mermaid}
+%%| fig-align: center
+classDiagram
+    class object
+    class X
+    class Y
+    class A
+    class B
+    class C
+
+    object <|-- X
+    object <|-- Y
+    X <|-- A
+    Y <|-- A
+    X <|-- B
+    Y <|-- B
+    A <|-- C
+    B <|-- C
+```
 
 ~~~ python
 >>> class X(object): pass
@@ -166,7 +219,27 @@ L[C] = [C] + merge(L[A], L[B], [A], [B])
 
 我们再看一个没有冲突的例子：
 
-![C3例子](c3_example.svg)
+```{mermaid}
+%%| fig-align: center
+classDiagram
+    class object
+    class A
+    class B
+    class C
+    class D
+    class E
+    class F
+
+    object <|-- D
+    object <|-- E
+    object <|-- F
+    D <|-- B
+    D <|-- C
+    E <|-- B
+    F <|-- C
+    B <|-- A
+    C <|-- A
+```
 
 计算过程如下：
 

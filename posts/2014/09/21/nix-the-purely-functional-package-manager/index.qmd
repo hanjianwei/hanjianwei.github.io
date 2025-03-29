@@ -73,7 +73,12 @@ $ which hello
 
 可以看到，`hello`来自于`$HOME/.nix-profile`，而后者是一个符号链接，其指向如下：
 
-![Nix profile](nix-profile.svg)
+```{dot}
+//| label: fig-nix-profile
+//| fig-cap: "Nix profile."
+//| file: nix-profile.dot
+```
+
 
 进一步查看最后一个目录（省略部分输出）：
 
