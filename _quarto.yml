@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Byte-Sized Blog"
-  site-url: https://hanjianwei.com
+  site-url: https://hanjianwei.github.io
   favicon: favicon.svg
   navbar:
     right:
