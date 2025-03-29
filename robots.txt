@@ -1,1 +1,1 @@
-Sitemap: https://hanjianwei.com/sitemap.xml
+Sitemap: https://hanjianwei.github.io/sitemap.xml

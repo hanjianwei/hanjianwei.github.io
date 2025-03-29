@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>Byte-Sized Blog</title>
-<link>https://hanjianwei.com/</link>
-<atom:link href="https://hanjianwei.com/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://hanjianwei.github.io/</link>
+<atom:link href="https://hanjianwei.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.6</generator>
 <lastBuildDate>Wed, 18 Mar 2020 03:04:19 GMT</lastBuildDate>
 <item>
   <title>40%键盘YDPM40</title>
-  <link>https://hanjianwei.com/posts/ydpm40-keyboard/</link>
+  <link>https://hanjianwei.github.io/posts/ydpm40-keyboard/</link>
   <description><![CDATA[ 
 
 
@@ -23,7 +23,7 @@
 <p>最近看到有人晒的<a href="https://ergodox-ez.com/pages/planck">Planck EZ</a>，对40%键盘非常心动，不过Planck EZ的价格还是太高了，于是在咸鱼上入了一把<a href="https://ydkb.io/help/#/keyboards/ydpm40">YDPM40</a>。YDPM40是YANG设计的，分为YDP40和YDM40两种布局，前者是类似于Planck的直排，而后者更接近于一般键盘的斜排。我买的这把是YDM40，共44个键，非常适合极简主义者以及囊中羞涩（毕竟需要的轴比较少）、喜欢折腾的人。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/ydpm40-keyboard/ydpm40.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/ydpm40-keyboard/ydpm40.jpg" class="img-fluid figure-img"></p>
 <figcaption>YDPM40</figcaption>
 </figure>
 </div>
@@ -31,7 +31,7 @@
 <p>YDMP40基于hasu写的<a href="https://geekhack.org/index.php?topic=41989.0">TMK</a>固件，该固件的初衷是给HHKB加上可编程接口（以及蓝牙支持），其中<a href="https://github.com/tmk/tmk_keyboard/wiki/Keymap">对层的支持更加强大</a>，为客制化键盘提供了非常强大的工具。TMK层的示意图如下：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/ydpm40-keyboard/tmk_layers.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/ydpm40-keyboard/tmk_layers.jpg" class="img-fluid figure-img"></p>
 <figcaption>TMK Layers</figcaption>
 </figure>
 </div>
@@ -39,7 +39,7 @@
 <p>在定义布局时，我想尽量保持布局和其他键盘一致，同时使得常用的键都能够在默认层上，所以复用了很多的键（比如单按左空格就是空格，长按或与其他键组合就是开启第7层），这是我的键盘布局：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/ydpm40-keyboard/layers.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/ydpm40-keyboard/layers.jpg" class="img-fluid figure-img"></p>
 <figcaption>My Layers</figcaption>
 </figure>
 </div>
@@ -983,12 +983,12 @@ font-style: inherit;">}</span></span></code></pre></div>
 
  ]]></description>
   <category>hardware</category>
-  <guid>https://hanjianwei.com/posts/ydpm40-keyboard/</guid>
+  <guid>https://hanjianwei.github.io/posts/ydpm40-keyboard/</guid>
   <pubDate>Wed, 18 Mar 2020 03:04:19 GMT</pubDate>
 </item>
 <item>
   <title>网件WNDR4300上安装配置OpenWrt</title>
-  <link>https://hanjianwei.com/posts/openwrt-setup/</link>
+  <link>https://hanjianwei.github.io/posts/openwrt-setup/</link>
   <description><![CDATA[ 
 
 
@@ -1078,12 +1078,12 @@ font-style: inherit;">$</span> /etc/init.d/dnsmasq restart</span></code></pre></
 
  ]]></description>
   <category>nas</category>
-  <guid>https://hanjianwei.com/posts/openwrt-setup/</guid>
+  <guid>https://hanjianwei.github.io/posts/openwrt-setup/</guid>
   <pubDate>Wed, 02 Dec 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>SmartOS折腾笔记</title>
-  <link>https://hanjianwei.com/posts/smartos-nas/</link>
+  <link>https://hanjianwei.github.io/posts/smartos-nas/</link>
   <description><![CDATA[ 
 
 
@@ -1785,12 +1785,12 @@ font-style: inherit;">"/mnt/datastore"</span></span>
 
  ]]></description>
   <category>nas</category>
-  <guid>https://hanjianwei.com/posts/smartos-nas/</guid>
+  <guid>https://hanjianwei.github.io/posts/smartos-nas/</guid>
   <pubDate>Wed, 08 Jul 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>备份Mac AppStore中安装的应用</title>
-  <link>https://hanjianwei.com/posts/backup-mac-appstore-apps/</link>
+  <link>https://hanjianwei.github.io/posts/backup-mac-appstore-apps/</link>
   <description><![CDATA[ 
 
 
@@ -1927,12 +1927,12 @@ font-style: inherit;">"./Applications.txt"</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/backup-mac-appstore-apps/</guid>
+  <guid>https://hanjianwei.github.io/posts/backup-mac-appstore-apps/</guid>
   <pubDate>Mon, 16 Feb 2015 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>Nix: 纯函数式包管理器</title>
-  <link>https://hanjianwei.com/posts/nix-the-purely-functional-package-manager/</link>
+  <link>https://hanjianwei.github.io/posts/nix-the-purely-functional-package-manager/</link>
   <description><![CDATA[ 
 
 
@@ -2041,7 +2041,7 @@ font-style: inherit;">/Users/hjw/.nix-profile/bin/hello</span></span></code></pr
 <p>可以看到，<code>hello</code>来自于<code>$HOME/.nix-profile</code>，而后者是一个符号链接，其指向如下：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/nix-the-purely-functional-package-manager/nix-profile.svg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/nix-the-purely-functional-package-manager/nix-profile.svg" class="img-fluid figure-img"></p>
 <figcaption>Nix profile</figcaption>
 </figure>
 </div>
@@ -2561,12 +2561,12 @@ font-style: inherit;">make</span> install</span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/nix-the-purely-functional-package-manager/</guid>
+  <guid>https://hanjianwei.github.io/posts/nix-the-purely-functional-package-manager/</guid>
   <pubDate>Sun, 21 Sep 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>Webpack: 为Web开发而生的模块管理器</title>
-  <link>https://hanjianwei.com/posts/webpack-package-manager-for-web/</link>
+  <link>https://hanjianwei.github.io/posts/webpack-package-manager-for-web/</link>
   <description><![CDATA[ 
 
 
@@ -3628,12 +3628,12 @@ font-style: inherit;">;</span></span></code></pre></div>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/webpack-package-manager-for-web/</guid>
+  <guid>https://hanjianwei.github.io/posts/webpack-package-manager-for-web/</guid>
   <pubDate>Wed, 10 Sep 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>阿里云服务器的Docker配置</title>
-  <link>https://hanjianwei.com/posts/docker-on-aliyun/</link>
+  <link>https://hanjianwei.github.io/posts/docker-on-aliyun/</link>
   <description><![CDATA[ 
 
 
@@ -3782,12 +3782,12 @@ font-style: inherit;">inet</span> addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/docker-on-aliyun/</guid>
+  <guid>https://hanjianwei.github.io/posts/docker-on-aliyun/</guid>
   <pubDate>Wed, 30 Jul 2014 12:04:00 GMT</pubDate>
 </item>
 <item>
   <title>一袋烟功夫构建Mac环境</title>
-  <link>https://hanjianwei.com/posts/1-click-building-your-mac-environment/</link>
+  <link>https://hanjianwei.github.io/posts/1-click-building-your-mac-environment/</link>
   <description><![CDATA[ 
 
 
@@ -3882,12 +3882,12 @@ font-style: inherit;">`</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/1-click-building-your-mac-environment/</guid>
+  <guid>https://hanjianwei.github.io/posts/1-click-building-your-mac-environment/</guid>
   <pubDate>Tue, 15 Jul 2014 02:23:00 GMT</pubDate>
 </item>
 <item>
   <title>走马观花看Puppet</title>
-  <link>https://hanjianwei.com/posts/master-of-puppets/</link>
+  <link>https://hanjianwei.github.io/posts/master-of-puppets/</link>
   <description><![CDATA[ 
 
 
@@ -3999,12 +3999,12 @@ planfile {'katie':
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/master-of-puppets/</guid>
+  <guid>https://hanjianwei.github.io/posts/master-of-puppets/</guid>
   <pubDate>Mon, 14 Jul 2014 08:18:00 GMT</pubDate>
 </item>
 <item>
   <title>Docker on Mac</title>
-  <link>https://hanjianwei.com/posts/docker-on-mac/</link>
+  <link>https://hanjianwei.github.io/posts/docker-on-mac/</link>
   <description><![CDATA[ 
 
 
@@ -4220,12 +4220,12 @@ font-style: inherit;">end</span></span></code></pre></div>
 
  ]]></description>
   <category>devops</category>
-  <guid>https://hanjianwei.com/posts/docker-on-mac/</guid>
+  <guid>https://hanjianwei.github.io/posts/docker-on-mac/</guid>
   <pubDate>Fri, 06 Jun 2014 07:58:00 GMT</pubDate>
 </item>
 <item>
   <title>混乱的标点符号</title>
-  <link>https://hanjianwei.com/posts/punctuation/</link>
+  <link>https://hanjianwei.github.io/posts/punctuation/</link>
   <description><![CDATA[ 
 
 
@@ -4489,12 +4489,12 @@ font-style: inherit;">end</span></span></code></pre></div>
 
  ]]></description>
   <category>writing</category>
-  <guid>https://hanjianwei.com/posts/punctuation/</guid>
+  <guid>https://hanjianwei.github.io/posts/punctuation/</guid>
   <pubDate>Fri, 26 Jul 2013 02:33:00 GMT</pubDate>
 </item>
 <item>
   <title>Python的方法解析顺序(MRO)</title>
-  <link>https://hanjianwei.com/posts/python-mro/</link>
+  <link>https://hanjianwei.github.io/posts/python-mro/</link>
   <description><![CDATA[ 
 
 
@@ -4505,7 +4505,7 @@ font-style: inherit;">end</span></span></code></pre></div>
 <p>先看一个「菱形继承」的例子：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/python-mro/class_diamond.svg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/python-mro/class_diamond.svg" class="img-fluid figure-img"></p>
 <figcaption>菱形继承</figcaption>
 </figure>
 </div>
@@ -4637,7 +4637,7 @@ font-style: inherit;">&gt;&gt;&gt;</span> x.show()</span>
 <p>Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 <code>object</code> 因此类图稍有改变：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/python-mro/newclass_diamond.svg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/python-mro/newclass_diamond.svg" class="img-fluid figure-img"></p>
 <figcaption>新式类菱形继承</figcaption>
 </figure>
 </div>
@@ -4758,7 +4758,7 @@ font-style: inherit;">&gt;&gt;&gt;</span> x.show()</span>
 <p>这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/python-mro/class_conflict.svg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/python-mro/class_conflict.svg" class="img-fluid figure-img"></p>
 <figcaption>类型冲突</figcaption>
 </figure>
 </div>
@@ -4894,7 +4894,7 @@ L[Y] = [Y, object]</code></pre>
 <p>我们再看一个没有冲突的例子：</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://hanjianwei.com/posts/python-mro/c3_example.svg" class="img-fluid figure-img"></p>
+<p><img src="https://hanjianwei.github.io/posts/python-mro/c3_example.svg" class="img-fluid figure-img"></p>
 <figcaption>C3例子</figcaption>
 </figure>
 </div>
@@ -5046,12 +5046,12 @@ font-style: inherit;">&gt;</span>)</span></code></pre></div>
 
  ]]></description>
   <category>python</category>
-  <guid>https://hanjianwei.com/posts/python-mro/</guid>
+  <guid>https://hanjianwei.github.io/posts/python-mro/</guid>
   <pubDate>Thu, 25 Jul 2013 12:34:00 GMT</pubDate>
 </item>
 <item>
   <title>Markdown 的 Ansi 显示</title>
-  <link>https://hanjianwei.com/posts/markdown-to-ansi/</link>
+  <link>https://hanjianwei.github.io/posts/markdown-to-ansi/</link>
   <description><![CDATA[ 
 
 
@@ -5198,12 +5198,12 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/markdown-to-ansi/</guid>
+  <guid>https://hanjianwei.github.io/posts/markdown-to-ansi/</guid>
   <pubDate>Sat, 06 Apr 2013 12:42:00 GMT</pubDate>
 </item>
 <item>
   <title>C++11 和 C++98 的 ABI 兼容性</title>
-  <link>https://hanjianwei.com/posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</link>
+  <link>https://hanjianwei.github.io/posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</link>
   <description><![CDATA[ 
 
 
@@ -5225,12 +5225,12 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
  ]]></description>
   <category>cpp</category>
-  <guid>https://hanjianwei.com/posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</guid>
+  <guid>https://hanjianwei.github.io/posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</guid>
   <pubDate>Sun, 27 Jan 2013 13:38:00 GMT</pubDate>
 </item>
 <item>
   <title>DocPad：基于 CoffeeScript 的静态网站生成器</title>
-  <link>https://hanjianwei.com/posts/docpad-static-site-generator-using-coffeescript/</link>
+  <link>https://hanjianwei.github.io/posts/docpad-static-site-generator-using-coffeescript/</link>
   <description><![CDATA[ 
 
 
@@ -5346,7 +5346,7 @@ font-style: inherit;">).</span>value</span></code></pre></div></li>
 
  ]]></description>
   <category>web</category>
-  <guid>https://hanjianwei.com/posts/docpad-static-site-generator-using-coffeescript/</guid>
+  <guid>https://hanjianwei.github.io/posts/docpad-static-site-generator-using-coffeescript/</guid>
   <pubDate>Sun, 06 Jan 2013 13:40:00 GMT</pubDate>
 </item>
 </channel>
