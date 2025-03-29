@@ -989,7 +989,7 @@ font-style: inherit;">}</span></span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>hardware</category>
+  <category>Hardware</category>
   <guid>https://hanjianwei.github.io/posts/2020/03/18/ydpm40-keyboard/</guid>
   <pubDate>Wed, 18 Mar 2020 03:04:19 GMT</pubDate>
 </item>
@@ -1084,7 +1084,7 @@ font-style: inherit;">$</span> /etc/init.d/dnsmasq restart</span></code></pre></
 </section>
 
  ]]></description>
-  <category>nas</category>
+  <category>Networking</category>
   <guid>https://hanjianwei.github.io/posts/2015/12/02/openwrt-setup/</guid>
   <pubDate>Wed, 02 Dec 2015 12:04:00 GMT</pubDate>
 </item>
@@ -1791,7 +1791,7 @@ font-style: inherit;">"/mnt/datastore"</span></span>
 </section>
 
  ]]></description>
-  <category>nas</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2015/07/08/smartos-nas/</guid>
   <pubDate>Wed, 08 Jul 2015 12:04:00 GMT</pubDate>
 </item>
@@ -1933,7 +1933,7 @@ font-style: inherit;">"./Applications.txt"</span></span></code></pre></div>
 
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2015/02/16/backup-mac-appstore-apps/</guid>
   <pubDate>Mon, 16 Feb 2015 12:04:00 GMT</pubDate>
 </item>
@@ -2046,7 +2046,7 @@ font-style: inherit;">$</span> which hello</span>
 background-color: null;
 font-style: inherit;">/Users/hjw/.nix-profile/bin/hello</span></span></code></pre></div>
 <p>可以看到，<code>hello</code>来自于<code>$HOME/.nix-profile</code>，而后者是一个符号链接，其指向如下：</p>
-<div class="cell" data-file="nix-profile.dot" data-layout-align="default">
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-nix-profile" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2624,7 +2624,7 @@ font-style: inherit;">make</span> install</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2014/09/21/nix-the-purely-functional-package-manager/</guid>
   <pubDate>Sun, 21 Sep 2014 12:04:00 GMT</pubDate>
 </item>
@@ -3691,7 +3691,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>web</category>
+  <category>WebDev</category>
   <guid>https://hanjianwei.github.io/posts/2014/09/10/webpack-package-manager-for-web/</guid>
   <pubDate>Wed, 10 Sep 2014 12:04:00 GMT</pubDate>
 </item>
@@ -3845,7 +3845,7 @@ font-style: inherit;">inet</span> addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.
 
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2014/07/30/docker-on-aliyun/</guid>
   <pubDate>Wed, 30 Jul 2014 12:04:00 GMT</pubDate>
 </item>
@@ -3945,7 +3945,7 @@ font-style: inherit;">`</span></span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2014/07/15/1-click-building-your-mac-environment/</guid>
   <pubDate>Tue, 15 Jul 2014 02:23:00 GMT</pubDate>
 </item>
@@ -4062,7 +4062,7 @@ planfile {'katie':
 
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2014/07/14/master-of-puppets/</guid>
   <pubDate>Mon, 14 Jul 2014 08:18:00 GMT</pubDate>
 </item>
@@ -4283,7 +4283,7 @@ font-style: inherit;">end</span></span></code></pre></div>
 
 
  ]]></description>
-  <category>devops</category>
+  <category>DevOps</category>
   <guid>https://hanjianwei.github.io/posts/2014/06/06/docker-on-mac/</guid>
   <pubDate>Fri, 06 Jun 2014 07:58:00 GMT</pubDate>
 </item>
@@ -4552,7 +4552,7 @@ font-style: inherit;">end</span></span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>writing</category>
+  <category>Writing</category>
   <guid>https://hanjianwei.github.io/posts/2013/07/26/punctuation/</guid>
   <pubDate>Fri, 26 Jul 2013 02:33:00 GMT</pubDate>
 </item>
@@ -5194,7 +5194,7 @@ font-style: inherit;">&gt;</span>)</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>python</category>
+  <category>Programming</category>
   <guid>https://hanjianwei.github.io/posts/2013/07/25/python-mro/</guid>
   <pubDate>Thu, 25 Jul 2013 12:34:00 GMT</pubDate>
 </item>
@@ -5346,7 +5346,7 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
 
  ]]></description>
-  <category>web</category>
+  <category>WebDev</category>
   <guid>https://hanjianwei.github.io/posts/2013/04/06/markdown-to-ansi/</guid>
   <pubDate>Sat, 06 Apr 2013 12:42:00 GMT</pubDate>
 </item>
@@ -5373,7 +5373,7 @@ font-style: inherit;">$</span> gem install md2ansi</span></code></pre></div>
 
 
  ]]></description>
-  <category>cpp</category>
+  <category>Programming</category>
   <guid>https://hanjianwei.github.io/posts/2013/01/27/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/</guid>
   <pubDate>Sun, 27 Jan 2013 13:38:00 GMT</pubDate>
 </item>
@@ -5494,7 +5494,7 @@ font-style: inherit;">).</span>value</span></code></pre></div></li>
 
 
  ]]></description>
-  <category>web</category>
+  <category>WebDev</category>
   <guid>https://hanjianwei.github.io/posts/2013/01/06/docpad-static-site-generator-using-coffeescript/</guid>
   <pubDate>Sun, 06 Jan 2013 13:40:00 GMT</pubDate>
 </item>
