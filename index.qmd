@@ -1,0 +1,14 @@
+---
+title: "Byte-Sized Blog"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  feed: true
+  page-size: 5
+---
+
+Welcome to my blog where I share thoughts on technology, programming, and more. 

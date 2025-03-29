@@ -1,0 +1,165 @@
+{
+  "title": "YDPM40 key settings",
+  "rules": [
+    {
+      "description": "Exchange semicolon and colon",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "com\\.apple\\.keylayout\\.ABC"
+                }
+              ],
+              "type": "input_source_if"
+            },
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 65261,
+                  "product_id": 576,
+                  "description": "YDM40"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "com\\.apple\\.keylayout\\.ABC"
+                }
+              ],
+              "type": "input_source_if"
+            }, 
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 65261,
+                  "product_id": 576,
+                  "description": "YDM40"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Exchange return and semicolon",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "com\\.apple\\.inputmethod\\.SCIM\\.Shuangpin"
+                }
+              ],
+              "type": "input_source_if"
+            }, 
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 65261,
+                  "product_id": 576,
+                  "description": "YDM40"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "com\\.apple\\.inputmethod\\.SCIM\\.Shuangpin"
+                }
+              ],
+              "type": "input_source_if"
+            },
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 65261,
+                  "product_id": 576,
+                  "description": "YDM40"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}

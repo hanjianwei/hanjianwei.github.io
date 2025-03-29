@@ -1,9 +1,17 @@
-# Blog
+# hanjianwei.github.io
 
-## Hugo
+Personal blog powered by [Quarto](https://quarto.org/).
 
-~~~ bash
-git worktree add -B master public origin/master
-~~~
+## Building
+
+```bash
+quarto render
+```
+
+## Previewing
+
+```bash
+quarto preview
+```
 
 
