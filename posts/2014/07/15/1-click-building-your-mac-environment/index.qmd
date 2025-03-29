@@ -1,5 +1,5 @@
 ---
-title: "一袋烟功夫构建Mac环境"
+title: "快速构建Mac环境"
 date: 2014-07-15T10:23:00+08:00
 categories: [devops]
 ---
