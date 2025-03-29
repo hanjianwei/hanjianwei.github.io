@@ -2,7 +2,7 @@
 title: SmartOS折腾笔记
 date: 2015-07-08T20:04:00+08:00
 disqus: true
-categories: [nas]
+categories: [DevOps]
 ---
 
 前段时间入手了一台[Gen8](http://www8.hp.com/us/en/products/proliant-servers/product-detail.html?oid=5379860)，准备用做家里文件、媒体服务器。看了[EXSi](https://www.vmware.com/products/vsphere-hypervisor)、[FreeNAS](http://www.freenas.org)、[NAS4Free](http://www.nas4free.org)、[Proxmox](https://www.proxmox.com/en/)等方案后，觉得还是[SmartOS](https://smartos.org)最好。它支持[ZFS](https://en.wikipedia.org/wiki/ZFS)，能够更好管理数据、保证数据有效性；此外，它支持[kvm](https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine)虚拟化技术，能够虚拟常见的操作系统，满足各种软件需求；它还支持类似Docker的[Zones](https://en.wikipedia.org/wiki/Solaris_Containers#Branded_zones)容器技术，比kvm更为高效。

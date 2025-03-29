@@ -1,7 +1,7 @@
 ---
 title: "40%键盘YDPM40"
 date: 2020-03-18T11:04:19+08:00
-categories: [hardware]
+categories: [Hardware]
 ---
 
 最近看到有人晒的[Planck EZ](https://ergodox-ez.com/pages/planck)，对40%键盘非常心动，不过Planck EZ的价格还是太高了，于是在咸鱼上入了一把[YDPM40](https://ydkb.io/help/#/keyboards/ydpm40)。YDPM40是YANG设计的，分为YDP40和YDM40两种布局，前者是类似于Planck的直排，而后者更接近于一般键盘的斜排。我买的这把是YDM40，共44个键，非常适合极简主义者以及囊中羞涩（毕竟需要的轴比较少）、喜欢折腾的人。
