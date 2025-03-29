@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="softGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#293462" />
+      <stop offset="100%" stop-color="#6639A6" />
+    </linearGradient>
+  </defs>
+  <polygon points="16 2, 28 8, 28 22, 16 30, 4 22, 4 8" fill="url(#softGradient)" />
+  <path stroke="#89CFF0" stroke-width="1.5" fill="none" d="M16 10 L10 20 M16 10 L22 20" />
+  <circle cx="16" cy="10" r="2" fill="#E0BBE4" />
+  <circle cx="10" cy="20" r="2" fill="#957DAD" />
+  <circle cx="22" cy="20" r="2" fill="#D291BC" />
+</svg>

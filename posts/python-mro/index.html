@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.6">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2013-07-25">
+
+<title>Python的方法解析顺序(MRO) – Byte-Sized Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f57d500d196eb039b2e15a91ec527c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Byte-Sized Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hanjianwei"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Python的方法解析顺序(MRO)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 25, 2013</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>对于支持继承的编程语言来说，其方法（属性）可能定义在当前类，也可能来自于基类，所以在方法调用时就需要对当前类和基类进行搜索以确定方法所在的位置。而搜索的顺序就是所谓的「方法解析顺序」（Method Resolution Order，或MRO）。对于只支持单继承的语言来说，MRO 一般比较简单；而对于 Python 这种支持多继承的语言来说，MRO 就复杂很多。</p>
+<p>先看一个「菱形继承」的例子：</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class_diamond.svg" class="img-fluid figure-img"></p>
+<figcaption>菱形继承</figcaption>
+</figure>
+</div>
+<p>如果 <code>x</code> 是 <code>D</code> 的一个实例，那么 <code>x.show()</code> 到底会调用哪个 <code>show</code> 方法呢？如果按照 <code>[D, B, A, C]</code> 的搜索顺序，那么 <code>x.show()</code> 会调用 <code>A.show()</code>；如果按照 <code>[D, B, C, A]</code> 的搜索顺序，那么 <code>x.show()</code> 会调用 <code>C.show()</code>。由此可见，MRO 是把类的继承关系线性化的一个过程，而线性化方式决定了程序运行过程中具体会调用哪个方法。既然如此，那什么样的 MRO 才是最合理的？Python 中又是如何实现的呢？</p>
+<p>Python 至少有<a href="http://python-history.blogspot.com/2010/06/method-resolution-order.html">三种不同的 MRO</a>：</p>
+<ol type="1">
+<li>经典类（classic class）的深度遍历。</li>
+<li>Python 2.2 的新式类（new-style class）预计算。</li>
+<li>Python 2.3 的新式类的<a href="http://en.wikipedia.org/wiki/C3_linearization">C3 算法</a>。它也是 Python 3 唯一支持的方式。</li>
+</ol>
+<section id="经典类的-mro" class="level3">
+<h3 class="anchored" data-anchor-id="经典类的-mro">经典类的 MRO</h3>
+<p>Python 有<a href="http://wiki.python.org/moin/NewClassVsClassicClass">两种类</a>：经典类（classic class）和新式类（new-style class）。两者的不同之处在于新式类继承自 <code>object</code>。在 Python 2.1 以前，经典类是唯一可用的形式；Python 2.2 引入了新式类，使得类和内置类型更加统一；在 Python 3 中，新式类是唯一支持的类。</p>
+<p>经典类采用了一种很简单的 MRO 方法：从左至右的<a href="http://en.wikipedia.org/wiki/Depth-first_search">深度优先遍历</a>。以上述「菱形继承」为例，其查找顺序为 <code>[D, B, A, C, A]</code>，如果只保留重复类的第一个则结果为 <code>[D, B, A, C]</code>。我们可以用 <code>inspect.getmro</code> 来获取类的 MRO：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> inspect</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> A:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span> <span class="st">"A.show()"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> B(A): <span class="cf">pass</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> C(A):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span> <span class="st">"C.show()"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> D(B, C): <span class="cf">pass</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> inspect.getmro(D)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="op">&lt;</span><span class="kw">class</span> __main__.D at <span class="bn">0x105f0a6d0</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> __main__.B at <span class="bn">0x105f0a600</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> __main__.A at <span class="bn">0x105f0a668</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> __main__.C at <span class="bn">0x105f0a738</span><span class="op">&gt;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> D()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x.show()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>A.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>这种深度优先遍历对于简单的情况还能处理的不错，但是对于上述「菱形继承」其结果却不尽如人意：虽然 <code>C.show()</code> 是 <code>A.show()</code> 的更具体化版本（显示了更多的信息），但我们的 <code>x.show()</code> 没有调用它，而是调用了 <code>A.show()</code>。这显然不是我们希望的结果。</p>
+<p>对于新式类而言，所有的类都继承自 <code>object</code>，所以「菱形继承」是非常普遍的现象，因此不可能采用这种 MRO 方式。</p>
+</section>
+<section id="python-2.2-的新式类-mro" class="level3">
+<h3 class="anchored" data-anchor-id="python-2.2-的新式类-mro">Python 2.2 的新式类 MRO</h3>
+<p>为解决经典类 MRO 所存在的问题，Python 2.2 针对新式类提出了一种新的 MRO 计算方式：在定义类时就计算出该类的 MRO 并将其作为类的属性。因此新式类可以直接通过 <code>__mro__</code> 属性获取类的 MRO。</p>
+<p>Python 2.2 的新式类 MRO 计算方式和经典类 MRO 的计算方式非常相似：它仍然采用从左至右的深度优先遍历，但是如果遍历中出现重复的类，只保留最后一个。重新考虑上面「菱形继承」的例子，由于新式类继承自 <code>object</code> 因此类图稍有改变：</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="newclass_diamond.svg" class="img-fluid figure-img"></p>
+<figcaption>新式类菱形继承</figcaption>
+</figure>
+</div>
+<p>按照深度遍历，其顺序为 <code>[D, B, A, object, C, A, object]</code>，重复类只保留最后一个，因此变为 <code>[D, B, C, A, object]</code>。代码为：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> A(<span class="bu">object</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span> <span class="st">"A.show()"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> B(A): <span class="cf">pass</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> C(A):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> show(<span class="va">self</span>):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>...         <span class="bu">print</span> <span class="st">"C.show()"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> D(B, C): <span class="cf">pass</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> D.__mro__</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>(<span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.D'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.B'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.C'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.A'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="bu">type</span> <span class="st">'object'</span><span class="op">&gt;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> D()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x.show()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>C.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>这种 MRO 方式已经能够解决「菱形继承」问题，再让我们看个稍微复杂点的例子：</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="class_conflict.svg" class="img-fluid figure-img"></p>
+<figcaption>类型冲突</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> X(<span class="bu">object</span>): <span class="cf">pass</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Y(<span class="bu">object</span>): <span class="cf">pass</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> A(X, Y): <span class="cf">pass</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> B(Y, X): <span class="cf">pass</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> C(A, B): <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>首先进行深度遍历，结果为 <code>[C, A, X, object, Y, object, B, Y, object, X, object]</code>；然后，只保留重复元素的最后一个，结果为 <code>[C, A, B, Y, X, object]</code>。Python 2.2 在实现该方法的时候进行了调整，使其更尊重基类中类出现的顺序，其实际结果为 <code>[C, A, B, X, Y, object]</code>。</p>
+<p>这样的结果是否合理呢？首先我们看下各个类中的方法解析顺序：对于 <code>A</code> 来说，其搜索顺序为 <code>[A, X, Y, object]</code>；对于 <code>B</code>，其搜索顺序为 <code>[B, Y, X, object]</code>；对于 <code>C</code>，其搜索顺序为 <code>[C, A, B, X, Y, object]</code>。我们会发现，<code>B</code> 和 <code>C</code> 中 <code>X</code>、<code>Y</code> 的搜索顺序是相反的！也就是说，当 <code>B</code> 被继承时，它本身的行为竟然也发生了改变，这很容易导致不易察觉的错误。此外，即使把 <code>C</code> 搜索顺序中 <code>X</code> 和 <code>Y</code> 互换仍然不能解决问题，这时候它又会和 <code>A</code> 中的搜索顺序相矛盾。</p>
+<p>事实上，不但上述特殊情况会出现问题，在<a href="http://mail.python.org/pipermail/python-dev/2002-October/029035.html">其它情况</a>下也可能出问题。其原因在于，上述继承关系违反了线性化的「 <strong>单调性原则</strong> 」。<a href="http://www.python.org/download/releases/2.3/mro/">Michele Simionato</a>对单调性的定义为：</p>
+<blockquote class="blockquote">
+<p>A MRO is monotonic when the following is true: if C1 precedes C2 in the linearization of C, then C1 precedes C2 in the linearization of any subclass of C. Otherwise, the innocuous operation of deriving a new class could change the resolution order of methods, potentially introducing very subtle bugs.</p>
+</blockquote>
+<p>也就是说，子类不能改变基类的方法搜索顺序。在 Python 2.2 的 MRO 算法中并不能保证这种单调性，它不会阻止程序员写出上述具有二义性的继承关系，因此很可能成为错误的根源。</p>
+<p>除了单调性之外，Python 2.2 及 经典类的 MRO 也可能违反继承的「 <strong>局部优先级</strong> 」，具体例子可以参见<a href="http://www.python.org/download/releases/2.3/mro/#bad-method-resolution-orders">官方文档</a>。采用一种更好的 MRO 方式势在必行。</p>
+</section>
+<section id="c3-mro" class="level3">
+<h3 class="anchored" data-anchor-id="c3-mro">C3 MRO</h3>
+<p>为解决 Python 2.2 中 MRO 所存在的问题，Python 2.3以后采用了<a href="http://en.wikipedia.org/wiki/C3_linearization">C3 方法</a>来确定方法解析顺序。你如果在 Python 2.3 以后版本里输入上述代码，就会产生一个异常，禁止创建具有二义性的继承关系：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> C(A, B): <span class="cf">pass</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;ipython-input-8-01bae83dc806&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> C(A, B): <span class="cf">pass</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: Error when calling the metaclass bases</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Cannot create a consistent method resolution</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>order (MRO) <span class="cf">for</span> bases X, Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>我们把类 <code>C</code> 的线性化（MRO）记为 <code>L[C] = [C1, C2,…,CN]</code>。其中 <code>C1</code> 称为 <code>L[C]</code> 的头，其余元素 <code>[C2,…,CN]</code> 称为尾。如果一个类 <code>C</code> 继承自基类 <code>B1</code>、<code>B2</code>、……、<code>BN</code>，那么我们可以根据以下两步计算出 <code>L[C]</code>：</p>
+<ol type="1">
+<li><code>L[object] = [object]</code></li>
+<li><code>L[C(B1…BN)] = [C] + merge(L[B1]…L[BN], [B1]…[BN])</code></li>
+</ol>
+<p>这里的关键在于 <code>merge</code>，其输入是一组列表，按照如下方式输出一个列表：</p>
+<ol type="1">
+<li>检查第一个列表的头元素（如 <code>L[B1]</code> 的头），记作 <code>H</code>。</li>
+<li>若 <code>H</code> 未出现在其它列表的尾部，则将其输出，并将其从所有列表中删除，然后回到步骤1；否则，取出下一个列表的头部记作 <code>H</code>，继续该步骤。</li>
+<li>重复上述步骤，直至列表为空或者不能再找出可以输出的元素。如果是前一种情况，则算法结束；如果是后一种情况，说明无法构建继承关系，Python 会抛出异常。</li>
+</ol>
+<p>该方法有点类似于图的<a href="http://en.wikipedia.org/wiki/Topological_sorting">拓扑排序</a>，但它同时还考虑了基类的出现顺序。我们用 C3 分析一下刚才的例子。</p>
+<p><code>object</code>，<code>X</code>，<code>Y</code> 的线性化结果比较简单：</p>
+<pre class="plaintext"><code>L[object] = [object]
+L[X] = [X, object]
+L[Y] = [Y, object]</code></pre>
+<p><code>A</code> 的线性化计算如下：</p>
+<pre class="plaintext"><code>L[A] = [A] + merge(L[X], L[Y], [X], [Y])
+     = [A] + merge([X, object], [Y, object], [X], [Y])
+     = [A, X] + merge([object], [Y, object], [Y])
+     = [A, X, Y] + merge([object], [object])
+     = [A, X, Y, object]</code></pre>
+<p>注意第3步，<code>merge([object], [Y, object], [Y])</code> 中首先输出的是 <code>Y</code> 而不是 <code>object</code>。这是因为 <code>object</code> 虽然是第一个列表的头，但是它出现在了第二个列表的尾部。所以我们会跳过第一个列表，去检查第二个列表的头部，也就是 <code>Y</code>。<code>Y</code> 没有出现在其它列表的尾部，所以将其输出。</p>
+<p>同理，<code>B</code> 的线性化结果为：</p>
+<pre class="plaintext"><code>L[B] = [B, Y, X, object]</code></pre>
+<p>最后，我们看看 <code>C</code> 的线性化结果：</p>
+<pre class="plaintext"><code>L[C] = [C] + merge(L[A], L[B], [A], [B])
+     = [C] + merge([A, X, Y, object], [B, Y, X, object], [A], [B])
+     = [C, A] + merge([X, Y, object], [B, Y, X, object], [B])
+     = [C, A, B] + merge([X, Y, object], [Y, X, object])</code></pre>
+<p>到了最后一步我们没有办法继续计算下去 了：<code>X</code> 虽然是第一个列表的头，但是它出现在了第二个列表的尾部；<code>Y</code> 虽然是第二个列表的头，但是它出现在了第一个列表的尾部。因此，我们无法构建一个没有二义性的继承关系，只能手工去解决（比如改变 <code>B</code> 基类中 <code>X</code>、<code>Y</code> 的顺序）。</p>
+<p>我们再看一个没有冲突的例子：</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c3_example.svg" class="img-fluid figure-img"></p>
+<figcaption>C3例子</figcaption>
+</figure>
+</div>
+<p>计算过程如下：</p>
+<pre class="plaintext"><code>L[object] = [object]
+L[D] = [D, object]
+L[E] = [E, object]
+L[F] = [F, object]
+L[B] = [B, D, E, object]
+L[C] = [C, D, F, object]
+L[A] = [A] + merge(L[B], L[C], [B], [C])
+     = [A] + merge([B, D, E, object], [C, D, F, object], [B], [C])
+     = [A, B] + merge([D, E, object], [C, D, F, object], [C])
+     = [A, B, C] + merge([D, E, object], [D, F, object])
+     = [A, B, C, D] + merge([E, object], [F, object])
+     = [A, B, C, D, E] + merge([object], [F, object])
+     = [A, B, C, D, E, F] + merge([object], [object])
+     = [A, B, C, D, E, F, object]</code></pre>
+<p>当然，可以用代码验证类的 MRO，上面的例子可以写作：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> D(<span class="bu">object</span>): <span class="cf">pass</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> E(<span class="bu">object</span>): <span class="cf">pass</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> F(<span class="bu">object</span>): <span class="cf">pass</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> B(D, E): <span class="cf">pass</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> C(D, F): <span class="cf">pass</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> A(B, C): <span class="cf">pass</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> A.__mro__</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>(<span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.A'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.B'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.C'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.D'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.E'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="kw">class</span> <span class="st">'__main__.F'</span><span class="op">&gt;</span>, <span class="op">&lt;</span><span class="bu">type</span> <span class="st">'object'</span><span class="op">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hanjianwei\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

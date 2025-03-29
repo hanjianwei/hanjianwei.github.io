@@ -1,5 +1,1152 @@
-<!doctype html><html lang=en-us><head><meta name=generator content="Hugo 0.82.0"><title>Stone Horse</title><meta http-equiv=x-ua-compatible content="ie=edge"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://hanjianwei.com/style.css><link rel=alternate type=application/rss+xml href=https://hanjianwei.com/index.xml title="Stone Horse"></head><body><div class=container><header><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Archives</a></li><li><a href=/tags>Tags</a></li></ul></nav></header><main><div class=posts><a href=https://hanjianwei.com/2020/03/18/ydpm40-keyboard/><article><h1>40%键盘YDPM40</h1><time>Mar 18, 2020</time><p>最近看到有人晒的Planck EZ，对40%键盘非常心动，不过Planck EZ的价格还是太高了，于是在咸鱼上入了一把YDPM40。YDPM40是YANG设计的，分为YDP40和YDM40两种布局，前者是类似于Planck的直排，而后者更接近于一般键盘的斜排。我买的这把是YDM40，共44个键，非常适合极简主义者以及囊中羞</p></article></a><a href=https://hanjianwei.com/2015/12/02/openwrt-setup/><article><h1>网件WNDR4300上安装配置OpenWrt</h1><time>Dec 2, 2015</time><p>WNDR4300是对OpenWrt支持比较好的一款路由器：其内存和闪存都是128M，有比较好的ROM支持，是一个比较适合折腾的路由器。 OpenWrt的安装、配置 首先，下载WNDR4300的固件，OpenWrt的下载页面列出了不同版本的的固件，一般来说下载最新的release即可。 比如当前支持WNDR4300的最新固件是</p></article></a><a href=https://hanjianwei.com/2015/07/08/smartos-nas/><article><h1>SmartOS折腾笔记</h1><time>Jul 8, 2015</time><p>前段时间入手了一台Gen8，准备用做家里文件、媒体服务器。看了EXSi、FreeNAS、NAS4Free、Proxmox等方案后，觉得还是SmartOS最好。它支持ZFS，能够更好管理数据、保证数据有效性；此外，它支持kvm虚拟化技术，能够虚拟常见的操作系统，满足各种软件需求；它还支持类似Docker的Zones容器技</p></article></a><a href=https://hanjianwei.com/2015/02/16/backup-mac-appstore-apps/><article><h1>备份Mac AppStore中安装的应用</h1><time>Feb 16, 2015</time><p>在Mac中安装软件并不像Linux那么方便，它没有一个统一的软件管理器来处理大部分的情况。我同时用了Homebrew、Homebrew Cask和Mac AppStore来安装不同的软件。前者主要用于安装命令行程序，而后两者用于安装GUI程序。有些软件在Cask和AppStore中都有，以前我都是倾向于使用Cask，主要是</p></article></a><a href=https://hanjianwei.com/2014/09/21/nix-the-purely-functional-package-manager/><article><h1>Nix: 纯函数式包管理器</h1><time>Sep 21, 2014</time><p>Nix是一个Linux/Unix下的包管理器，它支持原子升级和回滚、能够同时安装同一个包的多个版本、支持多用户，能够更加简单地搭建开发、构建环境。它最大的卖点在于 函数式 的管理方式：把软件包作为函数式语言的值，这些值由没有副作用的函数构建，一旦构建完就不再改变，这意味着你的软件运行环境一旦构建就不会改变——这对于可重现的</p></article></a></div><nav class=pagination><span>1</span>
-<a href=/page/2/>2</a>
-<a href=/page/3/>3</a>
-<a href=/page/2/>&#187;</a></nav></main><footer>&copy; 2013 - 2021 Jianwei Han.
-<a href=https://www.github.com/hanjianwei/hanjianwei.github.io/tree/hugo><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2 43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8.0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6 144.1-135.1c5.1-4.7 5.1-12.8.0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"/></svg></a><a href=https://www.github.com/hanjianwei><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8.0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8.0-21.5 4.9-32.3 14.6-51.8 45.3.0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8.0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9.0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2.0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8.0-73.5 38.7-73.5 82.6.0 87.8 80.4 101.3 150.4 101.3h48.2c70.3.0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8.0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg></a><a href=https://twitter.com/hanjianwei><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a><a href=mailto:blog@hanjianwei.com><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V4e2c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5.0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg></a><a title="PGP Key" href="https://pgp.mit.edu/pks/lookup?op=get&search=0x309B79EC85BB7488"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="key" class="svg-inline--fa fa-key fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M512 176.001C512 273.203 433.202 352 336 352c-11.22.0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999.0 01261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255.0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999.0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z"/></svg></a><a href=/index.xml><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328.0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765.0 183.105.0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686.0 38.981.0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"/></svg></a></footer></div></body></html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.6">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Byte-Sized Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f57d500d196eb039b2e15a91ec527c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 5,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="alternate" type="application/rss+xml" title="Byte-Sized Blog" href="index.xml" data-external="1"></head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Byte-Sized Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hanjianwei"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="Y3Bw">cpp <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGV2b3Bz">devops <span class="quarto-category-count">(6)</span></div><div class="category" data-category="aGFyZHdhcmU=">hardware <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmFz">nas <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2Vi">web <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d3JpdGluZw==">writing <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Byte-Sized Blog</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Welcome to my blog where I share thoughts on technology, programming, and more.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list quarto-listing-default">
+
+<div class="quarto-post image-right" data-index="0" data-categories="aGFyZHdhcmU=" data-listing-date-sort="1584500659000" data-listing-file-modified-sort="1743238662440" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
+
+<div class="thumbnail">
+<a href="./posts/ydpm40-keyboard/index.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/ydpm40-keyboard/ydpm40.jpg"  class="thumbnail-image card-img"/></p>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/ydpm40-keyboard/index.html" class="no-external">40%键盘YDPM40</a></h3>
+<div class="listing-subtitle"><a href="./posts/ydpm40-keyboard/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('aGFyZHdhcmU='); return false;">hardware</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/ydpm40-keyboard/index.html" class="no-external">最近看到有人晒的Planck EZ，对40%键盘非常心动，不过Planck EZ的价格还是太高了，于是在咸鱼上入了一把YDPM40。YDPM40是YANG设计的，分为YDP40和YDM40两种布局，前者是类似于Planck的直排，而后者更接近于一般键盘的斜排。我买的这把是YDM40，共44个键，非常适合极简主义者以及囊中羞涩（毕竟需要的轴比较少）…</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/ydpm40-keyboard/index.html" class="no-external">
+<div class="listing-date">Mar 18, 2020</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="1" data-categories="bmFz" data-listing-date-sort="1449057840000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
+
+<div class="thumbnail">
+<a href="./posts/openwrt-setup/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/openwrt-setup/index.html" class="no-external">网件WNDR4300上安装配置OpenWrt</a></h3>
+<div class="listing-subtitle"><a href="./posts/openwrt-setup/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmFz'); return false;">nas</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/openwrt-setup/index.html" class="no-external">WNDR4300是对OpenWrt支持比较好的一款路由器：其内存和闪存都是128M，有比较好的ROM支持，是一个比较适合折腾的路由器。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/openwrt-setup/index.html" class="no-external">
+<div class="listing-date">Dec 2, 2015</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="2" data-categories="bmFz" data-listing-date-sort="1436357040000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="880">
+
+<div class="thumbnail">
+<a href="./posts/smartos-nas/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/smartos-nas/index.html" class="no-external">SmartOS折腾笔记</a></h3>
+<div class="listing-subtitle"><a href="./posts/smartos-nas/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmFz'); return false;">nas</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/smartos-nas/index.html" class="no-external">前段时间入手了一台Gen8，准备用做家里文件、媒体服务器。看了EXSi、FreeNAS、NAS4Free、Proxmox等方案后，觉得还是SmartOS最好。它支持ZFS，能够更好管理数据、保证数据有效性；此外，它支持kvm虚拟化技术，能够虚拟常见的操作系统，满足各种软件需求；它还支持类似Docker的Zones容器技术，比kvm更为高效。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/smartos-nas/index.html" class="no-external">
+<div class="listing-date">Jul 8, 2015</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="3" data-categories="ZGV2b3Bz" data-listing-date-sort="1424088240000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="47">
+
+<div class="thumbnail">
+<a href="./posts/backup-mac-appstore-apps/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/backup-mac-appstore-apps/index.html" class="no-external">备份Mac AppStore中安装的应用</a></h3>
+<div class="listing-subtitle"><a href="./posts/backup-mac-appstore-apps/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/backup-mac-appstore-apps/index.html" class="no-external">在Mac中安装软件并不像Linux那么方便，它没有一个统一的软件管理器来处理大部分的情况。我同时用了Homebrew、Homebrew Cask和Mac…</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/backup-mac-appstore-apps/index.html" class="no-external">
+<div class="listing-date">Feb 16, 2015</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="4" data-categories="ZGV2b3Bz" data-listing-date-sort="1411301040000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="287">
+
+<div class="thumbnail">
+<a href="./posts/nix-the-purely-functional-package-manager/index.html" class="no-external">
+
+<p class="card-img-top"><img src="posts/nix-the-purely-functional-package-manager/nix-profile.svg"  class="thumbnail-image card-img"/></p>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/nix-the-purely-functional-package-manager/index.html" class="no-external">Nix: 纯函数式包管理器</a></h3>
+<div class="listing-subtitle"><a href="./posts/nix-the-purely-functional-package-manager/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/nix-the-purely-functional-package-manager/index.html" class="no-external">Nix是一个Linux/Unix下的包管理器，它支持原子升级和回滚、能够同时安装同一个包的多个版本、支持多用户，能够更加简单地搭建开发、构建环境。它最大的卖点在于 <em>函数式</em> 的管理方式：把软件包作为函数式语言的值，这些值由没有副作用的函数构建，一旦构建完就不再改变，这意味着你的软件运行环境一旦构建就不会改变——这对于可重现的开发而言非常重要。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/nix-the-purely-functional-package-manager/index.html" class="no-external">
+<div class="listing-date">Sep 21, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="5" data-categories="d2Vi" data-listing-date-sort="1410350640000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="486">
+
+<div class="thumbnail">
+<a href="./posts/webpack-package-manager-for-web/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/webpack-package-manager-for-web/index.html" class="no-external">Webpack: 为Web开发而生的模块管理器</a></h3>
+<div class="listing-subtitle"><a href="./posts/webpack-package-manager-for-web/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('d2Vi'); return false;">web</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/webpack-package-manager-for-web/index.html" class="no-external">对于开发人员而言，好的包管理器可以让工作事半功倍。现在流行的编程语言大多有自己的包管理系统。近年来，Web开发越来越火，其开发工具也随之越来越好用了，而Webpack就是一款专为Web开发设计的包管理器。它能够很好地管理、打包Web开发中所用到的HTML、Javascript、CSS以及各种静态文件（图片、字体等），让开发过程更加高效。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/webpack-package-manager-for-web/index.html" class="no-external">
+<div class="listing-date">Sep 10, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="6" data-categories="ZGV2b3Bz" data-listing-date-sort="1406721840000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
+
+<div class="thumbnail">
+<a href="./posts/docker-on-aliyun/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/docker-on-aliyun/index.html" class="no-external">阿里云服务器的Docker配置</a></h3>
+<div class="listing-subtitle"><a href="./posts/docker-on-aliyun/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/docker-on-aliyun/index.html" class="no-external">最近把程序放到阿里云服务器上，并尝试用Docker来部署。阿里云的镜像列表里面已经有了Ubuntu 14.04 64位，可以直接安装Docker。然而，由于阿里云服务器的特殊情况，需要进行配置才能用。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/docker-on-aliyun/index.html" class="no-external">
+<div class="listing-date">Jul 30, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="7" data-categories="ZGV2b3Bz" data-listing-date-sort="1405390980000" data-listing-file-modified-sort="1743231241364" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
+
+<div class="thumbnail">
+<a href="./posts/1-click-building-your-mac-environment/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/1-click-building-your-mac-environment/index.html" class="no-external">一袋烟功夫构建Mac环境</a></h3>
+<div class="listing-subtitle"><a href="./posts/1-click-building-your-mac-environment/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/1-click-building-your-mac-environment/index.html" class="no-external">最近硬盘不幸挂掉，换了新硬盘后重装系统、搭建环境真是一个痛苦的过程。尤其是后者，各种软件的配置、开发环境的设定，非常繁琐。这里索性总结一下，怎么能够将开发、应用的环境配置系统化，使得更换系统时能够迅速重建原来的环境。这里虽然是针对Mac来说的，对于Linux应该也类似。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/1-click-building-your-mac-environment/index.html" class="no-external">
+<div class="listing-date">Jul 15, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="8" data-categories="ZGV2b3Bz" data-listing-date-sort="1405325880000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="335">
+
+<div class="thumbnail">
+<a href="./posts/master-of-puppets/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/master-of-puppets/index.html" class="no-external">走马观花看Puppet</a></h3>
+<div class="listing-subtitle"><a href="./posts/master-of-puppets/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/master-of-puppets/index.html" class="no-external">Puppet是目前最流行的一套配置管理(Configuration Management，简称CM)系统。它提供了一套简洁、强大的框架，使系统管理的重用、分享更加简单，让系统配置更加自动化。在云计算时代，动辄需要配置大量主机，它的作用更加明显。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/master-of-puppets/index.html" class="no-external">
+<div class="listing-date">Jul 14, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="9" data-categories="ZGV2b3Bz" data-listing-date-sort="1402041480000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="101">
+
+<div class="thumbnail">
+<a href="./posts/docker-on-mac/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/docker-on-mac/index.html" class="no-external">Docker on Mac</a></h3>
+<div class="listing-subtitle"><a href="./posts/docker-on-mac/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGV2b3Bz'); return false;">devops</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/docker-on-mac/index.html" class="no-external">在虚拟化领域，Docker是一颗冉冉升起的新星。它构建于LXC之上，比传统的虚拟机技术相比，它没有操作系统层，因此更加轻量化，灵活性和可移植性也更好。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/docker-on-mac/index.html" class="no-external">
+<div class="listing-date">Jun 6, 2014</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="10" data-categories="d3JpdGluZw==" data-listing-date-sort="1374805980000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="307">
+
+<div class="thumbnail">
+<a href="./posts/punctuation/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/punctuation/index.html" class="no-external">混乱的标点符号</a></h3>
+<div class="listing-subtitle"><a href="./posts/punctuation/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('d3JpdGluZw=='); return false;">writing</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/punctuation/index.html" class="no-external">打开你经常上的几个网站，翻开你正在看的书，拿起你身边商品的包装，仔细观察一下其中的标点，有没有被用法各异的标点所困扰？中、英文之间的差异，输入法之间的差异，排版软件处理细节的不同，让标点符号变得异常混乱。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/punctuation/index.html" class="no-external">
+<div class="listing-date">Jul 26, 2013</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="11" data-categories="cHl0aG9u" data-listing-date-sort="1374755640000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="810">
+
+<div class="thumbnail">
+<a href="./posts/python-mro/index.html" class="no-external">
+
+<p class="card-img-top"><img data-src="posts/python-mro/class_diamond.svg"  class="thumbnail-image card-img"/></p>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/python-mro/index.html" class="no-external">Python的方法解析顺序(MRO)</a></h3>
+<div class="listing-subtitle"><a href="./posts/python-mro/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/python-mro/index.html" class="no-external">对于支持继承的编程语言来说，其方法（属性）可能定义在当前类，也可能来自于基类，所以在方法调用时就需要对当前类和基类进行搜索以确定方法所在的位置。而搜索的顺序就是所谓的「方法解析顺序」（Method Resolution Order，或MRO）。对于只支持单继承的语言来说，MRO 一般比较简单；而对于 Python…</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/python-mro/index.html" class="no-external">
+<div class="listing-date">Jul 25, 2013</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="12" data-categories="d2Vi" data-listing-date-sort="1365252120000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="135">
+
+<div class="thumbnail">
+<a href="./posts/markdown-to-ansi/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/markdown-to-ansi/index.html" class="no-external">Markdown 的 Ansi 显示</a></h3>
+<div class="listing-subtitle"><a href="./posts/markdown-to-ansi/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('d2Vi'); return false;">web</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/markdown-to-ansi/index.html" class="no-external">随着 Jekyll、Octopres、Docpad 等一批静态博客生成器的兴起，Markdown 已经成为写博客的利器。不过，有时候想把博客上的文章直接贴到 BBS 上还是需要去做一些转换，把格式转换为 ANSI 颜色控制符。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/markdown-to-ansi/index.html" class="no-external">
+<div class="listing-date">Apr 6, 2013</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="13" data-categories="Y3Bw" data-listing-date-sort="1359293880000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81">
+
+<div class="thumbnail">
+<a href="./posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html" class="no-external">C++11 和 C++98 的 ABI 兼容性</a></h3>
+<div class="listing-subtitle"><a href="./posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y3Bw'); return false;">cpp</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html" class="no-external">C++11 出来已经好几年了，对其中有些特性还是很感兴趣的，比如 rvalue reference、lambda、alias templates、range-based for 等，正好最近在写 C++ 的代码，就准备尝试一下。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html" class="no-external">
+<div class="listing-date">Jan 27, 2013</div>
+
+</a></div>
+
+</div>
+
+<div class="quarto-post image-right" data-index="14" data-categories="d2Vi" data-listing-date-sort="1357479600000" data-listing-file-modified-sort="1743231241365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
+
+<div class="thumbnail">
+<a href="./posts/docpad-static-site-generator-using-coffeescript/index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a>
+</div>
+
+<div class="body">
+
+<h3 class="no-anchor listing-title"><a href="./posts/docpad-static-site-generator-using-coffeescript/index.html" class="no-external">DocPad：基于 CoffeeScript 的静态网站生成器</a></h3>
+<div class="listing-subtitle"><a href="./posts/docpad-static-site-generator-using-coffeescript/index.html" class="no-external"></a></div>
+
+ 
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('d2Vi'); return false;">web</div>
+
+</div>
+ 
+
+<div class="delink listing-description"><a href="./posts/docpad-static-site-generator-using-coffeescript/index.html" class="no-external">DocPad 是一个静态网站生成器，同 Jekyll、Octopress 相比，它的可定制性更强； 由于是用 CoffeeScript 写的，速度也比以上两个快很多。最近两天玩了一下，感觉很不错：功能很强大，虽然有些插件不太稳定，但基本功能已经比较完备了。</a></div>
+
+</div>
+<div class="metadata"><a href="./posts/docpad-static-site-generator-using-coffeescript/index.html" class="no-external">
+<div class="listing-date">Jan 6, 2013</div>
+
+</a></div>
+
+</div>
+
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hanjianwei\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

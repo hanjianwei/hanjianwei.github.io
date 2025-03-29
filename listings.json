@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/ydpm40-keyboard/index.html",
+      "/posts/openwrt-setup/index.html",
+      "/posts/smartos-nas/index.html",
+      "/posts/backup-mac-appstore-apps/index.html",
+      "/posts/nix-the-purely-functional-package-manager/index.html",
+      "/posts/webpack-package-manager-for-web/index.html",
+      "/posts/docker-on-aliyun/index.html",
+      "/posts/1-click-building-your-mac-environment/index.html",
+      "/posts/master-of-puppets/index.html",
+      "/posts/docker-on-mac/index.html",
+      "/posts/punctuation/index.html",
+      "/posts/python-mro/index.html",
+      "/posts/markdown-to-ansi/index.html",
+      "/posts/abi-compatibility-between-c-plus-plus-11-and-c-plus-plus-98/index.html",
+      "/posts/docpad-static-site-generator-using-coffeescript/index.html"
+    ]
+  }
+]
