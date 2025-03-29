@@ -6,3 +6,13 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# Enable comments 
+comments:
+  hypothesis:
+    theme: clean
+    openSidebar: false
+  giscus: 
+    repo: hanjianwei/hanjianwei.github.io
+    category: Comments
+    mapping: pathname

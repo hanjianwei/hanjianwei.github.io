@@ -2,6 +2,12 @@
 
 Personal blog powered by [Quarto](https://quarto.org/).
 
+## Create post
+
+```bash
+./new_post.sh "Hello Quarto"
+```
+
 ## Building
 
 ```bash
