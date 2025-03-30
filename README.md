@@ -2,7 +2,7 @@
 
 Personal blog powered by [Quarto](https://quarto.org/).
 
-## Create post
+## Creating post
 
 ```bash
 ./new_post.sh "Hello Quarto"
@@ -20,7 +20,7 @@ quarto render
 quarto preview
 ```
 
-## Publish
+## Publishing
 
 ```bash
 quarto publish gh-pages
